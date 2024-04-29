@@ -9,4 +9,5 @@ export const App = styled.div`
   line-height: 1.75;
   font-size: 5vh;
   font-weight: 300;
+  font-family: 'Roboto', sans-serif;
 `;

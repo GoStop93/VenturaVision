@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { AnimatePresence } from 'framer-motion';
 
-import HomePage from './Pages/HomePage';
+import HomePage from './pages/HomePage';
 
 import * as S from './App.styles';
 

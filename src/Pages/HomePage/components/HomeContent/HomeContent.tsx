@@ -23,15 +23,22 @@ const HomeContent: React.FC = () => {
   }, [index]);
 
   return (
-    <S.Content>
+    <S.Wrapper>
       {videos.map((video, idx) => (
         <S.Video isActive={index === idx} autoPlay={idx === index} muted onEnded={handleVideoEnd} key={idx} ref={idx === index ? videoRef : null}>
           <source src={video} type="video/mp4" />
         </S.Video>
       ))}
-
+      <S.Content>
+        <S.Title variant="h1" color="primary">
+          VenturalVision
+        </S.Title>
+        <S.Subtitle variant="h2" color="secondary">
+          Your HVAC Calculation Hub
+        </S.Subtitle>
+      </S.Content>
       <S.Overlay />
-    </S.Content>
+    </S.Wrapper>
   );
 };
 
