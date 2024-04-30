@@ -1,10 +1,11 @@
 import { createTheme } from '@mui/material/styles';
 import { colors } from '../styles/colors';
+import { buttonOverride } from './overrides/buttonOverrides';
 
 export default createTheme({
   spacing: 8,
   typography: {
-    fontFamily: [ 'Roboto', 'sans-serif'].join(','),
+    fontFamily: ['Roboto', 'sans-serif'].join(','),
   },
   palette: {
     primary: {
@@ -19,6 +20,9 @@ export default createTheme({
       defaultProps: {
         disableRipple: true,
       },
+    },
+    MuiButton: {
+      styleOverrides: buttonOverride,
     },
     MuiTypography: {
       variants: [
