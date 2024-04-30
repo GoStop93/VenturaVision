@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+import { colors } from '../../../../styles/colors';
 import { Box, Typography } from '@mui/material';
 
 export const Wrapper = styled(Box)`
@@ -43,9 +45,9 @@ export const Content = styled.div`
 `;
 
 export const Title = styled(Typography)`
-  text-shadow: 3px 3px 3px #eb251b;
+  text-shadow: 3px 3px 3px ${colors.orange};
 `;
 
 export const Subtitle = styled(Typography)`
-  text-shadow: 2px 2px 3px #fafafa;
+  text-shadow: 2px 2px 3px ${colors.white};
 `;
