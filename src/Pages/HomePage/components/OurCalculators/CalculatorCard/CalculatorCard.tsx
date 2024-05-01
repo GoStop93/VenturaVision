@@ -1,8 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../../../../../components/Button';
-import { Typography } from '@mui/material';
-
 import { ICalculatorCardProps } from './types';
 
 import * as S from './CalculatorCard.styles';
@@ -18,10 +15,10 @@ const CalculatorCard: React.FC<ICalculatorCardProps> = (props) => {
 
   return (
     <S.CalculatorCard>
-      <Button onClick={handleNavigate} variant="outlined">
+      <S.CalculatorButton onClick={handleNavigate} variant="outlined">
         {calculator.buttonName}
-      </Button>
-      <Typography>{calculator.description}</Typography>
+      </S.CalculatorButton>
+      <S.Description>{calculator.description}</S.Description>
     </S.CalculatorCard>
   );
 };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { colors } from '../../../../styles/colors';
 import { Box, Typography } from '@mui/material';
+import { screenSizes } from '../../../../styles/sizes';
 
 export const Wrapper = styled(Box)`
   display: flex;
@@ -46,8 +47,17 @@ export const Content = styled.div`
 
 export const Title = styled(Typography)`
   text-shadow: 3px 3px 3px ${colors.orange};
+
+  @media screen and (max-width: ${screenSizes.sm}) {
+    font-size: 40px !important;
+  }
 `;
 
 export const Subtitle = styled(Typography)`
   text-shadow: 2px 2px 3px ${colors.white};
+
+  @media screen and (max-width: ${screenSizes.sm}) {
+    font-size: 30px !important;
+    text-align: center;
+  }
 `;
