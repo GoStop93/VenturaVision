@@ -1,0 +1,25 @@
+{
+  "title": "Your HVAC Calculation Hub",
+  "our_calculators": {
+    "title_first": "Our",
+    "title_second": "Calculators"
+  },
+  "calculators": {
+    "ventilation": {
+      "button": "Ventilation System",
+      "description": "Perform ventilation system calculations for your apartment or house, including supply, supply and exhaust, and local exhaust systems"
+    },
+    "air-condition": {
+      "button": "Air Conditioning System",
+      "description": "Perform air conditioning system calculations for your apartment or house"
+    },
+    "duct-airflow": {
+      "button": "Duct Airflow",
+      "description": "Choose air ducts for the ventilation system"
+    },
+    "aerodynamics": {
+      "button": "Ventilation System Aerodynamics",
+      "description": "Conduct an aerodynamic analysis of the ventilation system"
+    }
+  }
+}

@@ -58,7 +58,7 @@ export default createTheme({
           props: { variant: 'h5' },
           style: {
             fontSize: 18,
-            fontWeight: 700,
+            fontWeight: 300,
           },
         },
         {

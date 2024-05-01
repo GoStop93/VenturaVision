@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { AnimatePresence } from 'framer-motion';
+import './utils/languages/i18n';
 
 import HomePage from './pages/HomePage';
 import About from './pages/About';
