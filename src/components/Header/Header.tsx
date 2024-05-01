@@ -5,9 +5,7 @@ import * as S from './Header.styles';
 const Header: React.FC = () => {
   return (
     <S.Header>
-      <S.Content>
-        <NavBar />
-      </S.Content>
+      <NavBar />
     </S.Header>
   );
 };

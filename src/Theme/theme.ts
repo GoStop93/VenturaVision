@@ -43,7 +43,7 @@ export default createTheme({
         {
           props: { variant: 'h3' },
           style: {
-            fontSize: 24,
+            fontSize: 26,
             fontWeight: 700,
           },
         },
