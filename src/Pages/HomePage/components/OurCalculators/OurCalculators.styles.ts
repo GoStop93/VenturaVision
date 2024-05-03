@@ -15,14 +15,18 @@ export const Calculators = styled.div`
   padding: 0 48px;
   box-sizing: border-box;
 
-  @media screen and (max-width: ${screenSizes.sm}) {
-    height: auto;
+  @media screen and (max-width: ${screenSizes.md}) {
     padding: 40px 20px;
+    height: auto;
   }
 `;
 
 export const Title = styled(Typography)`
   span {
     color: ${colors.orange};
+  }
+
+  @media screen and (max-width: ${screenSizes.sm}) {
+    text-align: center;
   }
 `;

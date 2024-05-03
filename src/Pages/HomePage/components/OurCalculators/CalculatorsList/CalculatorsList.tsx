@@ -6,7 +6,6 @@ import { ICalculatorsEntity } from './types';
 import * as S from './CalculatorsList.styles';
 
 const CalculatorsList: React.FC = () => {
-
   const { t } = useTranslation('home');
 
   const translations = {
@@ -20,12 +19,11 @@ const CalculatorsList: React.FC = () => {
     aerodynamics_description: t('home:calculators.aerodynamics.description'),
   };
 
-
   const calculatorsData: ICalculatorsEntity = [
     {
       buttonName: translations.ventilation_button,
       url: 'ventilation-system-calculator',
-      description: translations.ventilation_description
+      description: translations.ventilation_description,
     },
     {
       buttonName: translations.air_condition_button,

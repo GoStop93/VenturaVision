@@ -39,7 +39,7 @@ const HomeContent: React.FC = () => {
       ))}
       <S.Content>
         <S.Title variant="h1" color="primary">
-          VenturalVision
+          VenturaVision
         </S.Title>
         <S.Subtitle variant="h2" color="secondary">
           {translations.title}
