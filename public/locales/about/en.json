@@ -1,0 +1,19 @@
+{
+  "about_me": {
+    "title_first": "About",
+    "title_second": "me",
+    "description_part_1": "My name is Mikhail Litvinov, and I am a heating engineer, frontend developer, and HVAC enthusiast.",
+    "description_part_2": "My professional journey began at the Moscow Power Engineering Institute (MPEI), where I gained a deep understanding of thermal energy, successfully completing both my bachelor's and master's degrees. For over five years, I dedicated myself to designing engineering systems, accumulating invaluable experience and expertise. During this time, I not only honed my engineering skills but also developed a passion for creating intuitive and efficient interfaces. This passion led me to the world of frontend development, where I could combine my technical knowledge with a creative approach.",
+    "description_part_3": "Today, I am excited to present this project to you – the result of merging my engineering experience with my passion for development. This is not just a tool, it is the embodiment of my desire to make HVAC system design more accessible, efficient, and enjoyable for every specialist."
+  },
+  "about_project": {
+    "title_first": "About",
+    "title_second": "project",
+    "description_part_1": "This is a comprehensive solution designed to streamline the workflow of the entire team – from managers to designers. At the core of this project lies the desire to simplify and accelerate the design process, ensuring transparency and ease of interaction at all stages",
+    "description_part_2": "Here's what you'll be able to do:",
+    "description_part_3": "This project is designed to be a reliable assistant for every specialist involved in the design and installation of ventilation and air conditioning systems. It will allow you to save time, increase work efficiency, and achieve better results",
+    "list_item_1": "Create and manage projects: Easily add new projects, specify names, clients, and other important information.",
+    "list_item_2": "Store and share files: Upload drawings, specifications, and other documents, providing quick access for all team members",
+    "list_item_3": "Perform online calculations: Utilize the built-in calculator for accurate and fast calculation of HVAC system parameters."
+  }
+}

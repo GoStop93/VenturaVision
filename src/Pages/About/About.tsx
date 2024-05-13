@@ -1,10 +1,16 @@
 import transition from "../../utils/transition/transition";
 
+import AboutMeSection from "./components/AboutMeSection";
+import AboutProjectSection from "./components/AboutProjectSection";
+
+import * as S from './About.styles';
+
 const About: React.FC = () => {
     return (
-      <div style={{height: '100vh' ,display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        About
-      </div>
+      <S.About>
+        <AboutMeSection />
+        <AboutProjectSection />
+      </S.About>
     );
 }
 
