@@ -1,0 +1,36 @@
+{
+  "tabs_group": {
+    "first_tab": "Online Calculator",
+    "second_tab": "Calculation Methodology"
+  },
+  "methodology": {
+    "title_first": "Airflow",
+    "title_second": "capacity",
+    "text_1": "The calculation of a ventilation system begins with determining the airflow capacity (air exchange rate), measured in cubic meters per hour. For calculations, we'll need a floor plan of the object, indicating the names (purposes) and areas of all rooms, as well as the ceiling height.",
+    "text_2": "Fresh air needs to be supplied only to those rooms where people can stay for extended periods: bedrooms, living rooms, offices, etc. Air is not supplied to corridors, and it is removed from the kitchen and bathrooms through exhaust ducts. Thus, the scheme of airflows will look like this: fresh air is supplied to living areas, from there it (already partially polluted) enters the corridor, from the corridor – to bathrooms and the kitchen, from where it is removed through exhaust ventilation, carrying away unpleasant odors and pollutants. Such a scheme of air movement ensures air pressure in 'dirty' rooms, eliminating the possibility of unpleasant odors spreading throughout the apartment or cottage.",
+    "text_3": "To determine the required airflow rate, we need to calculate two values of air exchange: by the number of people and by the air exchange rate, and then choose the larger of these two values:",
+    "first_calculation": {
+      "title": "Calculation of air exchange by the number of people:",
+      "formula": ", where",
+      "description_1": " — required capacity of supply ventilation, m³/h;",
+      "description_2": " — number of people;",
+      "description_3": " — air consumption rate per person:",
+      "description_4": "minimum required value — 30 m³/h;",
+      "description_5": "comfortable value — 60 m³/h;"
+    },
+    "second_calculation": {
+      "title": "Calculation of air exchange by rate:",
+      "formula": ", where",
+      "description_1": " — required capacity of supply ventilation, m³/h;",
+      "description_2": " — normalized air exchange rate(for residential premises = 2)",
+      "description_3": " — area of the room, m²;",
+      "description_4": " — height of the room, m"
+    },
+    "exhaust": {
+      "title": "Local exhaust systems are calculated based on the normalized rate, depending on the purpose of the room:",
+      "description_1": "Bathroom - from 7 to 9 rates;",
+      "description_2": "Toilet - from 8 to 10 rates;",
+      "description_3": "Laundry room - 7 rates;"
+    }
+  }
+}

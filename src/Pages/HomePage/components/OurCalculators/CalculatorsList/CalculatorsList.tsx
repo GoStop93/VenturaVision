@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import CalculatorCard from '../CalculatorCard';
 import { ICalculatorsEntity } from './types';
 
+import { VENTILATION_CALCULATOR, AIR_CONDITION_CALCULATOR, DUCT_CALCULATOR, AERODYNAMICS_CALCULATOR } from '../../../../../constants/path';
+
 import * as S from './CalculatorsList.styles';
 
 const CalculatorsList: React.FC = () => {
@@ -22,22 +24,22 @@ const CalculatorsList: React.FC = () => {
   const calculatorsData: ICalculatorsEntity = [
     {
       buttonName: translations.ventilation_button,
-      url: 'ventilation-system-calculator',
+      url: VENTILATION_CALCULATOR,
       description: translations.ventilation_description,
     },
     {
       buttonName: translations.air_condition_button,
-      url: 'air-conditioning-system-calculator',
+      url: AIR_CONDITION_CALCULATOR,
       description: translations.air_condition_description,
     },
     {
       buttonName: translations.duct_airflow_button,
-      url: 'duct-airflow-calculator',
+      url: DUCT_CALCULATOR,
       description: translations.duct_airflow_description,
     },
     {
       buttonName: translations.aerodynamics_button,
-      url: 'ventilation-system-aerodynamics-calculator',
+      url: AERODYNAMICS_CALCULATOR,
       description: translations.aerodynamics_description,
     },
   ];

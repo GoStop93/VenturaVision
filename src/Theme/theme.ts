@@ -1,6 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 import { colors } from '../styles/colors';
 import { buttonOverride } from './overrides/buttonOverrides';
+import { tabsOverride } from './overrides/tabsOverrides';
+import { tabOverride } from './overrides/tabsOverrides';
 
 export default createTheme({
   spacing: 8,
@@ -23,6 +25,12 @@ export default createTheme({
     },
     MuiButton: {
       styleOverrides: buttonOverride,
+    },
+    MuiTabs: {
+      styleOverrides: tabsOverride,
+    },
+    MuiTab: {
+      styleOverrides: tabOverride,
     },
     MuiTypography: {
       variants: [
