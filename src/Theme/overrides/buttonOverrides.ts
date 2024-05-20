@@ -9,12 +9,21 @@ export const buttonOverride = {
 
     [`&.${buttonClasses.disabled}`]: {
       backgroundColor: theme.palette.grey[500],
-      color: theme.palette.common.white,
+      color: colors.white,
     },
 
     [`&.link`]: {
       backgroundColor: theme.palette.grey[500],
       color: theme.palette.common.white,
+    },
+  }),
+
+  contained: ({ theme }: { theme: Theme }) => ({
+    color: colors.white,
+    backgroundColor: colors.orange,
+    '&:hover': {
+      color: colors.white,
+      backgroundColor: colors.orange,
     },
   }),
 

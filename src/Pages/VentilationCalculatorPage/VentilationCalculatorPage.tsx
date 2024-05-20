@@ -7,6 +7,7 @@ import { TabPanel, TabsContainer } from '../../components/Tabs';
 import { Tab } from '@mui/material';
 
 import VentilationCalculationMethodology from './components/VentilationCalculationMethodology';
+import VentilationOnlineCalculator from './components/VentilationOnlineCalculator';
 
 import * as S from './VentilationCalculatorPage.styles';
 
@@ -28,13 +29,19 @@ const VentilationCalculatorPage: React.FC = () => {
 
   return (
     <S.VentilationCalculator>
-      <TabsContainer value={tabValue} onChange={handleTabChange}>
+      <TabsContainer
+        value={tabValue}
+        onChange={handleTabChange}
+        variant="scrollable"
+        allowScrollButtonsMobile
+        aria-label="scrollable force tabs example"
+      >
         {tabs.map((tab) => (
           <Tab key={tab.label} label={tab.label} />
         ))}
       </TabsContainer>
       <TabPanel value={tabValue} index={0}>
-        First tab 
+        <VentilationOnlineCalculator />
       </TabPanel>
       <TabPanel value={tabValue} index={1}>
         <VentilationCalculationMethodology />

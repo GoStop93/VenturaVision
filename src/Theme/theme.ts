@@ -3,6 +3,8 @@ import { colors } from '../styles/colors';
 import { buttonOverride } from './overrides/buttonOverrides';
 import { tabsOverride } from './overrides/tabsOverrides';
 import { tabOverride } from './overrides/tabsOverrides';
+import { radioOverride } from './overrides/radioOverrides';
+import { textFieldOverride } from './overrides/textFiledOverrides';
 
 export default createTheme({
   spacing: 8,
@@ -32,6 +34,12 @@ export default createTheme({
     MuiTab: {
       styleOverrides: tabOverride,
     },
+    MuiRadio: {
+      styleOverrides: radioOverride,
+    },
+    MuiTextField: {
+      styleOverrides: textFieldOverride,
+    },
     MuiTypography: {
       variants: [
         {
@@ -59,14 +67,14 @@ export default createTheme({
           props: { variant: 'h4' },
           style: {
             fontSize: 20,
-            fontWeight: 700,
+            fontWeight: 600,
           },
         },
         {
           props: { variant: 'h5' },
           style: {
-            fontSize: 18,
-            fontWeight: 300,
+            fontSize: 16,
+            fontWeight: 400,
           },
         },
         {

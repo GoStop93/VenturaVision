@@ -2,14 +2,21 @@ import styled from 'styled-components';
 import { Typography } from '@mui/material';
 
 import { colors } from '../../../../styles/colors';
+import { screenSizes } from '../../../../styles/sizes';
 
 export const CalculationMethodology = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  padding: 2vh 5vw 0;
+  padding: 2vh 0;
   gap: 20px;
+  @media screen and (max-width: ${screenSizes.sm}) {
+    ol,
+    ul {
+      padding: 0 15px;
+    }
+  }
 `;
 
 export const Title = styled(Typography)`
@@ -27,6 +34,6 @@ export const Text = styled(Typography)`
 
 export const List = styled.ul`
   ::marker {
-    color:  ${colors.orange};
+    color: ${colors.orange};
   }
 `;
