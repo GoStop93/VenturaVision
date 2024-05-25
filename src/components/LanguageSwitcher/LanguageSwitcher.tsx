@@ -20,7 +20,7 @@ const LanguageSwitcher: React.FC = () => {
   return (
     <S.Switcher>
       <S.SwitchOption isActive={currentLanguage === LANGUAGES.ENG} variant="h5" onClick={handleSwitchToEnglish}>
-        Eng
+        En
       </S.SwitchOption>
       <Typography variant="h5" color="primary">
         /

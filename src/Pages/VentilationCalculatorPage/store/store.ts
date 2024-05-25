@@ -4,7 +4,7 @@ import { devtools } from 'zustand/middleware';
 import { IVentilationCalculatorStore } from './types';
 
 export const useVentilationCalculatorStore = create<IVentilationCalculatorStore>()(
-  devtools((set, get) => ({
+  devtools((set) => ({
     airflowRateType: 'max',
     setAirflowRateType: (value) => set(() => ({ airflowRateType: value })),
 

@@ -79,7 +79,7 @@ const AirflowRateForm: React.FC = () => {
                           field.onChange(e);
                           const value = +e.target.value;
                           if (!isNaN(value)) {
-                            if (value !== 0 && value > 0) {
+                            if (value !== 0 && value > 0 && value < 151) {
                               setAirflowRate(value);
                             } else {
                               setAirflowRate(60);

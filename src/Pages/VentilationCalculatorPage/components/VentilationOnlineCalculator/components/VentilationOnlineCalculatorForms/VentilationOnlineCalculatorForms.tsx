@@ -1,55 +1,65 @@
-import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import VentilationForm from './VentilationForm';
 
-import { IFormEntity } from './types';
-
 import * as S from './VentilationOnlineCalculatorForms.styles';
+import { FormProvider, useForm, useFieldArray } from 'react-hook-form';
 
 const MAX_ROOMS = 30;
 
 const VentilationOnlineCalculatorForms: React.FC = () => {
-  const [forms, setForms] = useState<IFormEntity[]>([{ id: uuidv4(), roomNumber: 1 }]);
+  const methods = useForm({ defaultValues: { rooms: [{ id: uuidv4(), roomNumber: 1, roomType: 'Жилое помещение' }] } });
+  const { control, handleSubmit, reset } = methods;
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'rooms',
+  });
 
   const addForm = () => {
-    setForms((prevForms) => {
-      const newRoomNumber = prevForms.length + 1;
-      return [...prevForms, { id: uuidv4(), roomNumber: newRoomNumber }];
-    });
+    append({ id: uuidv4(), roomNumber: fields.length + 1, roomType: 'Жилое помещение' });
   };
 
-  const removeForm = (id: string) => {
-    setForms((prevForms) => {
-      const updatedForms = prevForms.filter((form) => form.id !== id);
-      return updatedForms.map((form, index) => ({
-        ...form,
-        roomNumber: index + 1,
-      }));
-    });
+  const removeForm = (index: number) => {
+    remove(index);
   };
 
   const resetForms = () => {
-    setForms([{ id: uuidv4(), roomNumber: 1 }]);
+    reset({ rooms: [{ id: uuidv4(), roomNumber: 1, roomType: 'Жилое помещение' }] });
+  };
+
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
 
   return (
-    <S.VentilationCalculator>
-      <S.FormsWrapper>
-        {forms.map((form) => (
-          <VentilationForm key={form.id} amountOfRooms={forms.length} roomNumber={form.roomNumber} onRemove={() => removeForm(form.id)} />
-        ))}
-        <S.AddButton variant="contained" size="large" onClick={addForm} disabled={forms.length >= MAX_ROOMS}>
-          + добавить комнату
-        </S.AddButton>
-      </S.FormsWrapper>
-      <S.ButtonsWrapper>
-        <S.MenuButton size="large">Submit</S.MenuButton>
-        <S.MenuButton variant="outlined" size="large" onClick={resetForms}>
-          Reset
-        </S.MenuButton>
-      </S.ButtonsWrapper>
-    </S.VentilationCalculator>
+    <FormProvider {...methods}>
+      <S.VentilationCalculator>
+        <S.FormsWrapper>
+          {fields.map((field, index) => (
+            <VentilationForm
+              key={field.id}
+              control={control}
+              index={index}
+              roomNumber={index + 1}
+              amountOfRooms={fields.length}
+              onRemove={() => removeForm(index)}
+            />
+          ))}
+          <S.AddButton variant="contained" size="large" onClick={addForm} disabled={fields.length >= MAX_ROOMS}>
+            + добавить комнату
+          </S.AddButton>
+        </S.FormsWrapper>
+        <S.ButtonsWrapper>
+          <S.MenuButton size="large" onClick={handleSubmit(onSubmit)}>
+            Submit
+          </S.MenuButton>
+          <S.MenuButton variant="outlined" size="large" onClick={resetForms}>
+            Reset
+          </S.MenuButton>
+        </S.ButtonsWrapper>
+      </S.VentilationCalculator>
+    </FormProvider>
   );
 };
 
