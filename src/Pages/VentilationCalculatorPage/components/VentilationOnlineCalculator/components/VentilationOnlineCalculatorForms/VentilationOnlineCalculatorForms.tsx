@@ -4,12 +4,38 @@ import VentilationForm from './VentilationForm';
 
 import * as S from './VentilationOnlineCalculatorForms.styles';
 import { FormProvider, useForm, useFieldArray } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import ventilationSchema from './utils/validations';
 
 const MAX_ROOMS = 30;
 
 const VentilationOnlineCalculatorForms: React.FC = () => {
-  const methods = useForm({ defaultValues: { rooms: [{ id: uuidv4(), roomNumber: 1, roomType: 'Жилое помещение' }] } });
-  const { control, handleSubmit, reset } = methods;
+  const methods = useForm({
+    resolver: yupResolver(ventilationSchema),
+    mode: 'onChange',
+    defaultValues: {
+      rooms: [
+        {
+          id: uuidv4(),
+          roomNumber: 1,
+          roomType: 'Жилое помещение',
+          selectedOption: 'square',
+          name: '',
+          ceilingHeight: 0,
+          length: 0,
+          width: 0,
+          area: 0,
+          people: 0,
+        },
+      ],
+    },
+  });
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = methods;
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -17,7 +43,18 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
   });
 
   const addForm = () => {
-    append({ id: uuidv4(), roomNumber: fields.length + 1, roomType: 'Жилое помещение' });
+    append({
+      id: uuidv4(),
+      roomNumber: fields.length + 1,
+      roomType: 'Жилое помещение',
+      selectedOption: 'square',
+      name: '',
+      ceilingHeight: 0,
+      length: 0,
+      width: 0,
+      area: 0,
+      people: 0,
+    });
   };
 
   const removeForm = (index: number) => {
@@ -25,9 +62,23 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
   };
 
   const resetForms = () => {
-    reset({ rooms: [{ id: uuidv4(), roomNumber: 1, roomType: 'Жилое помещение' }] });
+    reset({
+      rooms: [
+        {
+          id: uuidv4(),
+          roomNumber: 1,
+          roomType: 'Жилое помещение',
+          selectedOption: 'square',
+          name: '',
+          ceilingHeight: 0,
+          length: 0,
+          width: 0,
+          area: 0,
+          people: 0,
+        },
+      ],
+    });
   };
-
   const onSubmit = (data: any) => {
     console.log(data);
   };
@@ -44,6 +95,7 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
               roomNumber={index + 1}
               amountOfRooms={fields.length}
               onRemove={() => removeForm(index)}
+              errors={errors.rooms?.[index]}
             />
           ))}
           <S.AddButton variant="contained" size="large" onClick={addForm} disabled={fields.length >= MAX_ROOMS}>

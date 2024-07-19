@@ -45,9 +45,14 @@ export const HorizontalWrapper = styled.div`
   justify-content: space-between;
 `;
 
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Input = styled(TextField)`
   input {
-    width: 50px;
+    width: 60px;
     height: 10px;
   }
 `;

@@ -10,4 +10,16 @@ export interface IVentilationCalculatorStore {
 
   exchangeRate: number;
   setExchangeRate: (value: number) => void;
+
+  exhaustRateType: 'norm' | 'custom';
+  setExhaustRateType: (value: 'norm' | 'custom') => void;
+
+  bathroomExhaustRate: number;
+  setBathroomExhaustRate: (value: number) => void;
+
+  toiletExhaustRate: number;
+  setToiletExhaustRate: (value: number) => void;
+
+  laundryRoomExhaustRate: number;
+  setLaundryRoomExhaustRate: (value: number) => void;
 }
