@@ -21,12 +21,12 @@ export const useVentilationCalculatorStore = create<IVentilationCalculatorStore>
     setExhaustRateType: (value) => set(() => ({ exhaustRateType: value })),
 
     bathroomExhaustRate: 8,
-    setBathroomExhaustRate: (value) => set(() => ({ exchangeRate: value })),
+    setBathroomExhaustRate: (value) => set(() => ({ bathroomExhaustRate: value })),
 
     toiletExhaustRate: 9,
-    setToiletExhaustRate: (value) => set(() => ({ exchangeRate: value })),
+    setToiletExhaustRate: (value) => set(() => ({ toiletExhaustRate: value })),
 
     laundryRoomExhaustRate: 7,
-    setLaundryRoomExhaustRate: (value) => set(() => ({ exchangeRate: value })),
+    setLaundryRoomExhaustRate: (value) => set(() => ({ laundryRoomExhaustRate: value })),
   }))
 );

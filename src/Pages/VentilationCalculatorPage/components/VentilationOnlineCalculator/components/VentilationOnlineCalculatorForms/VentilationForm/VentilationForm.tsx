@@ -11,17 +11,17 @@ import ErrorMessage from '../../../../../../../components/ErrorMessage';
 
 import { colors } from '../../../../../../../styles/colors';
 import { IVentilationFormProps } from './types';
+import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS } from '../types';
 
 import * as S from './VentilationForm.styles';
 
 const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
   const { roomNumber, onRemove, amountOfRooms, control, index, errors } = props;
 
-  const [selectedOption, setSelectedOption] = useState('square');
-
   const { resetField, setValue, watch } = useFormContext();
 
-  const roomType = watch(`rooms.${index}.roomType`, 'Жилое помещение');
+  const roomType = watch(`rooms.${index}.roomType`, ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE);
+  const selectedOption = watch(`rooms.${index}.selectedOption`, SELECTED_OPTIONS.SQUARE);
 
   const onRoomTypeChange = (_: string, value: string) => {
     setValue(`rooms.${index}.roomType`, value);
@@ -29,18 +29,16 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
 
   const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setSelectedOption(value);
-    if (value === 'square') {
+    setValue(`rooms.${index}.selectedOption`, value);
+    if (value === SELECTED_OPTIONS.SQUARE) {
       resetField(`rooms.${index}.length`);
       resetField(`rooms.${index}.width`);
-    } else if (value === 'dimensions') {
+    } else if (value === SELECTED_OPTIONS.DIMENSIONS) {
       resetField(`rooms.${index}.area`);
     }
   };
 
   const isVisibleDeleteButton = amountOfRooms > 1;
-
-  const options = ['Жилое помещение', 'Ванная комната', 'Туалет', 'Постирочная'];
 
   return (
     <S.Form>
@@ -69,9 +67,9 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
 
         <S.HorizontalWrapper>
           <Typography>Тип помещения:</Typography>
-          <Dropdown options={options} name={`rooms.${index}.type`} value={roomType} onChange={onRoomTypeChange} />
+          <Dropdown options={Object.values(ROOM_TYPES_OPTIONS)} name={`rooms.${index}.type`} value={roomType} onChange={onRoomTypeChange} />
         </S.HorizontalWrapper>
-        {roomType === 'Жилое помещение' && (
+        {roomType === ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE && (
           <S.InputWrapper>
             <S.HorizontalWrapper>
               <Typography>Количество людей:</Typography>
@@ -95,11 +93,11 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
         </S.InputWrapper>
 
         <RadioGroup row value={selectedOption} onChange={handleOptionChange}>
-          <FormControlLabel value="square" control={<Radio />} label="Площадь" />
-          <FormControlLabel value="dimensions" control={<Radio />} label="Размеры" />
+          <FormControlLabel value={SELECTED_OPTIONS.SQUARE} control={<Radio />} label="Площадь" />
+          <FormControlLabel value={SELECTED_OPTIONS.DIMENSIONS} control={<Radio />} label="Размеры" />
         </RadioGroup>
 
-        {selectedOption === 'dimensions' && (
+        {selectedOption === SELECTED_OPTIONS.DIMENSIONS && (
           <>
             <S.InputWrapper>
               <S.HorizontalWrapper>
@@ -124,7 +122,7 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
           </>
         )}
 
-        {selectedOption === 'square' && (
+        {selectedOption === SELECTED_OPTIONS.SQUARE && (
           <S.InputWrapper>
             <S.HorizontalWrapper>
               <Typography>Площадь помещения:</Typography>

@@ -1,15 +1,24 @@
+import { useState } from 'react';
+import { FormProvider, useForm, useFieldArray } from 'react-hook-form';
+
 import { v4 as uuidv4 } from 'uuid';
 
 import VentilationForm from './VentilationForm';
+import VentilationCalculationResults from './VentilationCalculationResults';
 
-import * as S from './VentilationOnlineCalculatorForms.styles';
-import { FormProvider, useForm, useFieldArray } from 'react-hook-form';
+import { IVentilationData, ROOM_TYPES_OPTIONS, SELECTED_OPTIONS } from './types';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import ventilationSchema from './utils/validations';
+import { IVentilationEntity } from '../../../../../../models/ventilation';
+
+import * as S from './VentilationOnlineCalculatorForms.styles';
 
 const MAX_ROOMS = 30;
 
 const VentilationOnlineCalculatorForms: React.FC = () => {
+  const [rooms, setRooms] = useState<IVentilationEntity[]>([]);
+
   const methods = useForm({
     resolver: yupResolver(ventilationSchema),
     mode: 'onChange',
@@ -18,8 +27,8 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
         {
           id: uuidv4(),
           roomNumber: 1,
-          roomType: 'Жилое помещение',
-          selectedOption: 'square',
+          roomType: ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
+          selectedOption: SELECTED_OPTIONS.SQUARE,
           name: '',
           ceilingHeight: 0,
           length: 0,
@@ -46,8 +55,8 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
     append({
       id: uuidv4(),
       roomNumber: fields.length + 1,
-      roomType: 'Жилое помещение',
-      selectedOption: 'square',
+      roomType: ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
+      selectedOption: SELECTED_OPTIONS.SQUARE,
       name: '',
       ceilingHeight: 0,
       length: 0,
@@ -67,8 +76,8 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
         {
           id: uuidv4(),
           roomNumber: 1,
-          roomType: 'Жилое помещение',
-          selectedOption: 'square',
+          roomType: ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
+          selectedOption: SELECTED_OPTIONS.SQUARE,
           name: '',
           ceilingHeight: 0,
           length: 0,
@@ -78,9 +87,13 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
         },
       ],
     });
+    setRooms([]);
   };
-  const onSubmit = (data: any) => {
-    console.log(data);
+
+  const onSubmit = (data: IVentilationData) => {
+    if (data.rooms) {
+      setRooms(data.rooms);
+    }
   };
 
   return (
@@ -102,6 +115,7 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
             + добавить комнату
           </S.AddButton>
         </S.FormsWrapper>
+        {rooms.length > 0 && <VentilationCalculationResults rooms={rooms} />}
         <S.ButtonsWrapper>
           <S.MenuButton size="large" onClick={handleSubmit(onSubmit)}>
             Submit
