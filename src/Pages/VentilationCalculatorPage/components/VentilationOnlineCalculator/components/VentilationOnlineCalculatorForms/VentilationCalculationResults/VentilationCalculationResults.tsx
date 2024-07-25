@@ -1,3 +1,11 @@
+import Table from '../../../../../../../components/Table';
+import { Typography } from '@mui/material';
+
+import { calculateIntakeResults } from './utils/calculateIntakeResults';
+import { calculateExhaustResults } from './utils/calculateExhaustResults ';
+
+import { columns } from './constants';
+
 import {
   getAirflowRate,
   getBathroomExhaustRate,
@@ -6,9 +14,11 @@ import {
   getToiletExhaustRate,
 } from '../../../../../store/selectors';
 import { useVentilationCalculatorStore } from '../../../../../store/store';
-import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS } from '../types';
+import { ROOM_TYPES_OPTIONS } from '../types';
 
 import { IVentilationCalculationResultsProps } from './types';
+
+import * as S from './VentilationCalculationResults.styles';
 
 const VentilationCalculationResults: React.FC<IVentilationCalculationResultsProps> = (props) => {
   const { rooms } = props;
@@ -23,42 +33,23 @@ const VentilationCalculationResults: React.FC<IVentilationCalculationResultsProp
   const intakeSystem = rooms.filter((room) => room.roomType === ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE);
   const exhaustSystems = rooms.filter((room) => room.roomType !== ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE);
 
-  const results = intakeSystem.map((room) => {
-    let volume;
+  const intakeResults = calculateIntakeResults(intakeSystem, exchangeRate, airflowRate);
+  const exhaustResults = calculateExhaustResults(exhaustSystems, bathroomExhaustRate, toiletExhaustRate, laundryRoomExhaustRate);
 
-    if (room.selectedOption === SELECTED_OPTIONS.SQUARE && room.area) {
-      volume = room.area * (room.ceilingHeight / 1000);
-    } else if (room.selectedOption === SELECTED_OPTIONS.DIMENSIONS && room.length && room.width) {
+  const results = [...intakeResults, ...exhaustResults];
 
-      volume = (room.length / 1000) * (room.width / 1000) * (room.ceilingHeight / 1000);
-    } else {
-      volume = 0;
-    }
-
-    const ventilationByVolume = volume * exchangeRate;
-    const ventilationByPeople = (room.people || 0) * airflowRate;
-
-    const finalVentilation = Math.round(Math.max(ventilationByVolume, ventilationByPeople));
-
-    return {
-      name: room.name,
-      ventilation: finalVentilation
-    };
-  });
-
-  const totalVentilation = results.reduce((acc, result) => acc + result.ventilation, 0);
+  const totalVentilation = intakeResults.reduce((acc, result) => acc + result.ventilation, 0);
 
   return (
-    <div>
-      {results.map((result) => (
-        <div key={result.name}>
-          {result.name}: {result.ventilation.toFixed(2)} m³/h
-        </div>
-      ))}
-      <div>
-        Общий: {totalVentilation.toFixed(2)} m³/h
-      </div>
-    </div>
+    <S.Results>
+      <S.Label variant="h3">
+        <span>Таблица</span> воздухообменов:
+      </S.Label>
+      <Table data={results} columns={columns} />
+      <S.Text variant="h4">
+        Общий расход приточной/приточно-вытяжной системы: <span>{totalVentilation}</span> м³/ч
+      </S.Text>
+    </S.Results>
   );
 };
 

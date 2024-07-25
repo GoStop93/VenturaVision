@@ -21,6 +21,7 @@ export const Form = styled(FormControl)`
   padding: 20px !important;
   border-radius: 10px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  height: fit-content;
 `;
 
 export const InputsWrapper = styled.div`

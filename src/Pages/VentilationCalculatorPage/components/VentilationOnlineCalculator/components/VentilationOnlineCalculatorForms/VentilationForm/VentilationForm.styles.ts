@@ -5,6 +5,7 @@ import { TextField } from '@mui/material';
 
 export const Form = styled(FormControl)`
   width: 380px;
+  height: fit-content;
   box-sizing: border-box;
   padding: 20px !important;
   border-radius: 10px;

@@ -1,5 +1,12 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import { IVentilationEntity } from '../../../../../../models/ventilation';
 import { ObjectValues } from '../../../../../../utils/helperTypes';
+
+export interface IVentilationOnlineCalculatorFormsProps {
+  rooms: IVentilationEntity[];
+  setRooms: Dispatch<SetStateAction<IVentilationEntity[]>>;
+}
 
 export const SELECTED_OPTIONS = {
   SQUARE: 'square',

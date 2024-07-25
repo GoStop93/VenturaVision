@@ -15,3 +15,13 @@ export interface IVentilationEntity {
   area?: number;
   people?: number;
 }
+
+export interface IRoomEntity {
+  systemName: string,
+  name: string,
+  ventilation: number,
+  id: string,
+  people?: number,
+  ceilingHeight: number,
+  area?: number,
+}

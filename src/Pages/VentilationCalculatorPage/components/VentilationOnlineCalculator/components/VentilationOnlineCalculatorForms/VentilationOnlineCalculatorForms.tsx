@@ -1,50 +1,28 @@
-import { useState } from 'react';
-import { FormProvider, useForm, useFieldArray } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { useFormContext, useFieldArray } from 'react-hook-form';
 
 import { v4 as uuidv4 } from 'uuid';
 
 import VentilationForm from './VentilationForm';
 import VentilationCalculationResults from './VentilationCalculationResults';
 
-import { IVentilationData, ROOM_TYPES_OPTIONS, SELECTED_OPTIONS } from './types';
-
-import { yupResolver } from '@hookform/resolvers/yup';
-import ventilationSchema from './utils/validations';
-import { IVentilationEntity } from '../../../../../../models/ventilation';
+import { IVentilationData, ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, IVentilationOnlineCalculatorFormsProps } from './types';
 
 import * as S from './VentilationOnlineCalculatorForms.styles';
 
 const MAX_ROOMS = 30;
 
-const VentilationOnlineCalculatorForms: React.FC = () => {
-  const [rooms, setRooms] = useState<IVentilationEntity[]>([]);
+const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFormsProps> = (props) => {
+  const { rooms, setRooms } = props;
 
-  const methods = useForm({
-    resolver: yupResolver(ventilationSchema),
-    mode: 'onChange',
-    defaultValues: {
-      rooms: [
-        {
-          id: uuidv4(),
-          roomNumber: 1,
-          roomType: ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
-          selectedOption: SELECTED_OPTIONS.SQUARE,
-          name: '',
-          ceilingHeight: 0,
-          length: 0,
-          width: 0,
-          area: 0,
-          people: 0,
-        },
-      ],
-    },
-  });
+  const [shouldShowResult, setShouldShowResult] = useState(false);
+
   const {
     control,
     handleSubmit,
     reset,
     formState: { errors },
-  } = methods;
+  } = useFormContext();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -96,36 +74,40 @@ const VentilationOnlineCalculatorForms: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      setRooms([]);
+    }
+  }, [errors]);
+
   return (
-    <FormProvider {...methods}>
-      <S.VentilationCalculator>
-        <S.FormsWrapper>
-          {fields.map((field, index) => (
-            <VentilationForm
-              key={field.id}
-              control={control}
-              index={index}
-              roomNumber={index + 1}
-              amountOfRooms={fields.length}
-              onRemove={() => removeForm(index)}
-              errors={errors.rooms?.[index]}
-            />
-          ))}
-          <S.AddButton variant="contained" size="large" onClick={addForm} disabled={fields.length >= MAX_ROOMS}>
-            + добавить комнату
-          </S.AddButton>
-        </S.FormsWrapper>
-        {rooms.length > 0 && <VentilationCalculationResults rooms={rooms} />}
-        <S.ButtonsWrapper>
-          <S.MenuButton size="large" onClick={handleSubmit(onSubmit)}>
-            Submit
-          </S.MenuButton>
-          <S.MenuButton variant="outlined" size="large" onClick={resetForms}>
-            Reset
-          </S.MenuButton>
-        </S.ButtonsWrapper>
-      </S.VentilationCalculator>
-    </FormProvider>
+    <S.VentilationCalculator>
+      <S.FormsWrapper>
+        {fields.map((field, index) => (
+          <VentilationForm
+            key={field.id}
+            control={control}
+            index={index}
+            roomNumber={index + 1}
+            amountOfRooms={fields.length}
+            onRemove={() => removeForm(index)}
+            errors={Array.isArray(errors.rooms) ? errors.rooms[index] : undefined}
+          />
+        ))}
+        <S.AddButton variant="contained" size="large" onClick={addForm} disabled={fields.length >= MAX_ROOMS}>
+          + добавить комнату
+        </S.AddButton>
+      </S.FormsWrapper>
+      {rooms.length > 0 && (!errors || Object.keys(errors).length < 1) && <VentilationCalculationResults rooms={rooms} />}
+      <S.ButtonsWrapper>
+        <S.MenuButton size="large" onClick={handleSubmit(onSubmit)}>
+          Submit
+        </S.MenuButton>
+        <S.MenuButton variant="outlined" size="large" onClick={resetForms}>
+          Reset
+        </S.MenuButton>
+      </S.ButtonsWrapper>
+    </S.VentilationCalculator>
   );
 };
 

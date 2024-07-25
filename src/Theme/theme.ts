@@ -6,6 +6,7 @@ import { tabOverride } from './overrides/tabsOverrides';
 import { radioOverride } from './overrides/radioOverrides';
 import { textFieldOverride } from './overrides/textFiledOverrides';
 import { menuOverrides, menuItemOverrides } from './overrides/menuOverrides';
+import { tableCellOverride, tableContainerOverride, tableRowOverride } from './overrides/tableOverrides';
 
 export default createTheme({
   spacing: 8,
@@ -46,6 +47,15 @@ export default createTheme({
     },
     MuiMenuItem: {
       styleOverrides: menuItemOverrides,
+    },
+    MuiTableContainer: {
+      styleOverrides: tableContainerOverride,
+    },
+    MuiTableCell: {
+      styleOverrides: tableCellOverride,
+    },
+    MuiTableRow: {
+      styleOverrides: tableRowOverride,
     },
     MuiTypography: {
       variants: [
