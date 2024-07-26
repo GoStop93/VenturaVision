@@ -33,7 +33,15 @@ const HomeContent: React.FC = () => {
   return (
     <S.Wrapper>
       {videos.map((video, idx) => (
-        <S.Video isActive={index === idx} autoPlay={idx === index} muted onEnded={handleVideoEnd} key={idx} ref={idx === index ? videoRef : null}>
+        <S.Video
+          isActive={index === idx}
+          autoPlay={idx === index}
+          muted
+          onEnded={handleVideoEnd}
+          key={idx}
+          ref={idx === index ? videoRef : null}
+          playsInline
+        >
           <source src={video} type="video/mp4" />
         </S.Video>
       ))}

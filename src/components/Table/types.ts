@@ -1,9 +1,6 @@
 export interface ITableProps<T> {
   data: T[];
   columns: IColumnsConfig<T>;
-  groupBy?: keyof T;
-
-  height?: number | string;
 }
 
 export interface IColumnConfig<T> {

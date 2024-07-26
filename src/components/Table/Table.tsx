@@ -10,14 +10,10 @@ import TableRow from '@mui/material/TableRow';
 import { IIdentifiable } from '../../models/common';
 
 import { ITableProps } from './types';
-import { groupDataByField } from './utils';
 
-function Table<T extends IIdentifiable>({ data, columns, groupBy, height = 500 }: ITableProps<T>) {
-  // If groupBy is provided, transform data into grouped rows
-  const groupedData = groupBy ? groupDataByField(data, groupBy) : [data];
-
+function Table<T extends IIdentifiable>({ data, columns }: ITableProps<T>) {
   return (
-    <TableContainer sx={{ maxHeight: height}}>
+    <TableContainer>
       <MuiTable stickyHeader aria-label="sticky table">
         <TableHead>
           <TableRow>
@@ -30,14 +26,8 @@ function Table<T extends IIdentifiable>({ data, columns, groupBy, height = 500 }
         </TableHead>
 
         <TableBody>
-          {groupedData.map((group, groupIndex) => (
-            // Render group header only if there is more than one item in the group
+          {[data].map((group, groupIndex) => (
             <React.Fragment key={`group-${groupIndex}`}>
-              {groupBy && group.length >= 1 && (
-                <TableRow className="group-row">
-                  <TableCell colSpan={columns.length}></TableCell>
-                </TableRow>
-              )}
               {group.map((row) => (
                 <TableRow key={row.id}>
                   {columns.map((column) => (

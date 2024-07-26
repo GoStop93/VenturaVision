@@ -7,4 +7,5 @@ export const Content = styled(DialogContent)`
   flex-direction: column;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2); 
+  padding: 20px !important;
 `;

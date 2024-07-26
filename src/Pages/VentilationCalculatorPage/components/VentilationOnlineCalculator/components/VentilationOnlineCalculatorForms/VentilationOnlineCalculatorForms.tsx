@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -15,12 +15,10 @@ const MAX_ROOMS = 30;
 const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFormsProps> = (props) => {
   const { rooms, setRooms } = props;
 
-  const [shouldShowResult, setShouldShowResult] = useState(false);
-
   const {
     control,
-    handleSubmit,
     reset,
+    handleSubmit,
     formState: { errors },
   } = useFormContext();
 

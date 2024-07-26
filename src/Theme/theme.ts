@@ -7,6 +7,7 @@ import { radioOverride } from './overrides/radioOverrides';
 import { textFieldOverride } from './overrides/textFiledOverrides';
 import { menuOverrides, menuItemOverrides } from './overrides/menuOverrides';
 import { tableCellOverride, tableContainerOverride, tableRowOverride } from './overrides/tableOverrides';
+import { dialogOverride, dialogActionsOverride, dialogContentOverride, dialogTitleOverride } from './overrides/dialogOverrides';
 
 export default createTheme({
   spacing: 8,
@@ -56,6 +57,18 @@ export default createTheme({
     },
     MuiTableRow: {
       styleOverrides: tableRowOverride,
+    },
+    MuiDialog: {
+      styleOverrides: dialogOverride,
+    },
+    MuiDialogTitle: {
+      styleOverrides: dialogTitleOverride,
+    },
+    MuiDialogContent: {
+      styleOverrides: dialogContentOverride,
+    },
+    MuiDialogActions: {
+      styleOverrides: dialogActionsOverride,
     },
     MuiTypography: {
       variants: [

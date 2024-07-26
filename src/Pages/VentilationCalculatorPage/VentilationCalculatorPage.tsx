@@ -11,6 +11,7 @@ import { Tab } from '@mui/material';
 
 import VentilationCalculationMethodology from './components/VentilationCalculationMethodology';
 import VentilationOnlineCalculator from './components/VentilationOnlineCalculator';
+import FormPrompt from '../../components/FormPrompt/FormPrompt';
 
 import { IVentilationEntity } from '../../models/ventilation';
 import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS } from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
@@ -60,25 +61,29 @@ const VentilationCalculatorPage: React.FC = () => {
 
   return (
     <FormProvider {...methods}>
-      <S.VentilationCalculator>
-        <TabsContainer
-          value={tabValue}
-          onChange={handleTabChange}
-          variant="scrollable"
-          allowScrollButtonsMobile
-          aria-label="scrollable force tabs example"
-        >
-          {tabs.map((tab) => (
-            <Tab key={tab.label} label={tab.label} />
-          ))}
-        </TabsContainer>
-        <TabPanel value={tabValue} index={0}>
-          <VentilationOnlineCalculator rooms={rooms} setRooms={setRooms} />
-        </TabPanel>
-        <TabPanel value={tabValue} index={1}>
-          <VentilationCalculationMethodology />
-        </TabPanel>
-      </S.VentilationCalculator>
+      <FormPrompt formHandleSubmit={methods.handleSubmit}>
+        {({ handleSubmit }) => (
+          <S.VentilationCalculator>
+            <TabsContainer
+              value={tabValue}
+              onChange={handleTabChange}
+              variant="scrollable"
+              allowScrollButtonsMobile
+              aria-label="scrollable force tabs example"
+            >
+              {tabs.map((tab) => (
+                <Tab key={tab.label} label={tab.label} />
+              ))}
+            </TabsContainer>
+            <TabPanel value={tabValue} index={0}>
+              <VentilationOnlineCalculator rooms={rooms} setRooms={setRooms} />
+            </TabPanel>
+            <TabPanel value={tabValue} index={1}>
+              <VentilationCalculationMethodology />
+            </TabPanel>
+          </S.VentilationCalculator>
+        )}
+      </FormPrompt>
     </FormProvider>
   );
 };
