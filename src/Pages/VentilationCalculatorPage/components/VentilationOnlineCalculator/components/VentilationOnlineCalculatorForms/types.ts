@@ -24,6 +24,13 @@ export const ROOM_TYPES_OPTIONS = {
 
 export type RoomTypesOptions = ObjectValues<typeof ROOM_TYPES_OPTIONS>;
 
+export const SYSTEM_TYPES_OPTIONS = {
+  SUPPLY: 'Приточная',
+  SUPPLY_AND_EXHAUST: 'Приточно-вытяжная',
+};
+
+export type SystemTypesOptions = ObjectValues<typeof SYSTEM_TYPES_OPTIONS>;
+
 export interface IVentilationData {
   rooms?: IVentilationEntity[];
 }

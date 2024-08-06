@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { Menu, MenuItem, Typography } from '@mui/material';
 
 import { IDropdownProps } from './types';
@@ -27,7 +28,7 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
     <>
       <S.DropdownButton variant="text" onClick={handleOpen}>
         <Typography variant="body1">{value}</Typography>
-        <S.ArrowIcon anchorElDropdown={anchorElDropdown}/>
+        <S.ArrowIcon anchorElDropdown={anchorElDropdown} />
       </S.DropdownButton>
       <Menu
         id="menu-dropdown"
@@ -40,6 +41,11 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
         {options.map((item, index) => {
           return (
             <MenuItem key={index} onClick={() => handleClick(item)}>
+              {value.includes(item) && (
+                <S.IconWrapper>
+                  <S.CheckIcon />
+                </S.IconWrapper>
+              )}
               <Typography>{item}</Typography>
             </MenuItem>
           );

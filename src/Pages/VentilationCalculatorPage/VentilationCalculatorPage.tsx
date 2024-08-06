@@ -14,7 +14,7 @@ import VentilationOnlineCalculator from './components/VentilationOnlineCalculato
 import FormPrompt from '../../components/FormPrompt/FormPrompt';
 
 import { IVentilationEntity } from '../../models/ventilation';
-import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS } from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
+import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, SYSTEM_TYPES_OPTIONS } from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import ventilationSchema from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/utils/validations';
@@ -47,6 +47,8 @@ const VentilationCalculatorPage: React.FC = () => {
           id: uuidv4(),
           roomNumber: 1,
           roomType: ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
+          systemType: SYSTEM_TYPES_OPTIONS.SUPPLY,
+          systemNumber: 1,
           selectedOption: SELECTED_OPTIONS.SQUARE,
           name: '',
           ceilingHeight: 0,

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
+import Logo from '../../../../components/Logo';
 
 import video1 from '../../../../assets/videos/ventilation_1.mp4';
 import video2 from '../../../../assets/videos/ventilation_2.mp4';
@@ -11,12 +12,6 @@ const HomeContent: React.FC = () => {
   const [index, setIndex] = useState(0);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  const { t } = useTranslation('home');
-
-  const translations = {
-    title: t('home:title'),
-  };
 
   const videos = [video1, video2, video3];
 
@@ -45,14 +40,7 @@ const HomeContent: React.FC = () => {
           <source src={video} type="video/mp4" />
         </S.Video>
       ))}
-      <S.Content>
-        <S.Title variant="h1" color="primary">
-          VenturaVision
-        </S.Title>
-        <S.Subtitle variant="h2" color="secondary">
-          {translations.title}
-        </S.Subtitle>
-      </S.Content>
+      <Logo />
       <S.Overlay />
     </S.Wrapper>
   );

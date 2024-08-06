@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import VentilationForm from './VentilationForm';
 import VentilationCalculationResults from './VentilationCalculationResults';
 
-import { IVentilationData, ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, IVentilationOnlineCalculatorFormsProps } from './types';
+import { IVentilationData, ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, SYSTEM_TYPES_OPTIONS, IVentilationOnlineCalculatorFormsProps } from './types';
 
 import * as S from './VentilationOnlineCalculatorForms.styles';
 
@@ -32,6 +32,8 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
       id: uuidv4(),
       roomNumber: fields.length + 1,
       roomType: ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
+      systemType: SYSTEM_TYPES_OPTIONS.SUPPLY,
+      systemNumber: 1,
       selectedOption: SELECTED_OPTIONS.SQUARE,
       name: '',
       ceilingHeight: 0,
@@ -53,6 +55,8 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
           id: uuidv4(),
           roomNumber: 1,
           roomType: ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
+          systemType: SYSTEM_TYPES_OPTIONS.SUPPLY,
+          systemNumber: 1,
           selectedOption: SELECTED_OPTIONS.SQUARE,
           name: '',
           ceilingHeight: 0,

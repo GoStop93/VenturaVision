@@ -1,30 +1,42 @@
 import { ChangeEvent, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { Typography, IconButton } from '@mui/material';
+import { Typography, IconButton, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import Dropdown from '../../../../../../../components/Dropdown';
 import ErrorMessage from '../../../../../../../components/ErrorMessage';
 
 import { colors } from '../../../../../../../styles/colors';
 import { IVentilationFormProps } from './types';
-import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS } from '../types';
+import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, SYSTEM_TYPES_OPTIONS } from '../types';
 
 import * as S from './VentilationForm.styles';
 
 const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
   const { roomNumber, onRemove, amountOfRooms, control, index, errors } = props;
 
+  const [open, setOpen] = useState(false);
+
+  const isMobile = useMediaQuery('(max-width:600px)');
+
   const { resetField, setValue, watch } = useFormContext();
 
   const roomType = watch(`rooms.${index}.roomType`, ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE);
+  const systemType = watch(`rooms.${index}.systemType`, SYSTEM_TYPES_OPTIONS.SUPPLY);
   const selectedOption = watch(`rooms.${index}.selectedOption`, SELECTED_OPTIONS.SQUARE);
 
   const onRoomTypeChange = (_: string, value: string) => {
     setValue(`rooms.${index}.roomType`, value);
+  };
+
+  const onSystemTypeChange = (_: string, value: string) => {
+    setValue(`rooms.${index}.systemType`, value);
   };
 
   const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +48,14 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
     } else if (value === SELECTED_OPTIONS.DIMENSIONS) {
       resetField(`rooms.${index}.area`);
     }
+  };
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
   };
 
   const isVisibleDeleteButton = amountOfRooms > 1;
@@ -69,6 +89,47 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
           <Typography>Тип помещения:</Typography>
           <Dropdown options={Object.values(ROOM_TYPES_OPTIONS)} name={`rooms.${index}.type`} value={roomType} onChange={onRoomTypeChange} />
         </S.HorizontalWrapper>
+        {roomType === ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE && (
+          <S.HorizontalWrapper>
+            <Typography>Тип системы:</Typography>
+            <Dropdown
+              options={Object.values(SYSTEM_TYPES_OPTIONS)}
+              name={`rooms.${index}.systemType`}
+              value={systemType}
+              onChange={onSystemTypeChange}
+            />
+          </S.HorizontalWrapper>
+        )}
+
+        {roomType === ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE && (
+          <S.InputWrapper>
+            <S.HorizontalWrapper>
+              <Typography>Номер системы:</Typography>
+              <S.FlexWrapper>
+                <Controller
+                  name={`rooms.${index}.systemNumber`}
+                  control={control}
+                  render={({ field }) => <S.SmallInput type="number" inputProps={{ min: 1, step: 1, max: 10 }} size="small" {...field} />}
+                />
+                <ClickAwayListener onClickAway={handleTooltipClose}>
+                  <Tooltip
+                    title={
+                      'Укажите номер системы вентиляции (по умолчанию 1). Используйте разные номера для разделения проекта на несколько отдельных систем приточной / приточно-вытяжной вентиляции, если это необходимо.'
+                    }
+                    placement="top"
+                    open={isMobile ? open : undefined}
+                    onClose={handleTooltipClose}
+                  >
+                    <S.QuestionIconButton onClick={isMobile ? handleTooltipOpen : undefined}>
+                      <S.QuestionIcon />
+                    </S.QuestionIconButton>
+                  </Tooltip>
+                </ClickAwayListener>
+              </S.FlexWrapper>
+            </S.HorizontalWrapper>
+            {errors?.systemNumber && <ErrorMessage error={errors.systemNumber.message} />}
+          </S.InputWrapper>
+        )}
         {roomType === ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE && (
           <S.InputWrapper>
             <S.HorizontalWrapper>

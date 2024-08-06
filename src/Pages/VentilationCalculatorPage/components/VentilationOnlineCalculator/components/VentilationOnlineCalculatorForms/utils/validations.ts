@@ -4,8 +4,21 @@ const roomSchema = yup.object({
   id: yup.string().required('ID обязателен'),
   roomNumber: yup.number().typeError('Номер комнаты должен быть числом').required('Номер комнаты обязателен'),
   roomType: yup.string().required('Тип комнаты обязателен'),
+  systemType: yup.string().required('Тип системы обязателен'),
   selectedOption: yup.string().required('Выберите опцию'),
   name: yup.string().required('Наименование помещения обязательно'),
+  systemNumber: yup
+    .number()
+    .typeError('Номер системы должен быть числом')
+    .when('roomType', {
+      is: 'Жилое помещение',
+      then: (schema) =>
+        schema
+          .required('Номер системы обязательное поле')
+          .positive('Номер системы должен быть положительным числом')
+          .max(10, 'Максимальный номер системы - 10'),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   ceilingHeight: yup
     .number()
     .typeError('Высота потолка должна быть числом')

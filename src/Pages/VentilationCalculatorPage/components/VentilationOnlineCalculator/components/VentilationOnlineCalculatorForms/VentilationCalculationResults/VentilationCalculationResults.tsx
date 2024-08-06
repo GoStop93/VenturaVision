@@ -1,8 +1,8 @@
 import Table from '../../../../../../../components/Table';
-import { Typography } from '@mui/material';
 
 import { calculateIntakeResults } from './utils/calculateIntakeResults';
 import { calculateExhaustResults } from './utils/calculateExhaustResults ';
+import { groupBySystem } from './utils/groupBySystem';
 
 import { columns } from './constants';
 
@@ -36,9 +36,22 @@ const VentilationCalculationResults: React.FC<IVentilationCalculationResultsProp
   const intakeResults = calculateIntakeResults(intakeSystem, exchangeRate, airflowRate);
   const exhaustResults = calculateExhaustResults(exhaustSystems, bathroomExhaustRate, toiletExhaustRate, laundryRoomExhaustRate);
 
-  const results = [...intakeResults, ...exhaustResults];
+  const sortedIntakeResults = intakeResults.sort((a, b) => {
+    const aIsPV = a.systemName.startsWith('ПВ');
+    const bIsPV = b.systemName.startsWith('ПВ');
+    if (aIsPV && !bIsPV) return 1;
+    if (!aIsPV && bIsPV) return -1;
+    if (!aIsPV && !bIsPV) {
+      return a.systemName.localeCompare(b.systemName, undefined, { numeric: true });
+    }
+    return a.systemName.localeCompare(b.systemName, undefined, { numeric: true });
+  });
 
-  const totalVentilation = intakeResults.reduce((acc, result) => acc + result.ventilation, 0);
+  const results = [...sortedIntakeResults, ...exhaustResults];
+
+  const groupedResults = groupBySystem(intakeResults);
+
+  console.log(groupedResults)
 
   return (
     <S.Results>
@@ -46,9 +59,16 @@ const VentilationCalculationResults: React.FC<IVentilationCalculationResultsProp
         <span>Таблица</span> воздухообменов:
       </S.Label>
       <Table data={results} columns={columns} />
-      <S.Text variant="h4">
-        Общий расход приточной/приточно-вытяжной системы: <span>{totalVentilation}</span> м³/ч
-      </S.Text>
+      {Object.keys(groupedResults).length > 0 && (
+        <S.TextWrapper>
+          <S.Subtitle variant="h4">Общий расход для систем приточной / приточно-вытяжной вентиляции:</S.Subtitle>
+          {Object.entries(groupedResults).map(([systemName, totalVentilation]) => (
+            <S.Text key={systemName}>
+              {systemName}: <span>{totalVentilation}</span> м³/ч
+            </S.Text>
+          ))}
+        </S.TextWrapper>
+      )}
     </S.Results>
   );
 };

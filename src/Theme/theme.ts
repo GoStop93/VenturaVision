@@ -8,6 +8,7 @@ import { textFieldOverride } from './overrides/textFiledOverrides';
 import { menuOverrides, menuItemOverrides } from './overrides/menuOverrides';
 import { tableCellOverride, tableContainerOverride, tableRowOverride } from './overrides/tableOverrides';
 import { dialogOverride, dialogActionsOverride, dialogContentOverride, dialogTitleOverride } from './overrides/dialogOverrides';
+import { tooltipOverrides } from './overrides/tooltipOverrides';
 
 export default createTheme({
   spacing: 8,
@@ -69,6 +70,9 @@ export default createTheme({
     },
     MuiDialogActions: {
       styleOverrides: dialogActionsOverride,
+    },
+    MuiTooltip: {
+      styleOverrides: tooltipOverrides,
     },
     MuiTypography: {
       variants: [
