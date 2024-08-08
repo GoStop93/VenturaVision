@@ -1,4 +1,6 @@
 import Table from '../../../../../../../components/Table';
+import VentilationResultsDocument from '../VentilationResultsDocument';
+import PDFDownloadButton from '../../../../../../../components/PDFDownloadButton';
 
 import { calculateIntakeResults } from './utils/calculateIntakeResults';
 import { calculateExhaustResults } from './utils/calculateExhaustResults ';
@@ -14,8 +16,8 @@ import {
   getToiletExhaustRate,
 } from '../../../../../store/selectors';
 import { useVentilationCalculatorStore } from '../../../../../store/store';
-import { ROOM_TYPES_OPTIONS } from '../types';
 
+import { ROOM_TYPES_OPTIONS } from '../types';
 import { IVentilationCalculationResultsProps } from './types';
 
 import * as S from './VentilationCalculationResults.styles';
@@ -51,14 +53,15 @@ const VentilationCalculationResults: React.FC<IVentilationCalculationResultsProp
 
   const groupedResults = groupBySystem(intakeResults);
 
-  console.log(groupedResults)
-
   return (
     <S.Results>
       <S.Label variant="h3">
         <span>Таблица</span> воздухообменов:
       </S.Label>
       <Table data={results} columns={columns} />
+      <S.ButtonWrapper>
+        <PDFDownloadButton children={<VentilationResultsDocument results={results} />} fileName="Air_exchange_rate_table" />
+      </S.ButtonWrapper>
       {Object.keys(groupedResults).length > 0 && (
         <S.TextWrapper>
           <S.Subtitle variant="h4">Общий расход для систем приточной / приточно-вытяжной вентиляции:</S.Subtitle>

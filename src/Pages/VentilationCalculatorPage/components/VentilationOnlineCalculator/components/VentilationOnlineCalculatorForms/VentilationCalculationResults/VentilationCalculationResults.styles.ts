@@ -35,3 +35,8 @@ export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+`;

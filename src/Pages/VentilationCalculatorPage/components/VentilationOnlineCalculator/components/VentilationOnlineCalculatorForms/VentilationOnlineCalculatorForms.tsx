@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 
 import { v4 as uuidv4 } from 'uuid';
 
 import VentilationForm from './VentilationForm';
 import VentilationCalculationResults from './VentilationCalculationResults';
+import LoadingDecorator from '../../../../../../components/LoadingDecorator';
 
 import { IVentilationData, ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, SYSTEM_TYPES_OPTIONS, IVentilationOnlineCalculatorFormsProps } from './types';
 
@@ -14,6 +15,8 @@ const MAX_ROOMS = 30;
 
 const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFormsProps> = (props) => {
   const { rooms, setRooms } = props;
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -71,6 +74,7 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
   };
 
   const onSubmit = (data: IVentilationData) => {
+    setIsLoading(true);
     if (data.rooms) {
       setRooms(data.rooms);
     }
@@ -81,6 +85,14 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
       setRooms([]);
     }
   }, [errors]);
+
+  useEffect(() => {
+    if (rooms.length > 0) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+  }, [rooms]);
 
   return (
     <S.VentilationCalculator>
@@ -100,7 +112,11 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
           + добавить комнату
         </S.AddButton>
       </S.FormsWrapper>
-      {rooms.length > 0 && (!errors || Object.keys(errors).length < 1) && <VentilationCalculationResults rooms={rooms} />}
+      {rooms.length > 0 && (!errors || Object.keys(errors).length < 1) && (
+        <LoadingDecorator data={rooms} loading={isLoading} size={60} padding='200px 0'>
+          {() => <VentilationCalculationResults rooms={rooms} />}
+        </LoadingDecorator>
+      )}
       <S.ButtonsWrapper>
         <S.MenuButton size="large" onClick={handleSubmit(onSubmit)}>
           Submit
