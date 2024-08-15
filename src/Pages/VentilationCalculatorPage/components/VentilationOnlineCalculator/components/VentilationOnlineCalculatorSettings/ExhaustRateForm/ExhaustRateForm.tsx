@@ -2,6 +2,8 @@ import { useForm, Controller } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useTranslation } from 'react-i18next';
+
 import { useVentilationCalculatorStore } from '../../../../../store/store';
 import {
   getBathroomExhaustRate,
@@ -21,7 +23,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Typography } from '@mui/material';
 
-import { exhaustRateSchema } from './utils/validations';
+import { useExhaustRateSchema } from './utils/validations';
 
 import * as S from './ExhaustRateForm.styles';
 
@@ -38,6 +40,8 @@ const ExhaustRateForm: React.FC = () => {
   const laundryRoomExhaustRate = useVentilationCalculatorStore(getLaundryRoomExhaustRate);
   const setLaundryRoomExhaustRate = useVentilationCalculatorStore(getSetLaundryRoomExhaustRate);
 
+  const exhaustRateSchema = useExhaustRateSchema();
+
   const {
     control,
     handleSubmit,
@@ -47,6 +51,17 @@ const ExhaustRateForm: React.FC = () => {
     resolver: yupResolver(exhaustRateSchema),
     defaultValues: { bathroomExhaustRate: bathroomExhaustRate, toiletExhaustRate: toiletExhaustRate, laundryRoomExhaustRate: laundryRoomExhaustRate },
   });
+
+  const { t } = useTranslation('ventilationCalculator');
+
+  const translations = {
+    title: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.title'),
+    label_norm: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_norm'),
+    label_custom: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_custom'),
+    label_bathroom: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_bathroom'),
+    label_toilet: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_toilet'),
+    label_laundry_room: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_laundry_room'),
+  };
 
   const onSubmit = (data: { bathroomExhaustRate: number; toiletExhaustRate: number; laundryRoomExhaustRate: number }) => {
     setBathroomExhaustRate(data.bathroomExhaustRate);
@@ -77,16 +92,16 @@ const ExhaustRateForm: React.FC = () => {
   return (
     <S.Form>
       <Typography variant="h5" style={{ marginBottom: '10px' }}>
-        Кратность воздухообмена:
+        {translations.title}
       </Typography>
       <RadioGroup value={exhaustRateType} onChange={handleRadioChange}>
-        <FormControlLabel value="norm" control={<Radio />} label="Нормируемая кратность" />
+        <FormControlLabel value="norm" control={<Radio />} label={translations.label_norm} />
         <FormControlLabel
           value="custom"
           control={<Radio />}
           label={
             <S.Field>
-              {exhaustRateType !== 'custom' && 'Задать свою кратность'}
+              {exhaustRateType !== 'custom' && `${translations.label_custom}`}
               {exhaustRateType === 'custom' && (
                 <S.InputsWrapper>
                   <Controller
@@ -94,7 +109,7 @@ const ExhaustRateForm: React.FC = () => {
                     control={control}
                     render={({ field }) => (
                       <S.InputWithLabel>
-                        <Typography>Ванная комната:</Typography>
+                        <Typography>{translations.label_bathroom}</Typography>
                         <S.Input
                           {...field}
                           onChange={(e) => {
@@ -120,7 +135,7 @@ const ExhaustRateForm: React.FC = () => {
                     control={control}
                     render={({ field }) => (
                       <S.InputWithLabel>
-                        <Typography>Туалет:</Typography>
+                        <Typography>{translations.label_toilet}</Typography>
                         <S.Input
                           {...field}
                           onChange={(e) => {
@@ -146,7 +161,7 @@ const ExhaustRateForm: React.FC = () => {
                     control={control}
                     render={({ field }) => (
                       <S.InputWithLabel>
-                        <Typography>Постирочная:</Typography>
+                        <Typography>{translations.label_laundry_room}</Typography>
                         <S.Input
                           {...field}
                           onChange={(e) => {

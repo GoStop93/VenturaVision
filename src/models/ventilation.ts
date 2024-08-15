@@ -12,7 +12,7 @@ export interface IVentilationEntity {
   systemNumber: number;
   selectedOption: SelectedOptions;
   name: string;
-  ceilingHeight: number;
+  ceilingHeight?: number;
   length?: number;
   width?: number;
   area?: number;
@@ -25,6 +25,6 @@ export interface IRoomEntity {
   ventilation: number;
   id: string;
   people?: number;
-  ceilingHeight: number;
+  ceilingHeight?: number;
   area?: number;
 }

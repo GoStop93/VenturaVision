@@ -1,4 +1,5 @@
 import { pdf } from '@react-pdf/renderer';
+import { useTranslation } from 'react-i18next';
 
 import { IPDFDownloadButtonProps } from './types';
 
@@ -6,6 +7,12 @@ import * as S from './PDFDownloadButton.styles';
 
 const PDFDownloadButton: React.FC<IPDFDownloadButtonProps> = (props) => {
   const { children, fileName } = props;
+
+  const { t } = useTranslation('common');
+
+  const translations = {
+    text: t('common:PDF_button.text'),
+  };
 
   const handleDownload = async () => {
     const doc = pdf(children);
@@ -21,7 +28,7 @@ const PDFDownloadButton: React.FC<IPDFDownloadButtonProps> = (props) => {
   return (
     <S.PDFButton variant="outlined" onClick={handleDownload}>
       <S.Icon />
-      Скачать PDF
+      {translations.text}
     </S.PDFButton>
   );
 };

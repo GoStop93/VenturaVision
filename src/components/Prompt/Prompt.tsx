@@ -1,16 +1,27 @@
 import { useCallback } from 'react';
 import { useBeforeUnload } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
+
 import { IPromptProps } from './types';
 import ConfirmModal, { ConfirmModalType } from '../Modals/ConfirmModal';
 
 function Prompt<T>(props: IPromptProps<T>) {
-  const { blocker, onConfirm } = props;
+  const { blocker } = props;
+
+  const { t } = useTranslation('common');
+
+  const translations = {
+    header: t('common:prompt.header'),
+    body_first: t('common:prompt.body_first'),
+    body_second: t('common:prompt.body_second'),
+    confirm_text: t('common:prompt.confirm_text'),
+    abort_text: t('common:prompt.abort_text'),
+  };
 
   useBeforeUnload(
     useCallback((event: BeforeUnloadEvent) => {
       event.preventDefault();
-      event.returnValue = 'Are you sure you want to leave? All unsaved progress would be lost.';
     }, [])
   );
 
@@ -31,10 +42,10 @@ function Prompt<T>(props: IPromptProps<T>) {
       {blocker.state === 'blocked' && (
         <ConfirmModal
           type={ConfirmModalType.CONFIRM}
-          header="Покинуть страницу расчёта?"
-          body={`Вы уверены, что хотите покинуть страницу?\n Ваши текущие данные расчёта не будут сохранены.`}
-          confirmText={'Покинуть страницу'}
-          abortText={'Вернуться к расчёту'}
+          header={translations.header}
+          body={`${translations.body_first}\n ${translations.body_second}`}
+          confirmText={translations.confirm_text}
+          abortText={translations.abort_text}
           onConfirm={handleAbortClick}
           onAbort={handleCloseModal}
           close={handleCloseModal}

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+
 import { Box } from '@mui/material';
+import Button from '../../Button';
 
 export const IconBox = styled(Box)`
   width: 90px;
@@ -12,4 +14,13 @@ export const IconBox = styled(Box)`
 
   margin: 0 auto;
   margin-bottom: 20px;
+`;
+
+export const OutlinedButton = styled(Button)`
+  div {
+    z-index: 2 !important;
+  }
+  &:after {
+    z-index: 1 !important;
+  }
 `;

@@ -4,6 +4,7 @@ import * as S from './VentilationCalculationMethodology.styles';
 
 const VentilationCalculationMethodology: React.FC = () => {
   const { t } = useTranslation('ventilationCalculator');
+
   const translations = {
     title_first: t('ventilationCalculator:methodology.title_first'),
     title_second: t('ventilationCalculator:methodology.title_second'),

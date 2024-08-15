@@ -1,17 +1,26 @@
-import * as S from './VentilationOnlineCalculator.styles';
-
+import { useTranslation } from 'react-i18next';
 import VentilationOnlineCalculatorSettings from './components/VentilationOnlineCalculatorSettings';
 import VentilationOnlineCalculatorForms from './components/VentilationOnlineCalculatorForms';
 
 import { IVentilationOnlineCalculatorProps } from './types';
 
+import * as S from './VentilationOnlineCalculator.styles';
+
 const VentilationOnlineCalculator: React.FC<IVentilationOnlineCalculatorProps> = (props) => {
   const { rooms, setRooms } = props;
+
+  const { t } = useTranslation('ventilationCalculator');
+
+  const translations = {
+    title_first: t('ventilationCalculator:online_calculator.title_first'),
+    title_second: t('ventilationCalculator:online_calculator.title_second'),
+  };
 
   return (
     <S.VentilationOnlineCalculator>
       <S.Title variant="h3">
-        Онлайн калькулятор <span>систем вентиляции</span>
+        {translations.title_first}
+        <span> {translations.title_second}</span>
       </S.Title>
       <VentilationOnlineCalculatorSettings />
       <VentilationOnlineCalculatorForms rooms={rooms} setRooms={setRooms} />

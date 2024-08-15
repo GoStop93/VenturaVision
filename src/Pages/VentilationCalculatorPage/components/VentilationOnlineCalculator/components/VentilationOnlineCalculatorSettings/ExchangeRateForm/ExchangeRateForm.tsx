@@ -2,6 +2,8 @@ import { useForm, Controller } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useTranslation } from 'react-i18next';
+
 import { useVentilationCalculatorStore } from '../../../../../store/store';
 import { getExchangeRate, getExchangeRateType, getSetExchangeRate, getSetExchangeRateType } from '../../../../../store/selectors';
 
@@ -12,7 +14,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Typography } from '@mui/material';
 
-import { exchangeRateSchema } from './utils/validations';
+import { useExchangeRateSchema } from './utils/validations';
 
 import * as S from './ExchangeRateForm.styles';
 
@@ -21,6 +23,8 @@ const ExchangeRateForm: React.FC = () => {
   const setExchangeRateType = useVentilationCalculatorStore(getSetExchangeRateType);
   const exchangeRate = useVentilationCalculatorStore(getExchangeRate);
   const setExchangeRate = useVentilationCalculatorStore(getSetExchangeRate);
+
+  const exchangeRateSchema = useExchangeRateSchema();
 
   const {
     control,
@@ -31,6 +35,16 @@ const ExchangeRateForm: React.FC = () => {
     resolver: yupResolver(exchangeRateSchema),
     defaultValues: { exchangeRate: exchangeRate },
   });
+
+  const { t } = useTranslation('ventilationCalculator');
+
+  const translations = {
+    title: t('ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.title'),
+    label_min: t('ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_min'),
+    label_comfort: t('ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_comfort'),
+    label_custom: t('ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_custom'),
+
+  };
 
   const onSubmit = (data: { exchangeRate: number }) => {
     setExchangeRate(data.exchangeRate);
@@ -56,17 +70,17 @@ const ExchangeRateForm: React.FC = () => {
   return (
     <S.Form>
       <Typography variant="h5" style={{ marginBottom: '10px' }}>
-        Кратность воздухообмена:
+        {translations.title}
       </Typography>
       <RadioGroup value={exchangeRateType} onChange={handleRadioChange}>
-        <FormControlLabel value="min" control={<Radio />} label="Минимальная (1 кратность)" />
-        <FormControlLabel value="max" control={<Radio />} label="Комфортная (2 кратности)" />
+        <FormControlLabel value="min" control={<Radio />} label={translations.label_min} />
+        <FormControlLabel value="max" control={<Radio />} label={translations.label_comfort} />
         <FormControlLabel
           value="custom"
           control={<Radio />}
           label={
             <S.Field>
-              {exchangeRateType !== 'custom' && 'Задать свою кратность'}
+              {exchangeRateType !== 'custom' && `${translations.label_custom}`}
               {exchangeRateType === 'custom' && (
                 <Controller
                   name="exchangeRate"

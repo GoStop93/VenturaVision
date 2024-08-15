@@ -14,10 +14,14 @@ import VentilationOnlineCalculator from './components/VentilationOnlineCalculato
 import FormPrompt from '../../components/FormPrompt/FormPrompt';
 
 import { IVentilationEntity } from '../../models/ventilation';
-import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, SYSTEM_TYPES_OPTIONS } from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
+import {
+  ROOM_TYPES_OPTIONS,
+  SELECTED_OPTIONS,
+  SYSTEM_TYPES_OPTIONS,
+} from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import ventilationSchema from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/utils/validations';
+import { useVentilationSchema } from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/utils/validations';
 
 import * as S from './VentilationCalculatorPage.styles';
 
@@ -26,6 +30,8 @@ const VentilationCalculatorPage: React.FC = () => {
   const [rooms, setRooms] = useState<IVentilationEntity[]>([]);
 
   const { t } = useTranslation('ventilationCalculator');
+
+  const ventilationSchema = useVentilationSchema();
 
   const translations = {
     first_tab: t('ventilationCalculator:tabs_group.first_tab'),
@@ -51,11 +57,11 @@ const VentilationCalculatorPage: React.FC = () => {
           systemNumber: 1,
           selectedOption: SELECTED_OPTIONS.SQUARE,
           name: '',
-          ceilingHeight: 0,
-          length: 0,
-          width: 0,
-          area: 0,
-          people: 0,
+          ceilingHeight: undefined,
+          length: undefined,
+          width: undefined,
+          area: undefined,
+          people: undefined,
         },
       ],
     },

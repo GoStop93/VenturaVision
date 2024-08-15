@@ -10,6 +10,6 @@ export interface IVentilationResult {
   ventilation: number;
   id: string;
   people?: number;
-  ceilingHeight: number;
+  ceilingHeight?: number;
   area?: number;
 }

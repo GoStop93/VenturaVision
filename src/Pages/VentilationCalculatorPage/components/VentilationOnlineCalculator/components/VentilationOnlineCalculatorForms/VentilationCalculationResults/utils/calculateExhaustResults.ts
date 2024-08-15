@@ -7,7 +7,8 @@ export const calculateExhaustResults = (
   exhaustSystems: IVentilationEntity[],
   bathroomExhaustRate: number,
   toiletExhaustRate: number,
-  laundryRoomExhaustRate: number
+  laundryRoomExhaustRate: number,
+  exhaustPrefix: string
 ) => {
   return exhaustSystems.map((room, index) => {
     const volume = calculateVolume(room);
@@ -25,18 +26,18 @@ export const calculateExhaustResults = (
     const finalVentilation = Math.round(volume * ventilationRate);
 
     const area = room.area
-    ? room.area
-    : (room.width !== undefined && room.length !== undefined)
+      ? room.area
+      : room.width !== undefined && room.length !== undefined
       ? (room.width / 1000) * (room.length / 1000)
       : undefined;
 
     return {
-      systemName: `B${index + 1}`,
+      systemName: `${exhaustPrefix}${index + 1}`,
       name: room.name,
       ventilation: finalVentilation,
       id: room.id,
       people: room.people,
-      ceilingHeight: (room.ceilingHeight / 1000),
+      ceilingHeight: room.ceilingHeight && room.ceilingHeight / 1000,
       area,
     };
   });

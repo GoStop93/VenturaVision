@@ -71,9 +71,9 @@ function ConfirmModal<R>({
           <Button disabled={disabled} onClick={handleConfirm} color={getButtonColor(type)}>
             {confirmText}
           </Button>
-          <Button disabled={disabled || isPending} variant="outlined" onClick={handleAbort}>
-            {abortText}
-          </Button>
+          <S.OutlinedButton disabled={disabled || isPending} variant="outlined" onClick={handleAbort}>
+            <div> {abortText}</div>
+          </S.OutlinedButton>
         </DialogActions>
       )}
     </Modal>

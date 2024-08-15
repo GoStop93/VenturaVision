@@ -2,6 +2,8 @@ import { useForm, Controller } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useTranslation } from 'react-i18next';
+
 import { useVentilationCalculatorStore } from '../../../../../store/store';
 import { getAirflowRate, getAirflowRateType, getSetAirflowRate, getSetAirflowRateType } from '../../../../../store/selectors';
 
@@ -12,7 +14,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Typography } from '@mui/material';
 
-import { airflowRateSchema } from './utils/validations';
+import { useAirflowRateSchema } from './utils/validations';
 
 import * as S from './AirflowRateForm.styles';
 
@@ -21,6 +23,8 @@ const AirflowRateForm: React.FC = () => {
   const setAirflowRateType = useVentilationCalculatorStore(getSetAirflowRateType);
   const airflowRate = useVentilationCalculatorStore(getAirflowRate);
   const setAirflowRate = useVentilationCalculatorStore(getSetAirflowRate);
+
+  const airflowRateSchema = useAirflowRateSchema();
 
   const {
     control,
@@ -31,6 +35,16 @@ const AirflowRateForm: React.FC = () => {
     resolver: yupResolver(airflowRateSchema),
     defaultValues: { airflowRate: airflowRate },
   });
+
+  const { t } = useTranslation('ventilationCalculator');
+
+  const translations = {
+    title: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.title'),
+    label_min: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_min'),
+    label_comfort: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_comfort'),
+    label_custom: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_custom'),
+    units: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.units'),
+  };
 
   const onSubmit = (data: { airflowRate: number }) => {
     setAirflowRate(data.airflowRate);
@@ -56,17 +70,17 @@ const AirflowRateForm: React.FC = () => {
   return (
     <S.Form>
       <Typography variant="h5" style={{ marginBottom: '10px' }}>
-        Расход воздуха на одного человека:
+        {translations.title}
       </Typography>
       <RadioGroup value={airflowRateType} onChange={handleRadioChange}>
-        <FormControlLabel value="min" control={<Radio />} label="Минимальный (30 м³/ч)" />
-        <FormControlLabel value="max" control={<Radio />} label="Комфортный (60 м³/ч)" />
+        <FormControlLabel value="min" control={<Radio />} label={translations.label_min} />
+        <FormControlLabel value="max" control={<Radio />} label={translations.label_comfort} />
         <FormControlLabel
           value="custom"
           control={<Radio />}
           label={
             <S.Field>
-              {airflowRateType !== 'custom' && 'Задать свой расход'}
+              {airflowRateType !== 'custom' && `${translations.label_custom}`}
               {airflowRateType === 'custom' && (
                 <Controller
                   name="airflowRate"
@@ -90,7 +104,7 @@ const AirflowRateForm: React.FC = () => {
                         type="number"
                         inputProps={{ min: 1, step: 1 }}
                       />
-                      м³/ч
+                      {translations.units}
                     </>
                   )}
                 />

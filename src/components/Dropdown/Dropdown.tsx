@@ -19,8 +19,8 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
     setAnchorElDropdown(null);
   };
 
-  const handleClick = (item: string) => {
-    onChange(name, item);
+  const handleClick = (itemKey: string) => {
+    onChange(name, itemKey);
     setAnchorElDropdown(null);
   };
 
@@ -38,15 +38,15 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
         open={Boolean(anchorElDropdown)}
         onClose={handleClose}
       >
-        {options.map((item, index) => {
+        {options.map(({ key, optionValue }, index) => {
           return (
-            <MenuItem key={index} onClick={() => handleClick(item)}>
-              {value.includes(item) && (
+            <MenuItem key={index} onClick={() => handleClick(key)}>
+              {optionValue === value && (
                 <S.IconWrapper>
                   <S.CheckIcon />
                 </S.IconWrapper>
               )}
-              <Typography>{item}</Typography>
+              <Typography>{optionValue}</Typography>
             </MenuItem>
           );
         })}

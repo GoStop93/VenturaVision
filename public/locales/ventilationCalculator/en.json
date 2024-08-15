@@ -29,8 +29,155 @@
     "exhaust": {
       "title": "Local exhaust systems are calculated based on the normalized rate, depending on the purpose of the room:",
       "description_1": "Bathroom - from 7 to 9 rates;",
-      "description_2": "Toilet - from 8 to 10 rates;",
+      "description_2": "Water Closet - from 8 to 10 rates;",
       "description_3": "Laundry room - 7 rates;"
+    }
+  },
+  "online_calculator": {
+    "title_first": "Online ventilation",
+    "title_second": "system calculator",
+    "calculator_settings": {
+      "label_first": "Specify the parameters for your supply / balanced ventilation system:",
+      "label_second": "Specify the parameters for your exhaust ventilation system:",
+      "airflow_rate_form": {
+        "title": "Airflow rate per person:",
+        "label_min": "Minimum (30 m³/h)",
+        "label_comfort": "Comfort (60 m³/h)",
+        "label_custom": "Specify custom airflow rate",
+        "units": "m³/h",
+        "validations": {
+          "typeError": "Airflow rate must be a number",
+          "positive": "Airflow rate cannot be negative",
+          "max": "Airflow rate should not exceed 150",
+          "required": "This field is required"
+        }
+      },
+      "exchange_rate_form": {
+        "title": "Air exchange rate:",
+        "label_min": "Minimum (1 exchange)",
+        "label_comfort": "Comfortable (2 exchanges)",
+        "label_custom": "Set custom exchange rate",
+        "validations": {
+          "typeError": "The exchange rate value must be a number",
+          "positive": "The exchange rate value cannot be negative",
+          "max": "The exchange rate value must not exceed 20",
+          "required": "This is a required field"
+        }
+      },
+      "exhaust_rate_form": {
+        "title": "Air exchange rate:",
+        "label_norm": "Normalized exchange rate",
+        "label_custom": "Set custom exchange rate",
+        "label_bathroom": "Bathroom:",
+        "label_toilet": "Water Closet:",
+        "label_laundry_room": "Laundry Room:",
+        "validations": {
+          "typeError": "The exchange rate value must be a number",
+          "positive": "The exchange rate value cannot be negative",
+          "max": "The exchange rate value must not exceed 20",
+          "required": "This is a required field"
+        }
+      }
+    },
+    "calculator_form": {
+      "add_button": "+ add room",
+      "submit_button": "Submit",
+      "reset_button": "Reset",
+      "ventilation_form": {
+        "room_number_label": "Room №",
+        "room_name_label": "Room name:",
+        "room_type_label": "Room type:",
+        "system_type_label": "System type:",
+        "system_number_label": "System number:",
+        "people_label": "Number of people:",
+        "ceiling_height_label": "Ceiling height:",
+        "radio_square_label": "Area",
+        "radio_dimensions_label": "Dimensions",
+        "length_label": "Room length:",
+        "width_label": "Room width:",
+        "area_label": "Room area:",
+        "tooltip_text": "Specify the ventilation system number (default is 1). Use different numbers to divide the project into several separate supply/balanced ventilation systems if necessary.",
+        "units_of_measurement": {
+          "millimeter": "mm",
+          "unit": "pcs",
+          "square_meter": "m²"
+        },
+        "room_types": {
+          "residential_space": "Living Quarters",
+          "bathroom": "Bathroom",
+          "toilet": "Water Closet",
+          "laundry_room": "Laundry Room"
+        },
+        "system_types": {
+          "supply": "Supply",
+          "balanced": "Balanced"
+        }
+      }
+    },
+    "validations": {
+      "id": "ID is a required field",
+      "room_number": {
+        "type": "Room number must be a number",
+        "required": "Room number is a required field"
+      },
+      "room_type": "Room type is a required field",
+      "system_type": "System type is a required field",
+      "selected_option": "Please select an option",
+      "name": "Room name is a required field",
+      "system_number": {
+        "type": "System number must be a number",
+        "required": "System number is a required field",
+        "positive": "System number must be a positive number",
+        "max": "Maximum system number is 10"
+      },
+      "ceiling_height": {
+        "type": "Ceiling height must be a number",
+        "required": "Ceiling height is a required field",
+        "positive": "Ceiling height must be a positive number",
+        "max": "Maximum ceiling height is 20000 mm"
+      },
+      "length": {
+        "type": "Room length must be a number",
+        "required": "Room length is a required field",
+        "positive": "Room length must be a positive number",
+        "max": "Maximum room length is 100000 mm"
+      },
+      "width": {
+        "type": "Room width must be a number",
+        "required": "Room width is a required field",
+        "positive": "Room width must be a positive number",
+        "max": "Maximum room width is 100000 mm"
+      },
+      "area": {
+        "type": "Room area must be a number",
+        "required": "Room area is a required field",
+        "positive": "Room area must be a positive number",
+        "max": "Maximum room area is 1000 m²"
+      },
+      "people": {
+        "type": "Number of people must be a number",
+        "required": "Number of people is required for residential premises",
+        "positive": "Number of people must be a positive number",
+        "max": "Maximum number of people is 20"
+      },
+      "list_of_rooms": "List of rooms is required"
+    },
+    "results": {
+      "title_first": "Air exchange",
+      "title_second": "rate table:",
+      "subtitle": "Total airflow for supply / balanced ventilation systems:",
+      "supply_prefix": "S",
+      "balanced_prefix": "B",
+      "exhaust_prefix": "E",
+      "units": "m³/h",
+      "columns": {
+        "system_name": "System №",
+        "room_name": "Room name",
+        "people": "Number of people",
+        "height": "Ceiling height, m",
+        "area": "Room area, m²",
+        "airflowCapacity": "Airflow rate, m³/h"
+      }
     }
   }
 }

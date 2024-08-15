@@ -7,7 +7,7 @@
   "calculators": {
     "ventilation": {
       "button": "Ventilation System",
-      "description": "Perform ventilation system calculations for your apartment or house, including supply, supply and exhaust, and local exhaust systems"
+      "description": "Perform ventilation system calculations for your apartment or house, including supply, balanced, and local exhaust systems"
     },
     "air-condition": {
       "button": "Air Conditioning System",

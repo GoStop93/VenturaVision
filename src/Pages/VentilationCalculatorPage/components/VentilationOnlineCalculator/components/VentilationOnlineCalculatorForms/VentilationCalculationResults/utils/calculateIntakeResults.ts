@@ -3,7 +3,13 @@ import { IVentilationEntity } from '../../../../../../../../models/ventilation';
 
 import { SYSTEM_TYPES_OPTIONS } from '../../types';
 
-export const calculateIntakeResults = (intakeSystem: IVentilationEntity[], exchangeRate: number, airflowRate: number) => {
+export const calculateIntakeResults = (
+  intakeSystem: IVentilationEntity[],
+  exchangeRate: number,
+  airflowRate: number,
+  balancedPrefix: string,
+  supplyPrefix: string
+) => {
   return intakeSystem.map((room) => {
     const volume = calculateVolume(room);
 
@@ -19,12 +25,12 @@ export const calculateIntakeResults = (intakeSystem: IVentilationEntity[], excha
       : undefined;
 
     return {
-      systemName: room.systemType === SYSTEM_TYPES_OPTIONS.SUPPLY ? `П${room.systemNumber}` : `ПВ${room.systemNumber}`,
+      systemName: room.systemType === SYSTEM_TYPES_OPTIONS.SUPPLY ? `${supplyPrefix}${room.systemNumber}` : `${balancedPrefix}${room.systemNumber}`,
       name: room.name,
       ventilation: finalVentilation,
       id: room.id,
       people: room.people,
-      ceilingHeight: room.ceilingHeight / 1000,
+      ceilingHeight: room.ceilingHeight && room.ceilingHeight / 1000,
       area,
     };
   });

@@ -16,17 +16,17 @@ export const SELECTED_OPTIONS = {
 export type SelectedOptions = ObjectValues<typeof SELECTED_OPTIONS>;
 
 export const ROOM_TYPES_OPTIONS = {
-  RESIDENTIAL_SPACE: 'Жилое помещение',
-  BATHROOM: 'Ванная комната',
-  TOILET: 'Туалет',
-  LAUNDRY_ROOM: 'Постирочная',
+  RESIDENTIAL_SPACE: 'Living Quarters',
+  BATHROOM: 'Bathroom',
+  TOILET: 'Water Closet',
+  LAUNDRY_ROOM: 'Laundry Room',
 };
 
 export type RoomTypesOptions = ObjectValues<typeof ROOM_TYPES_OPTIONS>;
 
 export const SYSTEM_TYPES_OPTIONS = {
-  SUPPLY: 'Приточная',
-  SUPPLY_AND_EXHAUST: 'Приточно-вытяжная',
+  SUPPLY: 'Supply',
+  BALANCED: 'Balanced',
 };
 
 export type SystemTypesOptions = ObjectValues<typeof SYSTEM_TYPES_OPTIONS>;

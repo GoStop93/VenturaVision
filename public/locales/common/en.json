@@ -1,0 +1,12 @@
+{
+  "PDF_button": {
+    "text": "Download PDF"
+  },
+  "prompt": {
+    "header": "Leave the calculation page?",
+    "body_first": "Are you sure you want to leave this page?",
+    "body_second": "Your current calculation data will not be saved.",
+    "confirm_text": "Leave page",
+    "abort_text": "Return to calculation"
+  }
+}

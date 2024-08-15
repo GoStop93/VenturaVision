@@ -1,7 +1,8 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 
 import VentilationForm from './VentilationForm';
 import VentilationCalculationResults from './VentilationCalculationResults';
@@ -30,6 +31,14 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
     name: 'rooms',
   });
 
+  const { t } = useTranslation('ventilationCalculator');
+
+  const translations = {
+    add_button: t('ventilationCalculator:online_calculator.calculator_form.add_button'),
+    submit_button: t('ventilationCalculator:online_calculator.calculator_form.submit_button'),
+    reset_button: t('ventilationCalculator:online_calculator.calculator_form.reset_button'),
+  };
+
   const addForm = () => {
     append({
       id: uuidv4(),
@@ -39,11 +48,11 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
       systemNumber: 1,
       selectedOption: SELECTED_OPTIONS.SQUARE,
       name: '',
-      ceilingHeight: 0,
-      length: 0,
-      width: 0,
-      area: 0,
-      people: 0,
+      ceilingHeight: null,
+      length: null,
+      width: null,
+      area: null,
+      people: null,
     });
   };
 
@@ -62,11 +71,11 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
           systemNumber: 1,
           selectedOption: SELECTED_OPTIONS.SQUARE,
           name: '',
-          ceilingHeight: 0,
-          length: 0,
-          width: 0,
-          area: 0,
-          people: 0,
+          ceilingHeight: null,
+          length: null,
+          width: null,
+          area: null,
+          people: null,
         },
       ],
     });
@@ -109,20 +118,20 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
           />
         ))}
         <S.AddButton variant="contained" size="large" onClick={addForm} disabled={fields.length >= MAX_ROOMS}>
-          + добавить комнату
+          {translations.add_button}
         </S.AddButton>
       </S.FormsWrapper>
       {rooms.length > 0 && (!errors || Object.keys(errors).length < 1) && (
-        <LoadingDecorator data={rooms} loading={isLoading} size={60} padding='200px 0'>
+        <LoadingDecorator data={rooms} loading={isLoading} size={60} padding="200px 0">
           {() => <VentilationCalculationResults rooms={rooms} />}
         </LoadingDecorator>
       )}
       <S.ButtonsWrapper>
         <S.MenuButton size="large" onClick={handleSubmit(onSubmit)}>
-          Submit
+          {translations.submit_button}
         </S.MenuButton>
         <S.MenuButton variant="outlined" size="large" onClick={resetForms}>
-          Reset
+          {translations.reset_button}
         </S.MenuButton>
       </S.ButtonsWrapper>
     </S.VentilationCalculator>
