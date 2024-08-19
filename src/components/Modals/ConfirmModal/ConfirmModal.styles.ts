@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-import { Box } from '@mui/material';
+import { Box, DialogActions as MUIDialogActions } from '@mui/material';
 import Button from '../../Button';
+import { screenSizes } from '../../../styles/sizes';
 
 export const IconBox = styled(Box)`
   width: 90px;
@@ -22,5 +23,20 @@ export const OutlinedButton = styled(Button)`
   }
   &:after {
     z-index: 1 !important;
+  }
+
+  @media screen and (max-width: ${screenSizes.md}) {
+    margin: 0 !important;
+    padding: 7px 15px !important;
+    div {
+      padding: 0 !important;
+    }
+  }
+`;
+
+export const DialogActions = styled(MUIDialogActions)`
+  @media screen and (max-width: ${screenSizes.md}) {
+    flex-direction: column;
+    gap: 10px;
   }
 `;

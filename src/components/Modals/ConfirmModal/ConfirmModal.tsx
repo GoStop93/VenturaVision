@@ -1,4 +1,4 @@
-import { DialogActions, DialogContent, Typography } from '@mui/material';
+import { DialogContent, Typography } from '@mui/material';
 
 import usePromiseStatus from '../../../hooks/usePromiseStatus';
 import Button from '../../Button';
@@ -67,14 +67,14 @@ function ConfirmModal<R>({
       </DialogContent>
 
       {!hideButtons && (
-        <DialogActions>
+        <S.DialogActions>
           <Button disabled={disabled} onClick={handleConfirm} color={getButtonColor(type)}>
             {confirmText}
           </Button>
           <S.OutlinedButton disabled={disabled || isPending} variant="outlined" onClick={handleAbort}>
             <div> {abortText}</div>
           </S.OutlinedButton>
-        </DialogActions>
+        </S.DialogActions>
       )}
     </Modal>
   );

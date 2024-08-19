@@ -1,7 +1,9 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Dialog, IconButton, Theme } from '@mui/material';
+import { IconButton, Theme } from '@mui/material';
 
 import { IModalProps } from './types';
+
+import * as S from './Modal.styles';
 
 const modalCloseIconStyles = {
   position: 'absolute',
@@ -12,14 +14,14 @@ const modalCloseIconStyles = {
 
 const Modal: React.FC<IModalProps> = ({ close, children, showCloseButton = true, ...rest }) => {
   return (
-    <Dialog {...rest} fullWidth onClose={close} open>
+    <S.Dialog {...rest} fullWidth onClose={close} open>
       {showCloseButton && (
-        <IconButton aria-label="close" onClick={close} sx={modalCloseIconStyles}>
+        <IconButton aria-label="close" onClick={close} sx={modalCloseIconStyles} style={{ zIndex: '5' }}>
           <CloseIcon />
         </IconButton>
       )}
       {children}
-    </Dialog>
+    </S.Dialog>
   );
 };
 
