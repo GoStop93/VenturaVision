@@ -1,5 +1,6 @@
-import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
+
+import * as yup from 'yup';
 
 import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS } from '../types';
 
@@ -12,9 +13,15 @@ export const useRoomSchema = () => {
       .number()
       .typeError(t('ventilationCalculator:online_calculator:validations.room_number.type'))
       .required(t('ventilationCalculator:online_calculator:validations.room_number.required')),
-    roomType: yup.string().required(t('ventilationCalculator:online_calculator:validations.room_type')),
-    systemType: yup.string().required(t('ventilationCalculator:online_calculator:validations.system_type')),
-    selectedOption: yup.string().required(t('ventilationCalculator:online_calculator:validations.selected_option')),
+    roomType: yup
+      .string()
+      .required(t('ventilationCalculator:online_calculator:validations.room_type')),
+    systemType: yup
+      .string()
+      .required(t('ventilationCalculator:online_calculator:validations.system_type')),
+    selectedOption: yup
+      .string()
+      .required(t('ventilationCalculator:online_calculator:validations.selected_option')),
     name: yup.string().required(t('ventilationCalculator:online_calculator:validations.name')),
     systemNumber: yup
       .number()
@@ -23,8 +30,12 @@ export const useRoomSchema = () => {
         is: ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
         then: (schema) =>
           schema
-            .required(t('ventilationCalculator:online_calculator:validations.system_number.required'))
-            .positive(t('ventilationCalculator:online_calculator:validations.system_number.positive'))
+            .required(
+              t('ventilationCalculator:online_calculator:validations.system_number.required'),
+            )
+            .positive(
+              t('ventilationCalculator:online_calculator:validations.system_number.positive'),
+            )
             .max(10, t('ventilationCalculator:online_calculator:validations.system_number.max')),
         otherwise: (schema) => schema.notRequired(),
       }),
@@ -90,6 +101,9 @@ export const useVentilationSchema = () => {
   const roomSchema = useRoomSchema();
 
   return yup.object({
-    rooms: yup.array().of(roomSchema).required(t('ventilationCalculator:online_calculator:validations.list_of_rooms')),
+    rooms: yup
+      .array()
+      .of(roomSchema)
+      .required(t('ventilationCalculator:online_calculator:validations.list_of_rooms')),
   });
 };

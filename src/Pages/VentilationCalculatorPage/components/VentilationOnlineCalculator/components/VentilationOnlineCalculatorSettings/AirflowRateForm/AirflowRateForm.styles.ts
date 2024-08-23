@@ -1,9 +1,8 @@
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 import styled from 'styled-components';
 
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-
-import { screenSizes } from '../../../../../../../styles/sizes';
+import { screenSizes } from '@/styles/sizes';
 
 export const Field = styled.div`
   display: flex;

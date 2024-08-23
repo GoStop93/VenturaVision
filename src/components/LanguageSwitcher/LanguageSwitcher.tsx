@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@mui/material';
-import { LANGUAGES } from '../../constants/main';
+
+import { LANGUAGES } from '@/constants/main';
 
 import * as S from './LanguageSwitcher.styles';
 
@@ -19,13 +20,21 @@ const LanguageSwitcher: React.FC = () => {
 
   return (
     <S.Switcher>
-      <S.SwitchOption isActive={currentLanguage === LANGUAGES.ENG} variant="h5" onClick={handleSwitchToEnglish}>
+      <S.SwitchOption
+        isActive={currentLanguage === LANGUAGES.ENG}
+        variant="h5"
+        onClick={handleSwitchToEnglish}
+      >
         En
       </S.SwitchOption>
       <Typography variant="h5" color="primary">
         /
       </Typography>
-      <S.SwitchOption isActive={currentLanguage === LANGUAGES.RU} variant="h5" onClick={handleSwitchToRussian}>
+      <S.SwitchOption
+        isActive={currentLanguage === LANGUAGES.RU}
+        variant="h5"
+        onClick={handleSwitchToRussian}
+      >
         Ru
       </S.SwitchOption>
     </S.Switcher>

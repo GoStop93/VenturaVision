@@ -1,5 +1,5 @@
-import AppProvider from './AppProvider';
 import App from './App';
+import AppProvider from './AppProvider';
 
 const Root: React.FC = () => {
   return (

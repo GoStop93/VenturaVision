@@ -6,6 +6,7 @@ import * as S from './ErrorMessage.styles';
 
 const ErrorMessage: React.FC<IErrorMessageProps> = (props) => {
   const { error } = props;
+
   return (
     <S.ErrorMessage>
       <ErrorOutlineIcon sx={{ fontSize: '16px', color: 'red', marginTop: '-2px' }} />

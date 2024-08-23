@@ -16,7 +16,12 @@ const Modal: React.FC<IModalProps> = ({ close, children, showCloseButton = true,
   return (
     <S.Dialog {...rest} fullWidth onClose={close} open>
       {showCloseButton && (
-        <IconButton aria-label="close" onClick={close} sx={modalCloseIconStyles} style={{ zIndex: '5' }}>
+        <IconButton
+          aria-label="close"
+          onClick={close}
+          sx={modalCloseIconStyles}
+          style={{ zIndex: '5' }}
+        >
           <CloseIcon />
         </IconButton>
       )}

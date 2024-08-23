@@ -1,1 +1,1 @@
-export { default } from './VentilationCalculatorPage'
+export { default } from './VentilationCalculatorPage';

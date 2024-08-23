@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
+import { PDFIcon } from '@/icons';
+
 import Button from '../Button';
-import { PDFIcon } from '../../icons';
 
 export const PDFButton = styled(Button)`
   width: fit-content;

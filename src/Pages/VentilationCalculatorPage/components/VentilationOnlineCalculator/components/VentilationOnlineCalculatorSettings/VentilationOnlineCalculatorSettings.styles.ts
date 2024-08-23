@@ -1,8 +1,8 @@
-import styled from 'styled-components';
 import { Typography } from '@mui/material';
+import styled from 'styled-components';
 
-import { colors } from '../../../../../../styles/colors';
-import { screenSizes } from '../../../../../../styles/sizes';
+import { colors } from '@/styles/colors';
+import { screenSizes } from '@/styles/sizes';
 
 export const Settings = styled.div`
   display: flex;
@@ -13,6 +13,7 @@ export const Settings = styled.div`
   border-radius: 5px;
   background-color: #f5f5f5;
   border: 1px solid ${colors.orange};
+
   @media screen and (max-width: ${screenSizes.lg}) {
     flex-direction: column;
   }
@@ -27,6 +28,7 @@ export const Setting = styled.div`
 export const Forms = styled.div`
   display: flex;
   gap: 50px;
+
   @media screen and (max-width: ${screenSizes.md}) {
     flex-direction: column;
   }

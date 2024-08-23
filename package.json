@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.4.0",
@@ -35,10 +36,30 @@
     "zustand": "^4.5.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "prettier": "prettier --write ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(css|scss|jsx|tsx)": [
+      "prettier --write",
+      "stylelint --fix"
+    ],
+    "*.(md|json)": [
+      "prettier --write"
+    ],
+    "*.(js|jsx|ts|tsx)": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +81,17 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.17.0",
-    "@types/uuid": "^9.0.8"
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "^3.0.3"
   }
 }

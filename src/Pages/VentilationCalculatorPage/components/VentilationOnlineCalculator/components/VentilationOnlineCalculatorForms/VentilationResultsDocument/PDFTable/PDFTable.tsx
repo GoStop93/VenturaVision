@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, Font } from '@react-pdf/renderer';
-
 import { useTranslation } from 'react-i18next';
+
+import { Font, StyleSheet, Text, View } from '@react-pdf/renderer';
 
 import { IPDFTableProps } from './types';
 
@@ -66,7 +66,10 @@ const PDFTable: React.FC<IPDFTableProps> = (props) => {
         <Text style={styles.tableCell}>{translations.airflowCapacity}</Text>
       </View>
       {data.map((item, index) => (
-        <View style={[styles.tableRow, index % 2 === 0 ? styles.evenRow : styles.oddRow]} key={item.id || index}>
+        <View
+          style={[styles.tableRow, index % 2 === 0 ? styles.evenRow : styles.oddRow]}
+          key={item.id || index}
+        >
           <Text style={styles.tableCell}>{item.systemName}</Text>
           <Text style={styles.tableCell}>{item.name}</Text>
           <Text style={styles.tableCell}>{item.people}</Text>

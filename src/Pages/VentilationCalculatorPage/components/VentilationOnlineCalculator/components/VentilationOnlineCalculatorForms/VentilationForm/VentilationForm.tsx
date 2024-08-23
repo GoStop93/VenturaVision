@@ -1,20 +1,20 @@
 import { ChangeEvent, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-
 import { useTranslation } from 'react-i18next';
 
-import { Typography, IconButton, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton, Tooltip, Typography } from '@mui/material';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import Dropdown from '../../../../../../../components/Dropdown';
-import ErrorMessage from '../../../../../../../components/ErrorMessage';
+import Dropdown from '@/components/Dropdown';
+import ErrorMessage from '@/components/ErrorMessage';
 
-import { colors } from '../../../../../../../styles/colors';
+import { colors } from '@/styles/colors';
+
 import { IVentilationFormProps } from './types';
 import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, SYSTEM_TYPES_OPTIONS } from '../types';
 
@@ -32,36 +32,78 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
   const { t } = useTranslation('ventilationCalculator');
 
   const translations = {
-    room_number_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_number_label'),
-    room_name_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_name_label'),
-    room_type_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_type_label'),
-    system_type_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.system_type_label'),
-    system_number_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.system_number_label'),
-    people_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.people_label'),
-    ceiling_height_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.ceiling_height_label'),
-    radio_square_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.radio_square_label'),
-    radio_dimensions_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.radio_dimensions_label'),
-    length_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.length_label'),
-    width_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.width_label'),
-    area_label: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.area_label'),
-    tooltip_text: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.tooltip_text'),
-    millimeter: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.units_of_measurement.millimeter'),
-    unit: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.units_of_measurement.unit'),
-    square_meter: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.units_of_measurement.square_meter'),
+    room_number_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_number_label',
+    ),
+    room_name_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_name_label',
+    ),
+    room_type_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_type_label',
+    ),
+    system_type_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.system_type_label',
+    ),
+    system_number_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.system_number_label',
+    ),
+    people_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.people_label',
+    ),
+    ceiling_height_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.ceiling_height_label',
+    ),
+    radio_square_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.radio_square_label',
+    ),
+    radio_dimensions_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.radio_dimensions_label',
+    ),
+    length_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.length_label',
+    ),
+    width_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.width_label',
+    ),
+    area_label: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.area_label',
+    ),
+    tooltip_text: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.tooltip_text',
+    ),
+    millimeter: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.units_of_measurement.millimeter',
+    ),
+    unit: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.units_of_measurement.unit',
+    ),
+    square_meter: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.units_of_measurement.square_meter',
+    ),
   };
 
   const translatedRoomTypes = {
     [ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE]: t(
-      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_types.residential_space'
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_types.residential_space',
     ),
-    [ROOM_TYPES_OPTIONS.BATHROOM]: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_types.bathroom'),
-    [ROOM_TYPES_OPTIONS.TOILET]: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_types.toilet'),
-    [ROOM_TYPES_OPTIONS.LAUNDRY_ROOM]: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_types.laundry_room'),
+    [ROOM_TYPES_OPTIONS.BATHROOM]: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_types.bathroom',
+    ),
+    [ROOM_TYPES_OPTIONS.TOILET]: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_types.toilet',
+    ),
+    [ROOM_TYPES_OPTIONS.LAUNDRY_ROOM]: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.room_types.laundry_room',
+    ),
   };
 
   const translatedSystemTypes = {
-    [SYSTEM_TYPES_OPTIONS.SUPPLY]: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.system_types.supply'),
-    [SYSTEM_TYPES_OPTIONS.BALANCED]: t('ventilationCalculator:online_calculator.calculator_form.ventilation_form.system_types.balanced'),
+    [SYSTEM_TYPES_OPTIONS.SUPPLY]: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.system_types.supply',
+    ),
+    [SYSTEM_TYPES_OPTIONS.BALANCED]: t(
+      'ventilationCalculator:online_calculator.calculator_form.ventilation_form.system_types.balanced',
+    ),
   };
 
   const roomType = watch(`rooms.${index}.roomType`, ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE);
@@ -127,7 +169,10 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
         <S.HorizontalWrapper>
           <Typography>{translations.room_type_label}</Typography>
           <Dropdown
-            options={Object.entries(translatedRoomTypes).map(([key, optionValue]) => ({ key, optionValue }))}
+            options={Object.entries(translatedRoomTypes).map(([key, optionValue]) => ({
+              key,
+              optionValue,
+            }))}
             name={`rooms.${index}.type`}
             value={translatedRoomTypes[roomType]}
             onChange={onRoomTypeChange}
@@ -137,7 +182,10 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
           <S.HorizontalWrapper>
             <Typography>{translations.system_type_label}</Typography>
             <Dropdown
-              options={Object.entries(translatedSystemTypes).map(([key, optionValue]) => ({ key, optionValue }))}
+              options={Object.entries(translatedSystemTypes).map(([key, optionValue]) => ({
+                key,
+                optionValue,
+              }))}
               name={`rooms.${index}.systemType`}
               value={translatedSystemTypes[systemType]}
               onChange={onSystemTypeChange}
@@ -153,10 +201,22 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
                 <Controller
                   name={`rooms.${index}.systemNumber`}
                   control={control}
-                  render={({ field }) => <S.SmallInput type="number" inputProps={{ min: 1, step: 1, max: 10 }} size="small" {...field} />}
+                  render={({ field }) => (
+                    <S.SmallInput
+                      type="number"
+                      inputProps={{ min: 1, step: 1, max: 10 }}
+                      size="small"
+                      {...field}
+                    />
+                  )}
                 />
                 <ClickAwayListener onClickAway={handleTooltipClose}>
-                  <Tooltip title={translations.tooltip_text} placement="top" open={isMobile ? open : undefined} onClose={handleTooltipClose}>
+                  <Tooltip
+                    title={translations.tooltip_text}
+                    placement="top"
+                    open={isMobile ? open : undefined}
+                    onClose={handleTooltipClose}
+                  >
                     <S.QuestionIconButton onClick={isMobile ? handleTooltipOpen : undefined}>
                       <S.QuestionIcon />
                     </S.QuestionIconButton>
@@ -172,7 +232,11 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
             <S.HorizontalWrapper>
               <Typography>{translations.people_label}</Typography>
               <S.FlexWrapper>
-                <Controller name={`rooms.${index}.people`} control={control} render={({ field }) => <S.Input size="small" {...field} />} />
+                <Controller
+                  name={`rooms.${index}.people`}
+                  control={control}
+                  render={({ field }) => <S.Input size="small" {...field} />}
+                />
                 {translations.unit}
               </S.FlexWrapper>
             </S.HorizontalWrapper>
@@ -183,7 +247,11 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
           <S.HorizontalWrapper>
             <Typography>{translations.ceiling_height_label}</Typography>
             <S.FlexWrapper>
-              <Controller name={`rooms.${index}.ceilingHeight`} control={control} render={({ field }) => <S.Input size="small" {...field} />} />
+              <Controller
+                name={`rooms.${index}.ceilingHeight`}
+                control={control}
+                render={({ field }) => <S.Input size="small" {...field} />}
+              />
               {translations.millimeter}
             </S.FlexWrapper>
           </S.HorizontalWrapper>
@@ -191,8 +259,16 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
         </S.InputWrapper>
 
         <RadioGroup row value={selectedOption} onChange={handleOptionChange}>
-          <FormControlLabel value={SELECTED_OPTIONS.SQUARE} control={<Radio />} label={translations.radio_square_label} />
-          <FormControlLabel value={SELECTED_OPTIONS.DIMENSIONS} control={<Radio />} label={translations.radio_dimensions_label} />
+          <FormControlLabel
+            value={SELECTED_OPTIONS.SQUARE}
+            control={<Radio />}
+            label={translations.radio_square_label}
+          />
+          <FormControlLabel
+            value={SELECTED_OPTIONS.DIMENSIONS}
+            control={<Radio />}
+            label={translations.radio_dimensions_label}
+          />
         </RadioGroup>
 
         {selectedOption === SELECTED_OPTIONS.DIMENSIONS && (
@@ -201,7 +277,11 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
               <S.HorizontalWrapper>
                 <Typography>{translations.length_label}</Typography>
                 <S.FlexWrapper>
-                  <Controller name={`rooms.${index}.length`} control={control} render={({ field }) => <S.Input size="small" {...field} />} />
+                  <Controller
+                    name={`rooms.${index}.length`}
+                    control={control}
+                    render={({ field }) => <S.Input size="small" {...field} />}
+                  />
                   {translations.millimeter}
                 </S.FlexWrapper>
               </S.HorizontalWrapper>
@@ -211,7 +291,11 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
               <S.HorizontalWrapper>
                 <Typography>{translations.width_label}</Typography>
                 <S.FlexWrapper>
-                  <Controller name={`rooms.${index}.width`} control={control} render={({ field }) => <S.Input size="small" {...field} />} />
+                  <Controller
+                    name={`rooms.${index}.width`}
+                    control={control}
+                    render={({ field }) => <S.Input size="small" {...field} />}
+                  />
                   {translations.millimeter}
                 </S.FlexWrapper>
               </S.HorizontalWrapper>
@@ -225,7 +309,11 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
             <S.HorizontalWrapper>
               <Typography>{translations.area_label}</Typography>
               <S.FlexWrapper>
-                <Controller name={`rooms.${index}.area`} control={control} render={({ field }) => <S.Input size="small" {...field} />} />
+                <Controller
+                  name={`rooms.${index}.area`}
+                  control={control}
+                  render={({ field }) => <S.Input size="small" {...field} />}
+                />
                 {translations.square_meter}
               </S.FlexWrapper>
             </S.HorizontalWrapper>

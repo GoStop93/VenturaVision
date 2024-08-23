@@ -1,8 +1,8 @@
+import { Typography } from '@mui/material';
 import styled from 'styled-components';
 
-import { Typography } from '@mui/material';
-import { colors } from '../../../../styles/colors';
-import { screenSizes } from '../../../../styles/sizes';
+import { colors } from '@/styles/colors';
+import { screenSizes } from '@/styles/sizes';
 
 export const Calculators = styled.div`
   display: flex;

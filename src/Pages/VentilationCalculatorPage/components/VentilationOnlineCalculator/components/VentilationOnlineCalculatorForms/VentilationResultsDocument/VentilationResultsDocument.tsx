@@ -1,8 +1,8 @@
-import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
-import PDFTable from './PDFTable';
-
 import { useTranslation } from 'react-i18next';
 
+import { Document, Font, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
+
+import PDFTable from './PDFTable';
 import { IVentilationResultsDocumentProps } from './types';
 
 Font.register({

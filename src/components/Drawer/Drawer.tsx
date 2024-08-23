@@ -6,6 +6,7 @@ import * as S from './Drawer.styles';
 
 const Drawer: React.FC<IDrawerProps> = (props) => {
   const { isOpen, children } = props;
+
   return (
     <MuiDrawer open={isOpen}>
       <S.Content>{children}</S.Content>

@@ -1,12 +1,14 @@
 import { DialogContent, Typography } from '@mui/material';
 
-import usePromiseStatus from '../../../hooks/usePromiseStatus';
-import Button from '../../Button';
-import { WarningIcon, QuestionIcon } from '../../../icons';
-import Modal from '../Modal';
+import Button from '@/components/Button';
+
+import usePromiseStatus from '@/hooks/usePromiseStatus';
+import { QuestionIcon, WarningIcon } from '@/icons';
+
 import { ConfirmModalType } from './constants';
 import { IConfirmModalProps } from './types';
 import { getButtonColor } from './utils';
+import Modal from '../Modal';
 
 import * as S from './ConfirmModal.styles';
 
@@ -71,7 +73,11 @@ function ConfirmModal<R>({
           <Button disabled={disabled} onClick={handleConfirm} color={getButtonColor(type)}>
             {confirmText}
           </Button>
-          <S.OutlinedButton disabled={disabled || isPending} variant="outlined" onClick={handleAbort}>
+          <S.OutlinedButton
+            disabled={disabled || isPending}
+            variant="outlined"
+            onClick={handleAbort}
+          >
             <div> {abortText}</div>
           </S.OutlinedButton>
         </S.DialogActions>

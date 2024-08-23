@@ -8,7 +8,7 @@ export const tableContainerOverride = {
 };
 
 export const tableRowOverride = {
-  root: ({ theme }: { theme: Theme }) => ({
+  root: () => ({
     '&:nth-of-type(even)': {
       backgroundColor: '#FEE2E2',
     },

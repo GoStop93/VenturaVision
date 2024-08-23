@@ -13,17 +13,35 @@ const VentilationCalculationMethodology: React.FC = () => {
     text_3: t('ventilationCalculator:methodology.text_3'),
     first_calculation_title: t('ventilationCalculator:methodology.first_calculation.title'),
     first_calculation_formula: t('ventilationCalculator:methodology.first_calculation.formula'),
-    first_calculation_description_1: t('ventilationCalculator:methodology.first_calculation.description_1'),
-    first_calculation_description_2: t('ventilationCalculator:methodology.first_calculation.description_2'),
-    first_calculation_description_3: t('ventilationCalculator:methodology.first_calculation.description_3'),
-    first_calculation_description_4: t('ventilationCalculator:methodology.first_calculation.description_4'),
-    first_calculation_description_5: t('ventilationCalculator:methodology.first_calculation.description_5'),
+    first_calculation_description_1: t(
+      'ventilationCalculator:methodology.first_calculation.description_1',
+    ),
+    first_calculation_description_2: t(
+      'ventilationCalculator:methodology.first_calculation.description_2',
+    ),
+    first_calculation_description_3: t(
+      'ventilationCalculator:methodology.first_calculation.description_3',
+    ),
+    first_calculation_description_4: t(
+      'ventilationCalculator:methodology.first_calculation.description_4',
+    ),
+    first_calculation_description_5: t(
+      'ventilationCalculator:methodology.first_calculation.description_5',
+    ),
     second_calculation_title: t('ventilationCalculator:methodology.second_calculation.title'),
     second_calculation_formula: t('ventilationCalculator:methodology.second_calculation.formula'),
-    second_calculation_description_1: t('ventilationCalculator:methodology.second_calculation.description_1'),
-    second_calculation_description_2: t('ventilationCalculator:methodology.second_calculation.description_2'),
-    second_calculation_description_3: t('ventilationCalculator:methodology.second_calculation.description_3'),
-    second_calculation_description_4: t('ventilationCalculator:methodology.second_calculation.description_4'),
+    second_calculation_description_1: t(
+      'ventilationCalculator:methodology.second_calculation.description_1',
+    ),
+    second_calculation_description_2: t(
+      'ventilationCalculator:methodology.second_calculation.description_2',
+    ),
+    second_calculation_description_3: t(
+      'ventilationCalculator:methodology.second_calculation.description_3',
+    ),
+    second_calculation_description_4: t(
+      'ventilationCalculator:methodology.second_calculation.description_4',
+    ),
     exhaust_title: t('ventilationCalculator:methodology.exhaust.title'),
     exhaust_description_1: t('ventilationCalculator:methodology.exhaust.description_1'),
     exhaust_description_2: t('ventilationCalculator:methodology.exhaust.description_2'),

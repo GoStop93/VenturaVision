@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 
-import { ITabPanelProps } from "./types";
+import { ITabPanelProps } from './types';
 
 const TabPanel: React.FC<ITabPanelProps> = ({
   children,

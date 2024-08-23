@@ -1,18 +1,20 @@
-import { useForm, Controller } from 'react-hook-form';
-
-import { yupResolver } from '@hookform/resolvers/yup';
-
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useVentilationCalculatorStore } from '../../../../../store/store';
-import { getExchangeRate, getExchangeRateType, getSetExchangeRate, getSetExchangeRateType } from '../../../../../store/selectors';
-
-import ErrorMessage from '../../../../../../../components/ErrorMessage';
-
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Typography } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { Typography } from '@mui/material';
+
+import ErrorMessage from '@/components/ErrorMessage';
+import { useVentilationCalculatorStore } from '@/pages/VentilationCalculatorPage/store';
+import {
+  getExchangeRate,
+  getExchangeRateType,
+  getSetExchangeRate,
+  getSetExchangeRateType,
+} from '@/pages/VentilationCalculatorPage/store/selectors';
 
 import { useExchangeRateSchema } from './utils/validations';
 
@@ -39,11 +41,18 @@ const ExchangeRateForm: React.FC = () => {
   const { t } = useTranslation('ventilationCalculator');
 
   const translations = {
-    title: t('ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.title'),
-    label_min: t('ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_min'),
-    label_comfort: t('ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_comfort'),
-    label_custom: t('ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_custom'),
-
+    title: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.title',
+    ),
+    label_min: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_min',
+    ),
+    label_comfort: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_comfort',
+    ),
+    label_custom: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exchange_rate_form.label_custom',
+    ),
   };
 
   const onSubmit = (data: { exchangeRate: number }) => {

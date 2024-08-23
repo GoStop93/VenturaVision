@@ -1,20 +1,28 @@
 import { useEffect, useState } from 'react';
-import { useFormContext, useFieldArray } from 'react-hook-form';
-
-import { v4 as uuidv4 } from 'uuid';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import VentilationForm from './VentilationForm';
-import VentilationCalculationResults from './VentilationCalculationResults';
-import LoadingDecorator from '../../../../../../components/LoadingDecorator';
+import { v4 as uuidv4 } from 'uuid';
 
-import { IVentilationData, ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, SYSTEM_TYPES_OPTIONS, IVentilationOnlineCalculatorFormsProps } from './types';
+import LoadingDecorator from '@/components/LoadingDecorator';
+
+import {
+  IVentilationData,
+  IVentilationOnlineCalculatorFormsProps,
+  ROOM_TYPES_OPTIONS,
+  SELECTED_OPTIONS,
+  SYSTEM_TYPES_OPTIONS,
+} from './types';
+import VentilationCalculationResults from './VentilationCalculationResults';
+import VentilationForm from './VentilationForm';
 
 import * as S from './VentilationOnlineCalculatorForms.styles';
 
 const MAX_ROOMS = 30;
 
-const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFormsProps> = (props) => {
+const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFormsProps> = (
+  props,
+) => {
   const { rooms, setRooms } = props;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -117,7 +125,12 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
             errors={Array.isArray(errors.rooms) ? errors.rooms[index] : undefined}
           />
         ))}
-        <S.AddButton variant="contained" size="large" onClick={addForm} disabled={fields.length >= MAX_ROOMS}>
+        <S.AddButton
+          variant="contained"
+          size="large"
+          onClick={addForm}
+          disabled={fields.length >= MAX_ROOMS}
+        >
           {translations.add_button}
         </S.AddButton>
       </S.FormsWrapper>

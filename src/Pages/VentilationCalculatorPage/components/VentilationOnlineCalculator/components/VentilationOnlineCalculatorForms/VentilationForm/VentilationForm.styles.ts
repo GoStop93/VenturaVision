@@ -1,12 +1,10 @@
+import HelpIcon from '@mui/icons-material/Help';
+import { TextField } from '@mui/material';
+import { IconButton } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
 import styled from 'styled-components';
 
-import FormControl from '@mui/material/FormControl';
-import { TextField } from '@mui/material';
-import HelpIcon from '@mui/icons-material/Help';
-
-import { IconButton } from '@mui/material';
-
-import { colors } from '../../../../../../../styles/colors';
+import { colors } from '@/styles/colors';
 
 export const Form = styled(FormControl)`
   width: 380px;

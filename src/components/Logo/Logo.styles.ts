@@ -1,10 +1,9 @@
+import { Typography } from '@mui/material';
 import styled from 'styled-components';
 
-import { Typography } from '@mui/material';
-import { colors } from '../../styles/colors';
-import { screenSizes } from '../../styles/sizes';
-
-import { LANGUAGES } from '../../constants/main';
+import { LANGUAGES } from '@/constants/main';
+import { colors } from '@/styles/colors';
+import { screenSizes } from '@/styles/sizes';
 
 export const Content = styled.div`
   display: flex;

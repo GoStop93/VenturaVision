@@ -1,8 +1,9 @@
 import { alpha, menuItemClasses, Theme } from '@mui/material';
-import { colors } from '../../styles/colors';
+
+import { colors } from '@/styles/colors';
 
 export const menuOverrides = {
-  list: ({ theme }: { theme: Theme }) => ({
+  list: () => ({
     minWidth: 140,
     paddingTop: 6,
     paddingBottom: 6,

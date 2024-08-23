@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Button from '../../../../../../components/Button';
+
+import Button from '@/components/Button';
 
 export const VentilationCalculator = styled.div`
   display: flex;

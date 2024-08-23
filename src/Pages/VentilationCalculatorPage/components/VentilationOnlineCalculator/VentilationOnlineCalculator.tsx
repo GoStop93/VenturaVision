@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import VentilationOnlineCalculatorSettings from './components/VentilationOnlineCalculatorSettings';
-import VentilationOnlineCalculatorForms from './components/VentilationOnlineCalculatorForms';
 
+import VentilationOnlineCalculatorForms from './components/VentilationOnlineCalculatorForms';
+import VentilationOnlineCalculatorSettings from './components/VentilationOnlineCalculatorSettings';
 import { IVentilationOnlineCalculatorProps } from './types';
 
 import * as S from './VentilationOnlineCalculator.styles';

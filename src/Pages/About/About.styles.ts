@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { screenSizes } from "../../styles/sizes";
+import styled from 'styled-components';
+
+import { screenSizes } from '@/styles/sizes';
 
 export const About = styled.div`
   display: flex;

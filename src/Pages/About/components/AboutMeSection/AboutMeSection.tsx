@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import myPhoto from '../../../../assets/images/about/my_photo.png';
-
 import { Typography } from '@mui/material';
+
+import myPhoto from '@/assets/images/about/my_photo.png';
 
 import * as S from './AboutMeSection.styles';
 

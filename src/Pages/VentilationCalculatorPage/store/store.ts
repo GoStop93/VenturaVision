@@ -28,5 +28,5 @@ export const useVentilationCalculatorStore = create<IVentilationCalculatorStore>
 
     laundryRoomExhaustRate: 7,
     setLaundryRoomExhaustRate: (value) => set(() => ({ laundryRoomExhaustRate: value })),
-  }))
+  })),
 );

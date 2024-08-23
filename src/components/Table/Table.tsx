@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { IIdentifiable } from '../../models/common';
+import { IIdentifiable } from '@/models/common';
 
 import { ITableProps } from './types';
 
@@ -18,7 +18,11 @@ function Table<T extends IIdentifiable>({ data, columns }: ITableProps<T>) {
         <TableHead>
           <TableRow>
             {columns.map((column) => (
-              <TableCell key={column.id.toString()} align={column.align} style={{ ...column.cellStyle }}>
+              <TableCell
+                key={column.id.toString()}
+                align={column.align}
+                style={{ ...column.cellStyle }}
+              >
                 {column.title}
               </TableCell>
             ))}
@@ -31,8 +35,16 @@ function Table<T extends IIdentifiable>({ data, columns }: ITableProps<T>) {
               {group.map((row) => (
                 <TableRow key={row.id}>
                   {columns.map((column) => (
-                    <TableCell key={`${row.id}-${column.id.toString()}`} align={column.align} style={{ whiteSpace: 'nowrap', ...column.cellStyle }}>
-                      {column.Cell ? <column.Cell item={row} /> : column.id && column.id in row && <>{row[column.id as keyof T]}</>}
+                    <TableCell
+                      key={`${row.id}-${column.id.toString()}`}
+                      align={column.align}
+                      style={{ whiteSpace: 'nowrap', ...column.cellStyle }}
+                    >
+                      {column.Cell ? (
+                        <column.Cell item={row} />
+                      ) : (
+                        column.id && column.id in row && <>{row[column.id as keyof T]}</>
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>

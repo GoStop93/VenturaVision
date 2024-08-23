@@ -1,6 +1,6 @@
 import {
-  SelectedOptions,
   RoomTypesOptions,
+  SelectedOptions,
   SystemTypesOptions,
 } from '../pages/VentilationCalculatorPage/components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
 

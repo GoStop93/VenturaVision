@@ -1,8 +1,9 @@
+import { Typography } from '@mui/material';
 import styled from 'styled-components';
 
-import { screenSizes } from '../../../../../styles/sizes';
-import Button from '../../../../../components/Button';
-import { Typography } from '@mui/material';
+import Button from '@/components/Button';
+
+import { screenSizes } from '@/styles/sizes';
 
 export const CalculatorCard = styled.div`
   display: flex;

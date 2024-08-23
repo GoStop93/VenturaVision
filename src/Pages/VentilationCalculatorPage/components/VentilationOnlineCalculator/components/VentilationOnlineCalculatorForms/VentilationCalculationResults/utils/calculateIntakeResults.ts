@@ -1,6 +1,6 @@
-import { calculateVolume } from './calculateVolume';
-import { IVentilationEntity } from '../../../../../../../../models/ventilation';
+import { IVentilationEntity } from '@/models/ventilation';
 
+import { calculateVolume } from './calculateVolume';
 import { SYSTEM_TYPES_OPTIONS } from '../../types';
 
 export const calculateIntakeResults = (
@@ -8,7 +8,7 @@ export const calculateIntakeResults = (
   exchangeRate: number,
   airflowRate: number,
   balancedPrefix: string,
-  supplyPrefix: string
+  supplyPrefix: string,
 ) => {
   return intakeSystem.map((room) => {
     const volume = calculateVolume(room);
@@ -25,7 +25,10 @@ export const calculateIntakeResults = (
       : undefined;
 
     return {
-      systemName: room.systemType === SYSTEM_TYPES_OPTIONS.SUPPLY ? `${supplyPrefix}${room.systemNumber}` : `${balancedPrefix}${room.systemNumber}`,
+      systemName:
+        room.systemType === SYSTEM_TYPES_OPTIONS.SUPPLY
+          ? `${supplyPrefix}${room.systemNumber}`
+          : `${balancedPrefix}${room.systemNumber}`,
       name: room.name,
       ventilation: finalVentilation,
       id: room.id,

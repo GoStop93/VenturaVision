@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { IconButton } from '@mui/material';
+import styled from 'styled-components';
 
-import { screenSizes } from '../../styles/sizes';
+import { screenSizes } from '@/styles/sizes';
 
 export const Header = styled.div<{ isTransparentBackground: boolean }>`
   position: absolute;
@@ -9,7 +9,8 @@ export const Header = styled.div<{ isTransparentBackground: boolean }>`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  background-color: ${({ isTransparentBackground }) => (isTransparentBackground ? 'transparent' : 'rgba(0, 0, 0, 0.7)')};
+  background-color: ${({ isTransparentBackground }) =>
+    isTransparentBackground ? 'transparent' : 'rgba(0, 0, 0, 0.7)'};
   height: 64px;
   width: 100%;
   padding: 0 20px;

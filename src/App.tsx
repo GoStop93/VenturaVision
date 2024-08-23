@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
-import { HOME, ABOUT, VENTILATION_CALCULATOR } from './constants/path';
-
 import { AnimatePresence } from 'framer-motion';
+
 import './utils/languages/i18n';
 
-import HomePage from './pages/HomePage';
+import { ABOUT, HOME, VENTILATION_CALCULATOR } from './constants/path';
 import About from './pages/About';
+import HomePage from './pages/HomePage';
 import VentilationCalculatorPage from './pages/VentilationCalculatorPage';
 
 import * as S from './App.styles';

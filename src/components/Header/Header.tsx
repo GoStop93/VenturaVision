@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 
 import MenuIcon from '@mui/icons-material/Menu';
 
-import NavMenu from '../NavMenu';
 import LanguageSwitcher from '../LanguageSwitcher';
+import NavMenu from '../NavMenu';
 
 import * as S from './Header.styles';
 

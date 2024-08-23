@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
-import { useBeforeUnload } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
+import { useBeforeUnload } from 'react-router-dom';
 
 import { IPromptProps } from './types';
 import ConfirmModal, { ConfirmModalType } from '../Modals/ConfirmModal';
@@ -22,7 +21,7 @@ function Prompt<T>(props: IPromptProps<T>) {
   useBeforeUnload(
     useCallback((event: BeforeUnloadEvent) => {
       event.preventDefault();
-    }, [])
+    }, []),
   );
 
   const handleCloseModal = () => {

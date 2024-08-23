@@ -27,7 +27,7 @@ const VentilationOnlineCalculatorSettings: React.FC = () => {
       </S.Setting>
       <S.Setting>
         <S.SettingsTitle width="400px" variant="h4">
-        {translations.label_second}
+          {translations.label_second}
         </S.SettingsTitle>
         <S.Forms>
           <ExhaustRateForm />

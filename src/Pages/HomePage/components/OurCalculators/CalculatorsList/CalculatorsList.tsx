@@ -1,9 +1,14 @@
 import { useTranslation } from 'react-i18next';
 
-import CalculatorCard from '../CalculatorCard';
-import { ICalculatorsEntity } from './types';
+import {
+  AERODYNAMICS_CALCULATOR,
+  AIR_CONDITION_CALCULATOR,
+  DUCT_CALCULATOR,
+  VENTILATION_CALCULATOR,
+} from '@/constants/path';
 
-import { VENTILATION_CALCULATOR, AIR_CONDITION_CALCULATOR, DUCT_CALCULATOR, AERODYNAMICS_CALCULATOR } from '../../../../../constants/path';
+import { ICalculatorsEntity } from './types';
+import CalculatorCard from '../CalculatorCard';
 
 import * as S from './CalculatorsList.styles';
 

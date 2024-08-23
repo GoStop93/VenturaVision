@@ -1,6 +1,6 @@
-import { calculateVolume } from './calculateVolume';
+import { IVentilationEntity } from '@/models/ventilation';
 
-import { IVentilationEntity } from '../../../../../../../../models/ventilation';
+import { calculateVolume } from './calculateVolume';
 import { ROOM_TYPES_OPTIONS } from '../../types';
 
 export const calculateExhaustResults = (
@@ -8,7 +8,7 @@ export const calculateExhaustResults = (
   bathroomExhaustRate: number,
   toiletExhaustRate: number,
   laundryRoomExhaustRate: number,
-  exhaustPrefix: string
+  exhaustPrefix: string,
 ) => {
   return exhaustSystems.map((room, index) => {
     const volume = calculateVolume(room);

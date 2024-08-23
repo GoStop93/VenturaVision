@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@mui/material';
 
-import { IRoomEntity } from '../../../../../../../models/ventilation';
-import { IColumnsConfig } from '../../../../../../../components/Table/types';
+import { IColumnsConfig } from '@/components/Table/types';
+
+import { IRoomEntity } from '@/models/ventilation';
 
 export const useGetColumns = (): IColumnsConfig<IRoomEntity> => {
   const { t } = useTranslation('ventilationCalculator');

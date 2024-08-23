@@ -1,8 +1,7 @@
-import { Theme } from '@mui/material';
-import { colors } from '../../styles/colors';
+import { colors } from '@/styles/colors';
 
 export const textFieldOverride = {
-  root: ({ theme }: { theme: Theme }) => ({
+  root: () => ({
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
         border: `1px solid ${colors.orange}`,

@@ -1,10 +1,14 @@
-import { useForm, Controller } from 'react-hook-form';
-
-import { yupResolver } from '@hookform/resolvers/yup';
-
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useVentilationCalculatorStore } from '../../../../../store/store';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Typography } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+
+import ErrorMessage from '@/components/ErrorMessage';
+import { useVentilationCalculatorStore } from '@/pages/VentilationCalculatorPage/store';
 import {
   getBathroomExhaustRate,
   getExhaustRateType,
@@ -14,14 +18,7 @@ import {
   getSetLaundryRoomExhaustRate,
   getSetToiletExhaustRate,
   getToiletExhaustRate,
-} from '../../../../../store/selectors';
-
-import ErrorMessage from '../../../../../../../components/ErrorMessage';
-
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { Typography } from '@mui/material';
+} from '@/pages/VentilationCalculatorPage/store/selectors';
 
 import { useExhaustRateSchema } from './utils/validations';
 
@@ -49,21 +46,39 @@ const ExhaustRateForm: React.FC = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(exhaustRateSchema),
-    defaultValues: { bathroomExhaustRate: bathroomExhaustRate, toiletExhaustRate: toiletExhaustRate, laundryRoomExhaustRate: laundryRoomExhaustRate },
+    defaultValues: {
+      bathroomExhaustRate: bathroomExhaustRate,
+      toiletExhaustRate: toiletExhaustRate,
+      laundryRoomExhaustRate: laundryRoomExhaustRate,
+    },
   });
 
   const { t } = useTranslation('ventilationCalculator');
 
   const translations = {
     title: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.title'),
-    label_norm: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_norm'),
-    label_custom: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_custom'),
-    label_bathroom: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_bathroom'),
-    label_toilet: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_toilet'),
-    label_laundry_room: t('ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_laundry_room'),
+    label_norm: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_norm',
+    ),
+    label_custom: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_custom',
+    ),
+    label_bathroom: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_bathroom',
+    ),
+    label_toilet: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_toilet',
+    ),
+    label_laundry_room: t(
+      'ventilationCalculator:online_calculator.calculator_settings.exhaust_rate_form.label_laundry_room',
+    ),
   };
 
-  const onSubmit = (data: { bathroomExhaustRate: number; toiletExhaustRate: number; laundryRoomExhaustRate: number }) => {
+  const onSubmit = (data: {
+    bathroomExhaustRate: number;
+    toiletExhaustRate: number;
+    laundryRoomExhaustRate: number;
+  }) => {
     setBathroomExhaustRate(data.bathroomExhaustRate);
     setToiletExhaustRate(data.toiletExhaustRate);
     setLaundryRoomExhaustRate(data.laundryRoomExhaustRate);
@@ -187,9 +202,15 @@ const ExhaustRateForm: React.FC = () => {
             </S.Field>
           }
         />
-        {(errors.toiletExhaustRate || errors.bathroomExhaustRate || errors.laundryRoomExhaustRate) && (
+        {(errors.toiletExhaustRate ||
+          errors.bathroomExhaustRate ||
+          errors.laundryRoomExhaustRate) && (
           <ErrorMessage
-            error={errors?.bathroomExhaustRate?.message || errors?.toiletExhaustRate?.message || errors?.laundryRoomExhaustRate?.message}
+            error={
+              errors?.bathroomExhaustRate?.message ||
+              errors?.toiletExhaustRate?.message ||
+              errors?.laundryRoomExhaustRate?.message
+            }
           />
         )}
       </RadioGroup>

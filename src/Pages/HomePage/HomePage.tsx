@@ -1,11 +1,11 @@
+import transition from '@/utils/transition/transition';
+
 import HomeContent from './components/HomeContent';
 import OurCalculators from './components/OurCalculators';
-import transition from '../../utils/transition/transition';
 
 import * as S from './HomePage.styles';
 
 const HomePage: React.FC = () => {
-
   return (
     <S.Home>
       <HomeContent />

@@ -1,5 +1,6 @@
-import { pdf } from '@react-pdf/renderer';
 import { useTranslation } from 'react-i18next';
+
+import { pdf } from '@react-pdf/renderer';
 
 import { IPDFDownloadButtonProps } from './types';
 

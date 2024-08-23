@@ -15,7 +15,9 @@ const Logo: React.FC = () => {
   return (
     <S.Content>
       <S.Title color="secondary">VenturaVision</S.Title>
-      <S.Subtitle currentLanguage={currentLanguage} color="primary">{translations.title}</S.Subtitle>
+      <S.Subtitle currentLanguage={currentLanguage} color="primary">
+        {translations.title}
+      </S.Subtitle>
     </S.Content>
   );
 };

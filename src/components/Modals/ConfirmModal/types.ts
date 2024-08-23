@@ -1,6 +1,5 @@
-import { IModalProps } from '../Modal/types';
-
 import { ConfirmModalType } from './constants';
+import { IModalProps } from '../Modal/types';
 
 export interface IConfirmModalProps<R> extends IModalProps {
   header?: React.ReactNode;

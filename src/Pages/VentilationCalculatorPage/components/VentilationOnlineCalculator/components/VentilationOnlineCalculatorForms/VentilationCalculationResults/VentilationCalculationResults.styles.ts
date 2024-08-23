@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { Typography } from '@mui/material';
+import styled from 'styled-components';
 
-import { colors } from '../../../../../../../styles/colors';
+import { colors } from '@/styles/colors';
 
 export const Results = styled.div`
   display: flex;
@@ -18,6 +18,7 @@ export const Label = styled(Typography)`
 
 export const Subtitle = styled(Typography)`
   margin-top: 20px !important;
+
   span {
     color: ${colors.orange};
   }
@@ -26,6 +27,7 @@ export const Subtitle = styled(Typography)`
 export const Text = styled(Typography)`
   margin-top: 10px !important;
   font-size: 18px !important;
+
   span {
     color: ${colors.orange};
   }

@@ -1,26 +1,23 @@
-import Table from '../../../../../../../components/Table';
-import VentilationResultsDocument from '../VentilationResultsDocument';
-import PDFDownloadButton from '../../../../../../../components/PDFDownloadButton';
-
 import { useTranslation } from 'react-i18next';
 
-import { calculateIntakeResults } from './utils/calculateIntakeResults';
-import { calculateExhaustResults } from './utils/calculateExhaustResults';
-import { groupBySystem } from './utils/groupBySystem';
-
-import { useGetColumns } from './constants';
-
+import PDFDownloadButton from '@/components/PDFDownloadButton';
+import Table from '@/components/Table';
+import { useVentilationCalculatorStore } from '@/pages/VentilationCalculatorPage/store';
 import {
   getAirflowRate,
   getBathroomExhaustRate,
   getExchangeRate,
   getLaundryRoomExhaustRate,
   getToiletExhaustRate,
-} from '../../../../../store/selectors';
-import { useVentilationCalculatorStore } from '../../../../../store/store';
+} from '@/pages/VentilationCalculatorPage/store/selectors';
 
-import { ROOM_TYPES_OPTIONS } from '../types';
+import { useGetColumns } from './constants';
 import { IVentilationCalculationResultsProps } from './types';
+import { calculateExhaustResults } from './utils/calculateExhaustResults';
+import { calculateIntakeResults } from './utils/calculateIntakeResults';
+import { groupBySystem } from './utils/groupBySystem';
+import { ROOM_TYPES_OPTIONS } from '../types';
+import VentilationResultsDocument from '../VentilationResultsDocument';
 
 import * as S from './VentilationCalculationResults.styles';
 
@@ -46,16 +43,26 @@ const VentilationCalculationResults: React.FC<IVentilationCalculationResultsProp
     units: t('ventilationCalculator:online_calculator.results.units'),
   };
 
-  const intakeSystem = rooms.filter((room) => room.roomType === ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE);
-  const exhaustSystems = rooms.filter((room) => room.roomType !== ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE);
+  const intakeSystem = rooms.filter(
+    (room) => room.roomType === ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
+  );
+  const exhaustSystems = rooms.filter(
+    (room) => room.roomType !== ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE,
+  );
 
-  const intakeResults = calculateIntakeResults(intakeSystem, exchangeRate, airflowRate, translations.balanced_prefix, translations.supply_prefix);
+  const intakeResults = calculateIntakeResults(
+    intakeSystem,
+    exchangeRate,
+    airflowRate,
+    translations.balanced_prefix,
+    translations.supply_prefix,
+  );
   const exhaustResults = calculateExhaustResults(
     exhaustSystems,
     bathroomExhaustRate,
     toiletExhaustRate,
     laundryRoomExhaustRate,
-    translations.exhaust_prefix
+    translations.exhaust_prefix,
   );
 
   const sortedIntakeResults = intakeResults.sort((a, b) => {
@@ -82,7 +89,10 @@ const VentilationCalculationResults: React.FC<IVentilationCalculationResultsProp
       </S.Label>
       <Table data={results} columns={columns} />
       <S.ButtonWrapper>
-        <PDFDownloadButton children={<VentilationResultsDocument results={results} />} fileName="Air_exchange_rate_table" />
+        <PDFDownloadButton
+          children={<VentilationResultsDocument results={results} />}
+          fileName="Air_exchange_rate_table"
+        />
       </S.ButtonWrapper>
       {Object.keys(groupedResults).length > 0 && (
         <S.TextWrapper>

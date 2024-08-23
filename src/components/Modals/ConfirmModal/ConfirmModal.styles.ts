@@ -1,8 +1,9 @@
+import { Box, DialogActions as MUIDialogActions } from '@mui/material';
 import styled from 'styled-components';
 
-import { Box, DialogActions as MUIDialogActions } from '@mui/material';
-import Button from '../../Button';
-import { screenSizes } from '../../../styles/sizes';
+import Button from '@/components/Button';
+
+import { screenSizes } from '@/styles/sizes';
 
 export const IconBox = styled(Box)`
   width: 90px;

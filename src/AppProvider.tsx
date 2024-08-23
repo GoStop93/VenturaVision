@@ -1,10 +1,9 @@
 import { ReactNode } from 'react';
 
+import { ThemeProvider } from '@mui/material/styles';
 import { flowRight } from 'lodash';
 
-import { ThemeProvider } from '@mui/material/styles';
 import Layout from './layout/Layout';
-
 import theme from './theme/theme';
 
 interface IAppProviderProps {
@@ -14,7 +13,7 @@ interface IAppProviderProps {
 const AppProvider = ({ children }: IAppProviderProps) => {
   return flowRight([
     (n) => <ThemeProvider theme={theme} children={n} />,
-    (n) => <Layout  children={n} />
+    (n) => <Layout children={n} />,
   ])(children);
 };
 

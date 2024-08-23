@@ -1,6 +1,6 @@
 import { buttonClasses, Theme } from '@mui/material';
 
-import { colors } from '../../styles/colors';
+import { colors } from '@/styles/colors';
 
 export const buttonOverride = {
   root: ({ theme }: { theme: Theme }) => ({
@@ -18,7 +18,7 @@ export const buttonOverride = {
     },
   }),
 
-  contained: ({ theme }: { theme: Theme }) => ({
+  contained: () => ({
     color: colors.white,
     backgroundColor: colors.orange,
     '&:hover': {
@@ -27,7 +27,7 @@ export const buttonOverride = {
     },
   }),
 
-  outlined: ({ theme }: { theme: Theme }) => ({
+  outlined: () => ({
     color: colors.black,
     border: `2px solid ${colors.orange}`,
     transition: 'color .35s, background-color .35s',

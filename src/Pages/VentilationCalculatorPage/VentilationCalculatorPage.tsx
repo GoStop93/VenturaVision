@@ -1,26 +1,24 @@
 import { useState } from 'react';
-
-import { useTranslation } from 'react-i18next';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Tab } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 
-import transition from '../../utils/transition/transition';
-import { TabPanel, TabsContainer } from '../../components/Tabs';
-import { Tab } from '@mui/material';
+import FormPrompt from '@/components/FormPrompt/FormPrompt';
+import { TabPanel, TabsContainer } from '@/components/Tabs';
+
+import { IVentilationEntity } from '@/models/ventilation';
+import transition from '@/utils/transition/transition';
 
 import VentilationCalculationMethodology from './components/VentilationCalculationMethodology';
 import VentilationOnlineCalculator from './components/VentilationOnlineCalculator';
-import FormPrompt from '../../components/FormPrompt/FormPrompt';
-
-import { IVentilationEntity } from '../../models/ventilation';
 import {
   ROOM_TYPES_OPTIONS,
   SELECTED_OPTIONS,
   SYSTEM_TYPES_OPTIONS,
 } from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
-
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useVentilationSchema } from './components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/utils/validations';
 
 import * as S from './VentilationCalculatorPage.styles';

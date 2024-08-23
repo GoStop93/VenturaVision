@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { screenSizes } from '../../../../../styles/sizes';
+
+import { screenSizes } from '@/styles/sizes';
 
 export const CalculatorsList = styled.div`
   display: flex;
@@ -7,12 +8,12 @@ export const CalculatorsList = styled.div`
   width: 100%;
 
   @media screen and (max-width: ${screenSizes.lg}) {
-    justify-content: center;
+    justify-content: center; 
     gap: 10px;
   }
 
   @media screen and (max-width: ${screenSizes.sm}) {
-   flex-direction: column;
-   gap: 50px;
+    flex-direction: column;
+    gap: 50px;
   }
 `;

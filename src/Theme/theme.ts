@@ -1,14 +1,24 @@
 import { createTheme } from '@mui/material/styles';
-import { colors } from '../styles/colors';
+
 import { buttonOverride } from './overrides/buttonOverrides';
+import {
+  dialogActionsOverride,
+  dialogContentOverride,
+  dialogOverride,
+  dialogTitleOverride,
+} from './overrides/dialogOverrides';
+import { menuItemOverrides, menuOverrides } from './overrides/menuOverrides';
+import { radioOverride } from './overrides/radioOverrides';
+import {
+  tableCellOverride,
+  tableContainerOverride,
+  tableRowOverride,
+} from './overrides/tableOverrides';
 import { tabsOverride } from './overrides/tabsOverrides';
 import { tabOverride } from './overrides/tabsOverrides';
-import { radioOverride } from './overrides/radioOverrides';
 import { textFieldOverride } from './overrides/textFiledOverrides';
-import { menuOverrides, menuItemOverrides } from './overrides/menuOverrides';
-import { tableCellOverride, tableContainerOverride, tableRowOverride } from './overrides/tableOverrides';
-import { dialogOverride, dialogActionsOverride, dialogContentOverride, dialogTitleOverride } from './overrides/dialogOverrides';
 import { tooltipOverrides } from './overrides/tooltipOverrides';
+import { colors } from '../styles/colors';
 
 export default createTheme({
   spacing: 8,

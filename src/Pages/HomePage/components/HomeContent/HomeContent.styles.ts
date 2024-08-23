@@ -1,8 +1,8 @@
+import { Box, Typography } from '@mui/material';
 import styled from 'styled-components';
 
-import { colors } from '../../../../styles/colors';
-import { Box, Typography } from '@mui/material';
-import { screenSizes } from '../../../../styles/sizes';
+import { colors } from '@/styles/colors';
+import { screenSizes } from '@/styles/sizes';
 
 export const Wrapper = styled(Box)`
   display: flex;

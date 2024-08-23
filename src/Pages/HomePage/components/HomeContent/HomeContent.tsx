@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-import Logo from '../../../../components/Logo';
+import Logo from '@/components/Logo';
 
-import video1 from '../../../../assets/videos/ventilation_1.mp4';
-import video2 from '../../../../assets/videos/ventilation_2.mp4';
-import video3 from '../../../../assets/videos/ventilation_3.mp4';
+import video1 from '@/assets/videos/ventilation_1.mp4';
+import video2 from '@/assets/videos/ventilation_2.mp4';
+import video3 from '@/assets/videos/ventilation_3.mp4';
 
 import * as S from './HomeContent.styles';
 

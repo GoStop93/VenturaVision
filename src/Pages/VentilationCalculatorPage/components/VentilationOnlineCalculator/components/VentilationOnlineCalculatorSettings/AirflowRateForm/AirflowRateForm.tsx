@@ -1,18 +1,20 @@
-import { useForm, Controller } from 'react-hook-form';
-
-import { yupResolver } from '@hookform/resolvers/yup';
-
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useVentilationCalculatorStore } from '../../../../../store/store';
-import { getAirflowRate, getAirflowRateType, getSetAirflowRate, getSetAirflowRateType } from '../../../../../store/selectors';
-
-import ErrorMessage from '../../../../../../../components/ErrorMessage';
-
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Typography } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { Typography } from '@mui/material';
+
+import ErrorMessage from '@/components/ErrorMessage';
+import { useVentilationCalculatorStore } from '@/pages/VentilationCalculatorPage/store';
+import {
+  getAirflowRate,
+  getAirflowRateType,
+  getSetAirflowRate,
+  getSetAirflowRateType,
+} from '@/pages/VentilationCalculatorPage/store/selectors';
 
 import { useAirflowRateSchema } from './utils/validations';
 
@@ -40,9 +42,15 @@ const AirflowRateForm: React.FC = () => {
 
   const translations = {
     title: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.title'),
-    label_min: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_min'),
-    label_comfort: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_comfort'),
-    label_custom: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_custom'),
+    label_min: t(
+      'ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_min',
+    ),
+    label_comfort: t(
+      'ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_comfort',
+    ),
+    label_custom: t(
+      'ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.label_custom',
+    ),
     units: t('ventilationCalculator:online_calculator.calculator_settings.airflow_rate_form.units'),
   };
 

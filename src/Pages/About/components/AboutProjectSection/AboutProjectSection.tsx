@@ -1,7 +1,8 @@
-import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import projectImage from '../../../../assets/images/about/venturaVision.png';
+import { Typography } from '@mui/material';
+
+import projectImage from '@/assets/images/about/venturaVision.png';
 
 import * as S from './AboutProjectSection.styles';
 

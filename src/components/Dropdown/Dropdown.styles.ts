@@ -1,11 +1,10 @@
+import MUICheckIcon from '@mui/icons-material/Check';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import styled from 'styled-components';
 
-import MUICheckIcon from '@mui/icons-material/Check';
+import { colors } from '@/styles/colors';
 
 import Button from '../Button';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
-import { colors } from '../../styles/colors';
 
 export const DropdownButton = styled(Button)`
   text-decoration: none !important;
@@ -29,5 +28,5 @@ export const IconWrapper = styled.div`
 
 export const CheckIcon = styled(MUICheckIcon)`
   width: 10px !important;
-  color: ${colors.white}
+  color: ${colors.white};
 `;

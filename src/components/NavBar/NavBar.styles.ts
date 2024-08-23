@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-import { colors } from '../../styles/colors';
-import { screenSizes } from '../../styles/sizes';
-
 import { NavLink as ReactNavLink } from 'react-router-dom';
+
+import styled from 'styled-components';
+
+import { colors } from '@/styles/colors';
+import { screenSizes } from '@/styles/sizes';
 
 export const NavBar = styled.div<{ isVertical: boolean; isVisible?: boolean }>`
   flex-direction: ${({ isVertical }) => (isVertical ? 'column' : 'row')};
@@ -32,5 +33,4 @@ export const NavLink = styled(ReactNavLink)`
   &.active {
     color: ${colors.orange};
   }
-  
 `;

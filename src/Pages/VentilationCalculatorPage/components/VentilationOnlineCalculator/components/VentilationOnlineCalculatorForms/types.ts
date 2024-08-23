@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { IVentilationEntity } from '../../../../../../models/ventilation';
-import { ObjectValues } from '../../../../../../utils/helperTypes';
+import { IVentilationEntity } from '@/models/ventilation';
+import { ObjectValues } from '@/utils/helperTypes';
 
 export interface IVentilationOnlineCalculatorFormsProps {
   rooms: IVentilationEntity[];

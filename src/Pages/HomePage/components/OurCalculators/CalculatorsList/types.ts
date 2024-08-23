@@ -1,5 +1,3 @@
-import { useTranslation } from 'react-i18next';
-
 export interface ICalculatorEntity {
   buttonName: string;
   url: string;

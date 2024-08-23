@@ -9,7 +9,10 @@ const FormPrompt = <T extends FieldValues>(props: IFormPromptProps<T>) => {
 
   const { isDirty, isSubmitting, errors } = useFormState();
 
-  const blocker = useBlocker(({ currentLocation, nextLocation }) => isDirty && !isSubmitting && currentLocation.pathname !== nextLocation.pathname);
+  const blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      isDirty && !isSubmitting && currentLocation.pathname !== nextLocation.pathname,
+  );
 
   const handleSubmit = formHandleSubmit(async (values: T) => {
     if (!Object.keys(errors).length && onValid) {
