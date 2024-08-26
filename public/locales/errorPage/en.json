@@ -1,0 +1,32 @@
+{
+  "error": {
+    "403": {
+      "heading": "You don’t have permission to view this page",
+      "text": "To access, please contact support",
+      "button": {
+        "text": "Main page"
+      }
+    },
+    "404": {
+      "heading": "404 Page Not Found",
+      "text": "We couldn’t find that page",
+      "button": {
+        "text": "Main page"
+      }
+    },
+    "unexpected": {
+      "heading": "Oops, we've encountered a problem",
+      "text": "Try to relaunch the application or contact support",
+      "button": {
+        "text": "Main page"
+      }
+    },
+    "default": {
+      "heading": "Unknown Error Occurred",
+      "text": "Try to relaunch the application or contact support",
+      "button": {
+        "text": "Main page"
+      }
+    }
+  }
+}

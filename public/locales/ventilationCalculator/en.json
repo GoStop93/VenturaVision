@@ -5,12 +5,12 @@
   },
   "methodology": {
     "title_first": "Airflow",
-    "title_second": "capacity",
+    "title_second": "Capacity",
     "text_1": "The calculation of a ventilation system begins with determining the airflow capacity (air exchange rate), measured in cubic meters per hour. For calculations, we'll need a floor plan of the object, indicating the names (purposes) and areas of all rooms, as well as the ceiling height.",
     "text_2": "Fresh air needs to be supplied only to those rooms where people can stay for extended periods: bedrooms, living rooms, offices, etc. Air is not supplied to corridors, and it is removed from the kitchen and bathrooms through exhaust ducts. Thus, the scheme of airflows will look like this: fresh air is supplied to living areas, from there it (already partially polluted) enters the corridor, from the corridor – to bathrooms and the kitchen, from where it is removed through exhaust ventilation, carrying away unpleasant odors and pollutants. Such a scheme of air movement ensures air pressure in 'dirty' rooms, eliminating the possibility of unpleasant odors spreading throughout the apartment or cottage.",
     "text_3": "To determine the required airflow rate, we need to calculate two values of air exchange: by the number of people and by the air exchange rate, and then choose the larger of these two values:",
     "first_calculation": {
-      "title": "Calculation of air exchange by the number of people:",
+      "title": "Calculation of Air Exchange by the Number of People:",
       "formula": ", where",
       "description_1": " — required capacity of supply ventilation, m³/h;",
       "description_2": " — number of people;",
@@ -19,7 +19,7 @@
       "description_5": "comfortable value — 60 m³/h;"
     },
     "second_calculation": {
-      "title": "Calculation of air exchange by rate:",
+      "title": "Calculation of Air Exchange by Rate:",
       "formula": ", where",
       "description_1": " — required capacity of supply ventilation, m³/h;",
       "description_2": " — normalized air exchange rate(for residential premises = 2)",
@@ -27,23 +27,23 @@
       "description_4": " — height of the room, m"
     },
     "exhaust": {
-      "title": "Local exhaust systems are calculated based on the normalized rate, depending on the purpose of the room:",
+      "title": "Local Exhaust Systems are Calculated Based on the Normalized Rate, Depending on the Purpose of the Room:",
       "description_1": "Bathroom - from 7 to 9 rates;",
       "description_2": "Water Closet - from 8 to 10 rates;",
       "description_3": "Laundry room - 7 rates;"
     }
   },
   "online_calculator": {
-    "title_first": "Online ventilation",
-    "title_second": "system calculator",
+    "title_first": "Online Ventilation",
+    "title_second": "System Calculator",
     "calculator_settings": {
-      "label_first": "Specify the parameters for your supply / balanced ventilation system:",
-      "label_second": "Specify the parameters for your exhaust ventilation system:",
+      "label_first": "Specify the Parameters for Your Supply / Balanced Ventilation System:",
+      "label_second": "Specify the Parameters for Your Exhaust Ventilation System:",
       "airflow_rate_form": {
-        "title": "Airflow rate per person:",
+        "title": "Airflow Rate per Person:",
         "label_min": "Minimum (30 m³/h)",
         "label_comfort": "Comfort (60 m³/h)",
-        "label_custom": "Specify custom airflow rate",
+        "label_custom": "Specify Custom Airflow Rate",
         "units": "m³/h",
         "validations": {
           "typeError": "Airflow rate must be a number",
@@ -53,10 +53,10 @@
         }
       },
       "exchange_rate_form": {
-        "title": "Air exchange rate:",
+        "title": "Air Exchange Rate:",
         "label_min": "Minimum (1 exchange)",
         "label_comfort": "Comfortable (2 exchanges)",
-        "label_custom": "Set custom exchange rate",
+        "label_custom": "Set Custom Exchange Rate",
         "validations": {
           "typeError": "The exchange rate value must be a number",
           "positive": "The exchange rate value cannot be negative",
@@ -65,9 +65,9 @@
         }
       },
       "exhaust_rate_form": {
-        "title": "Air exchange rate:",
-        "label_norm": "Normalized exchange rate",
-        "label_custom": "Set custom exchange rate",
+        "title": "Air Exchange Rate:",
+        "label_norm": "Normalized Exchange Rate",
+        "label_custom": "Set Custom Exchange Rate",
         "label_bathroom": "Bathroom:",
         "label_toilet": "Water Closet:",
         "label_laundry_room": "Laundry Room:",
@@ -85,17 +85,17 @@
       "reset_button": "Reset",
       "ventilation_form": {
         "room_number_label": "Room №",
-        "room_name_label": "Room name:",
-        "room_type_label": "Room type:",
-        "system_type_label": "System type:",
-        "system_number_label": "System number:",
-        "people_label": "Number of people:",
-        "ceiling_height_label": "Ceiling height:",
+        "room_name_label": "Room Name:",
+        "room_type_label": "Room Type:",
+        "system_type_label": "System Type:",
+        "system_number_label": "System Number:",
+        "people_label": "Number of People:",
+        "ceiling_height_label": "Ceiling Height:",
         "radio_square_label": "Area",
         "radio_dimensions_label": "Dimensions",
-        "length_label": "Room length:",
-        "width_label": "Room width:",
-        "area_label": "Room area:",
+        "length_label": "Room Length:",
+        "width_label": "Room Width:",
+        "area_label": "Room Area:",
         "tooltip_text": "Specify the ventilation system number (default is 1). Use different numbers to divide the project into several separate supply/balanced ventilation systems if necessary.",
         "units_of_measurement": {
           "millimeter": "mm",
@@ -163,20 +163,20 @@
       "list_of_rooms": "List of rooms is required"
     },
     "results": {
-      "title_first": "Air exchange",
-      "title_second": "rate table:",
-      "subtitle": "Total airflow for supply / balanced ventilation systems:",
+      "title_first": "Air Exchange",
+      "title_second": "Rate Table:",
+      "subtitle": "Total Airflow for Supply / Balanced Ventilation Systems:",
       "supply_prefix": "S",
       "balanced_prefix": "B",
       "exhaust_prefix": "E",
       "units": "m³/h",
       "columns": {
         "system_name": "System №",
-        "room_name": "Room name",
-        "people": "Number of people",
-        "height": "Ceiling height, m",
-        "area": "Room area, m²",
-        "airflowCapacity": "Airflow rate, m³/h"
+        "room_name": "Room Name",
+        "people": "Number of People",
+        "height": "Ceiling Height, m",
+        "area": "Room Area, m²",
+        "airflowCapacity": "Airflow Rate, m³/h"
       }
     }
   }

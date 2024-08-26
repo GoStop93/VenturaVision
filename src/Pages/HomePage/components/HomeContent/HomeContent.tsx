@@ -19,10 +19,30 @@ const HomeContent: React.FC = () => {
     setIndex((idx) => (idx !== 2 ? idx + 1 : 0));
   };
 
+  // useEffect(() => {
+  //   if (videoRef.current) {
+  //     videoRef.current.play();
+  //   }
+  // }, [index]);
+
   useEffect(() => {
+    const playVideo = () => {
+      if (document.visibilityState === 'visible' && videoRef.current) {
+        videoRef.current.play().catch((error) => {
+          console.error('Video play failed:', error);
+        });
+      }
+    };
+
+    document.addEventListener('visibilitychange', playVideo);
+
     if (videoRef.current) {
-      videoRef.current.play();
+      playVideo();
     }
+
+    return () => {
+      document.removeEventListener('visibilitychange', playVideo);
+    };
   }, [index]);
 
   return (

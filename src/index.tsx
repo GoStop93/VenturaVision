@@ -7,7 +7,7 @@ import Root from './root';
 
 import './index.css';
 
-const router = createHashRouter([{ path: '*', Component: Root }]);
+const router = createBrowserRouter([{ path: '*', Component: Root }]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

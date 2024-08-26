@@ -1,4 +1,5 @@
 export const HOME = '/';
+export const ERROR = '/error/:code';
 
 export const ABOUT = '/about';
 
