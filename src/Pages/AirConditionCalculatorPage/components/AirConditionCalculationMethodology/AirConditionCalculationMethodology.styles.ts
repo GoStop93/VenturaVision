@@ -11,6 +11,8 @@ export const CalculationMethodology = styled.div`
   box-sizing: border-box;
   padding: 2vh 0;
   gap: 20px;
+  max-width: 800px;
+
   @media screen and (max-width: ${screenSizes.sm}) {
     ol,
     ul {
@@ -27,7 +29,7 @@ export const Title = styled(Typography)`
 `;
 
 export const Text = styled(Typography)`
-font-size: 16px !important;
+  font-size: 16px !important;
   strong {
     color: ${colors.orange};
   }

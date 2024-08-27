@@ -68,7 +68,7 @@ const VentilationCalculatorPage: React.FC = () => {
   return (
     <FormProvider {...methods}>
       <FormPrompt formHandleSubmit={methods.handleSubmit}>
-        {({ handleSubmit }) => (
+        {() => (
           <S.VentilationCalculator>
             <TabsContainer
               value={tabValue}

@@ -1,0 +1,41 @@
+{
+  "tabs_group": {
+    "first_tab": "Online Calculator",
+    "second_tab": "Calculation Methodology"
+  },
+  "methodology": {
+    "title_first": "Typical power calculation",
+    "title_second": " of an air conditioner",
+    "text_1": "The calculation of the cooling capacity Q (in kilowatts) is performed according to the following methodology:",
+    "text_2": ", where",
+    "item_1": {
+      "title": " — heat gains from windows, walls, floor, and ceiling.",
+      "part_1": ", where",
+      "part_2": " — room area (m²);",
+      "part_3": " — room height (m);",
+      "part_4": " — coefficient, equal to 30 - 40 W/m³:",
+      "sub_1": "q = 30 for a shaded room;",
+      "sub_2": "q = 35 for average lighting;",
+      "sub_3": "q = 40 for rooms with a lot of sunlight"
+    },
+    "item_2": {
+      "title": " — the sum of heat gains from people.",
+      "subtitle": "Heat gains from an adult:",
+      "sub_1": "0.1 kW",
+      "sub_2": " — at rest;",
+      "sub_3": "0.13 kW",
+      "sub_4": " — with light movement;",
+      "sub_5": "0.2 kW",
+      "sub_6": " — with physical exertion;"
+    },
+    "item_3": {
+      "title": " — the sum of heat gains from household appliances.",
+      "subtitle": "Heat gains from household appliances:",
+      "sub_1": "0.3 kW",
+      "sub_2": " — from a computer;",
+      "sub_3": "0.2 kW",
+      "sub_4": " — from a TV;",
+      "sub_5": "For other devices, it can be assumed that they release 30% of their maximum power as heat (i.e., it is assumed that the average power consumption is 30% of the maximum)"
+    }
+  }
+}

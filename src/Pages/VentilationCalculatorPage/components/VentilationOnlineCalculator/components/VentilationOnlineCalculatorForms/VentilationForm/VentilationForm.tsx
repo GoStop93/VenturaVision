@@ -1,17 +1,16 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton, Tooltip, Typography } from '@mui/material';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { IconButton, Typography } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Dropdown from '@/components/Dropdown';
 import ErrorMessage from '@/components/ErrorMessage';
+import InfoHelper from '@/components/InfoHelper';
 
 import { colors } from '@/styles/colors';
 
@@ -22,10 +21,6 @@ import * as S from './VentilationForm.styles';
 
 const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
   const { roomNumber, onRemove, amountOfRooms, control, index, errors } = props;
-
-  const [open, setOpen] = useState(false);
-
-  const isMobile = useMediaQuery('(max-width:600px)');
 
   const { resetField, setValue, watch } = useFormContext();
 
@@ -129,14 +124,6 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
     }
   };
 
-  const handleTooltipClose = () => {
-    setOpen(false);
-  };
-
-  const handleTooltipOpen = () => {
-    setOpen(true);
-  };
-
   const isVisibleDeleteButton = amountOfRooms > 1;
 
   return (
@@ -210,18 +197,7 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
                     />
                   )}
                 />
-                <ClickAwayListener onClickAway={handleTooltipClose}>
-                  <Tooltip
-                    title={translations.tooltip_text}
-                    placement="top"
-                    open={isMobile ? open : undefined}
-                    onClose={handleTooltipClose}
-                  >
-                    <S.QuestionIconButton onClick={isMobile ? handleTooltipOpen : undefined}>
-                      <S.QuestionIcon />
-                    </S.QuestionIconButton>
-                  </Tooltip>
-                </ClickAwayListener>
+                <InfoHelper tooltipText={translations.tooltip_text} />
               </S.FlexWrapper>
             </S.HorizontalWrapper>
             {errors?.systemNumber && <ErrorMessage error={errors.systemNumber.message} />}
@@ -235,7 +211,7 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
                 <Controller
                   name={`rooms.${index}.people`}
                   control={control}
-                  render={({ field }) => <S.Input size="small" {...field} />}
+                  render={({ field }) => <S.Input size="small" {...field} placeholder="1" />}
                 />
                 {translations.unit}
               </S.FlexWrapper>
@@ -250,7 +226,7 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
               <Controller
                 name={`rooms.${index}.ceilingHeight`}
                 control={control}
-                render={({ field }) => <S.Input size="small" {...field} />}
+                render={({ field }) => <S.Input size="small" {...field} placeholder="3200" />}
               />
               {translations.millimeter}
             </S.FlexWrapper>
@@ -280,7 +256,7 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
                   <Controller
                     name={`rooms.${index}.length`}
                     control={control}
-                    render={({ field }) => <S.Input size="small" {...field} />}
+                    render={({ field }) => <S.Input size="small" {...field} placeholder="2000" />}
                   />
                   {translations.millimeter}
                 </S.FlexWrapper>
@@ -294,7 +270,7 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
                   <Controller
                     name={`rooms.${index}.width`}
                     control={control}
-                    render={({ field }) => <S.Input size="small" {...field} />}
+                    render={({ field }) => <S.Input size="small" {...field} placeholder="3000" />}
                   />
                   {translations.millimeter}
                 </S.FlexWrapper>
@@ -312,7 +288,7 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
                 <Controller
                   name={`rooms.${index}.area`}
                   control={control}
-                  render={({ field }) => <S.Input size="small" {...field} />}
+                  render={({ field }) => <S.Input size="small" {...field} placeholder="24" />}
                 />
                 {translations.square_meter}
               </S.FlexWrapper>
