@@ -36,6 +36,92 @@
       "sub_3": "0.2 kW",
       "sub_4": " — from a TV;",
       "sub_5": "For other devices, it can be assumed that they release 30% of their maximum power as heat (i.e., it is assumed that the average power consumption is 30% of the maximum)"
+    },
+    "summary_first": "The air conditioner's capacity should fall within the",
+    "summary_second": " which spans from 5% below to 20% above the calculated capacity"
+  },
+  "online_calculator": {
+    "title_first": "Online Air Conditioning",
+    "title_second": "System Calculator",
+    "validations": {
+      "id": "ID is a required field",
+      "list_of_rooms": "List of rooms is required",
+      "name": "Room name is a required field",
+      "room_number": {
+        "type": "Room number must be a number",
+        "required": "Room number is a required field"
+      },
+      "ceiling_height": {
+        "type": "Ceiling height must be a number",
+        "required": "Ceiling height is a required field",
+        "positive": "Ceiling height must be a positive number",
+        "max": "Maximum ceiling height is 20000 mm"
+      },
+      "length": {
+        "type": "Room length must be a number",
+        "required": "Room length is a required field",
+        "positive": "Room length must be a positive number",
+        "max": "Room length must not exceed 100000 mm"
+      },
+      "width": {
+        "type": "Room width must be a number",
+        "required": "Room width is a required field",
+        "positive": "Room width must be a positive number",
+        "max": "Room width must not exceed 100000 mm"
+      },
+      "area": {
+        "type": "Room area must be a number",
+        "required": "Room area is a required field",
+        "positive": "Room area must be a positive number",
+        "max": "Room area must not exceed 1000 m²"
+      },
+      "insolationType": "Insolation is a required field",
+      "people": {
+        "type": "Number of people must be a number",
+        "required": "Number of people is required for a residential room",
+        "positive": "Number of people must be a positive number",
+        "max": "Number of people must not exceed 20"
+      },
+      "computers": {
+        "type": "Number of computers must be a number",
+        "positive": "Number of computers must be a positive number",
+        "max": "Number of computers must not exceed 10"
+      },
+      "TVs": {
+        "type": "Number of TVs must be a number",
+        "positive": "Number of TVs must be a positive number",
+        "max": "Number of TVs must not exceed 10"
+      },
+      "appliances": {
+        "type": "Power of other appliances must be a number",
+        "positive": "Power of other appliances must be a positive number",
+        "max": "Power of other appliances must not exceed 20 kW"
+      },
+      "exchange_rate": {
+        "type": "Exchange rate value must be a number",
+        "positive": "Exchange rate value cannot be negative",
+        "max": "Exchange rate value must not exceed 20",
+        "required": "This is a required field"
+      },
+      "airflow_rate": {
+        "type": "Airflow rate value must be a number",
+        "positive": "Airflow rate value cannot be negative",
+        "max": "Airflow rate value must not exceed 150",
+        "required": "This is a required field"
+      },
+      "window_area": {
+        "type": "Window area must be a number",
+        "required": "Window area is a required field",
+        "positive": "Window area must be a positive number",
+        "max": "Window area must not exceed 30 m²"
+      },
+      "power_increase": "Power increase is a required field",
+      "panoramic_windows": "This field is required",
+      "top_floor": "This field is required",
+      "hot_climate": "This field is required",
+      "selected_option": "This field is required",
+      "consider_ventilation": "This field is required",
+      "selected_ventilation_option": "This field is required"
     }
   }
 }

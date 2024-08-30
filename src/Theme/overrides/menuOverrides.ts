@@ -4,7 +4,6 @@ import { colors } from '@/styles/colors';
 
 export const menuOverrides = {
   list: () => ({
-    minWidth: 140,
     paddingTop: 6,
     paddingBottom: 6,
     backgroundColor: colors.orange,

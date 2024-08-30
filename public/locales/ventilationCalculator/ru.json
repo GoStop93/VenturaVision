@@ -84,7 +84,7 @@
       "submit_button": "Подтвердить",
       "reset_button": "Сбросить",
       "ventilation_form": {
-        "room_number_label": "Комната №",
+        "room_number_label": "Помещение №",
         "room_name_label": "Наименование помещения:",
         "room_type_label": "Тип помещения:",
         "system_type_label": "Тип системы:",

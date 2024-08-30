@@ -32,7 +32,10 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
     reset,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useFormContext();
+
+  const watchedFields = watch();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -101,7 +104,7 @@ const VentilationOnlineCalculatorForms: React.FC<IVentilationOnlineCalculatorFor
     if (Object.keys(errors).length > 0) {
       setRooms([]);
     }
-  }, [errors]);
+  }, [errors, watchedFields]);
 
   useEffect(() => {
     if (rooms.length > 0) {

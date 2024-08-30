@@ -33,6 +33,8 @@ const AirConditionCalculationMethodology: React.FC = () => {
     third_item_sub_3: t('airConditionCalculator:methodology.item_3.sub_3'),
     third_item_sub_4: t('airConditionCalculator:methodology.item_3.sub_4'),
     third_item_sub_5: t('airConditionCalculator:methodology.item_3.sub_5'),
+    summary_first: t('airConditionCalculator:methodology.summary_first'),
+    summary_second: t('airConditionCalculator:methodology.summary_second'),
   };
 
   return (
@@ -117,6 +119,14 @@ const AirConditionCalculationMethodology: React.FC = () => {
             </ul>
           </li>
         </ul>
+        <br />
+        <S.Summary>
+          {translations.summary_first}{' '}
+          <strong>
+            Q<S.SubText>range</S.SubText>
+          </strong>{' '}
+          {translations.summary_second} <strong>Q</strong>
+        </S.Summary>
       </S.Text>
     </S.CalculationMethodology>
   );

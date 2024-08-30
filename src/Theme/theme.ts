@@ -9,6 +9,7 @@ import {
 } from './overrides/dialogOverrides';
 import { menuItemOverrides, menuOverrides } from './overrides/menuOverrides';
 import { radioOverride } from './overrides/radioOverrides';
+import { switchOverrides } from './overrides/switchOverrides';
 import {
   tableCellOverride,
   tableContainerOverride,
@@ -83,6 +84,9 @@ export default createTheme({
     },
     MuiTooltip: {
       styleOverrides: tooltipOverrides,
+    },
+    MuiSwitch: {
+      styleOverrides: switchOverrides,
     },
     MuiTypography: {
       variants: [

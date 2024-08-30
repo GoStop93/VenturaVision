@@ -107,6 +107,9 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
 
   const onRoomTypeChange = (_: string, value: string) => {
     setValue(`rooms.${index}.roomType`, value);
+    if (value !== ROOM_TYPES_OPTIONS.RESIDENTIAL_SPACE) {
+      resetField(`rooms.${index}.people`);
+    }
   };
 
   const onSystemTypeChange = (_: string, value: string) => {
@@ -211,7 +214,15 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
                 <Controller
                   name={`rooms.${index}.people`}
                   control={control}
-                  render={({ field }) => <S.Input size="small" {...field} placeholder="1" />}
+                  render={({ field }) => (
+                    <S.SmallInput
+                      size="small"
+                      type="number"
+                      inputProps={{ min: 1, step: 1, max: 20 }}
+                      {...field}
+                      placeholder="1"
+                    />
+                  )}
                 />
                 {translations.unit}
               </S.FlexWrapper>

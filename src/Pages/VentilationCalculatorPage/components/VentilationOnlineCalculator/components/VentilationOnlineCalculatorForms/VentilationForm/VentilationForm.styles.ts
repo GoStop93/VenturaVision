@@ -1,10 +1,6 @@
-import HelpIcon from '@mui/icons-material/Help';
 import { TextField } from '@mui/material';
-import { IconButton } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import styled from 'styled-components';
-
-import { colors } from '@/styles/colors';
 
 export const Form = styled(FormControl)`
   width: 380px;
@@ -69,19 +65,7 @@ export const BigInput = styled(TextField)`
 
 export const SmallInput = styled(TextField)`
   input {
-    width: 30px;
+    width: 40px;
     height: 10px;
   }
-`;
-
-export const QuestionIcon = styled(HelpIcon)`
-  font-size: 18px !important;
-  color: ${colors.orange};
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const QuestionIconButton = styled(IconButton)`
-  padding: 0 !important;
 `;

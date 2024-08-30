@@ -40,3 +40,15 @@ export const List = styled.ul`
     color: ${colors.orange};
   }
 `;
+
+export const Summary = styled.div`
+  padding: 20px 0;
+  border-top: 1px dashed ${colors.orange};
+  border-bottom: 1px dashed ${colors.orange};
+`;
+
+export const SubText = styled.span`
+  font-size: 12px; 
+  vertical-align: sub; 
+  margin-left: 2px; 
+`;
