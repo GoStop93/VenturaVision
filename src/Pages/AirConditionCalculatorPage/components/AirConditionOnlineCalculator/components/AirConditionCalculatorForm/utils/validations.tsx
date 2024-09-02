@@ -101,7 +101,7 @@ export const useRoomAirConditionSchema = () => {
         schema
           .typeError(t('airConditionCalculator:online_calculator:validations.window_area.type'))
           .positive(t('airConditionCalculator:online_calculator:validations.window_area.positive'))
-          .max(20000, t('airConditionCalculator:online_calculator:validations.window_area.max'))
+          .max(30, t('airConditionCalculator:online_calculator:validations.window_area.max'))
           .required(t('airConditionCalculator:online_calculator:validations.window_area.required')),
       otherwise: (schema) => schema.notRequired(),
     }),
@@ -150,13 +150,9 @@ export const useRoomAirConditionSchema = () => {
         selectedVentilationOption === SELECTED_VENTILATION_OPTIONS.AIRFLOW_RATE,
       then: (schema) =>
         schema
-          .required(
-            t('airConditionCalculator:online_calculator:validations.airflow_rate.required'),
-          )
+          .required(t('airConditionCalculator:online_calculator:validations.airflow_rate.required'))
           .typeError(t('airConditionCalculator:online_calculator:validations.airflow_rate.type'))
-          .positive(
-            t('airConditionCalculator:online_calculator:validations.airflow_rate.positive'),
-          )
+          .positive(t('airConditionCalculator:online_calculator:validations.airflow_rate.positive'))
           .max(1000, t('airConditionCalculator:online_calculator:validations.airflow_rate.max')),
       otherwise: (schema) => schema.notRequired(),
     }),

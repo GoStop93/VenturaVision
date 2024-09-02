@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import AirConditionCalculatorForm from './components/AirConditionCalculatorForm';
+import DefaultSettings from './components/DefaultSettings';
 import { IAirConditionOnlineCalculatorProps } from './types';
 
 import * as S from './AirConditionOnlineCalculator.styles';
@@ -21,6 +22,7 @@ const AirConditionOnlineCalculator: React.FC<IAirConditionOnlineCalculatorProps>
         {translations.title_first}
         <span> {translations.title_second}</span>
       </S.Title>
+      <DefaultSettings />
       <AirConditionCalculatorForm rooms={rooms} setRooms={setRooms} />
     </S.AirConditionOnlineCalculator>
   );

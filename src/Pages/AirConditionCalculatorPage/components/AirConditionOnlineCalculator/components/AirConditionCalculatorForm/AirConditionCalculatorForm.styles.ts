@@ -18,7 +18,6 @@ export const FormsWrapper = styled.div`
   gap: 50px;
   width: 100%;
   flex-wrap: wrap;
-  margin-top: 30px;
 `;
 
 export const ButtonsWrapper = styled.div`

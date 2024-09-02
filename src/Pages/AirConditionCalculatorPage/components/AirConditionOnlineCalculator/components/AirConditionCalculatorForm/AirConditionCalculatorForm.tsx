@@ -3,7 +3,23 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { IAirConditionCalculatorFormProps } from './types';
+import { useAirConditionCalculatorStore } from '@/pages/AirConditionCalculatorPage/store';
+import {
+  getConsiderVentilation,
+  getExchangeRate,
+  getHotClimate,
+  getPanoramicWindows,
+  getPowerIncreaseType,
+  getTopFloor,
+  getWindowArea,
+} from '@/pages/AirConditionCalculatorPage/store/selectors';
+import { SELECTED_OPTIONS } from '@/pages/VentilationCalculatorPage/components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
+
+import {
+  IAirConditionCalculatorFormProps,
+  INSOLATION_TYPES_OPTIONS,
+  SELECTED_VENTILATION_OPTIONS,
+} from './types';
 import { IAirConditionData } from './types';
 import AirConditionForm from '../AirConditionForm';
 
@@ -15,6 +31,14 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
   const { rooms, setRooms } = props;
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const considerVentilation = useAirConditionCalculatorStore(getConsiderVentilation);
+  const topFloor = useAirConditionCalculatorStore(getTopFloor);
+  const panoramicWindows = useAirConditionCalculatorStore(getPanoramicWindows);
+  const hotClimate = useAirConditionCalculatorStore(getHotClimate);
+  const powerIncreaseType = useAirConditionCalculatorStore(getPowerIncreaseType);
+  const exchangeRate = useAirConditionCalculatorStore(getExchangeRate);
+  const windowArea = useAirConditionCalculatorStore(getWindowArea);
 
   const {
     control,
@@ -32,6 +56,26 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
     append({
       id: uuidv4(),
       roomNumber: fields.length + 1,
+      selectedOption: SELECTED_OPTIONS.SQUARE,
+      name: '',
+      ceilingHeight: undefined,
+      length: undefined,
+      width: undefined,
+      area: undefined,
+      people: undefined,
+      insolationType: INSOLATION_TYPES_OPTIONS.LOW,
+      computers: undefined,
+      TVs: undefined,
+      appliances: undefined,
+      topFloor: topFloor,
+      panoramicWindows: panoramicWindows,
+      hotClimate: hotClimate,
+      powerIncreaseType: powerIncreaseType,
+      considerVentilation: considerVentilation,
+      selectedVentilationOption: SELECTED_VENTILATION_OPTIONS.AIR_EXCHANGE_RATE,
+      exchangeRate: exchangeRate,
+      airflowRate: undefined,
+      windowArea: windowArea,
     });
   };
 
@@ -45,6 +89,26 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
         {
           id: uuidv4(),
           roomNumber: 1,
+          selectedOption: SELECTED_OPTIONS.SQUARE,
+          name: '',
+          ceilingHeight: undefined,
+          length: undefined,
+          width: undefined,
+          area: undefined,
+          people: undefined,
+          insolationType: INSOLATION_TYPES_OPTIONS.LOW,
+          computers: undefined,
+          TVs: undefined,
+          appliances: undefined,
+          topFloor: false,
+          panoramicWindows: false,
+          hotClimate: false,
+          powerIncreaseType: undefined,
+          considerVentilation: false,
+          selectedVentilationOption: SELECTED_VENTILATION_OPTIONS.AIR_EXCHANGE_RATE,
+          exchangeRate: undefined,
+          airflowRate: undefined,
+          windowArea: undefined,
         },
       ],
     });

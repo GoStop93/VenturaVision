@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +19,16 @@ import {
   SELECTED_VENTILATION_OPTIONS,
 } from './components/AirConditionOnlineCalculator/components/AirConditionCalculatorForm/types';
 import { useAirConditionSchema } from './components/AirConditionOnlineCalculator/components/AirConditionCalculatorForm/utils/validations';
-import { powerIncreasePercentageTypes } from './components/AirConditionOnlineCalculator/components/AirConditionForm/AirConditionForm';
+import { useAirConditionCalculatorStore } from './store';
+import {
+  getConsiderVentilation,
+  getExchangeRate,
+  getHotClimate,
+  getPanoramicWindows,
+  getPowerIncreaseType,
+  getTopFloor,
+  getWindowArea,
+} from './store/selectors';
 import { SELECTED_OPTIONS } from '../VentilationCalculatorPage/components/VentilationOnlineCalculator/components/VentilationOnlineCalculatorForms/types';
 
 import * as S from './AirConditionCalculatorPage.styles';
@@ -27,6 +36,14 @@ import * as S from './AirConditionCalculatorPage.styles';
 const AirConditionCalculatorPage: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [rooms, setRooms] = useState<IAirConditionEntity[]>([]);
+
+  const considerVentilation = useAirConditionCalculatorStore(getConsiderVentilation);
+  const topFloor = useAirConditionCalculatorStore(getTopFloor);
+  const panoramicWindows = useAirConditionCalculatorStore(getPanoramicWindows);
+  const hotClimate = useAirConditionCalculatorStore(getHotClimate);
+  const powerIncreaseType = useAirConditionCalculatorStore(getPowerIncreaseType);
+  const exchangeRate = useAirConditionCalculatorStore(getExchangeRate);
+  const windowArea = useAirConditionCalculatorStore(getWindowArea);
 
   const { t } = useTranslation('airConditionCalculator');
 
@@ -61,18 +78,46 @@ const AirConditionCalculatorPage: React.FC = () => {
           computers: undefined,
           TVs: undefined,
           appliances: undefined,
-          topFloor: false,
-          panoramicWindows: false,
-          hotClimate: false,
-          powerIncreaseType: undefined,
-          considerVentilation: false,
+          topFloor: topFloor,
+          panoramicWindows: panoramicWindows,
+          hotClimate: hotClimate,
+          powerIncreaseType: powerIncreaseType,
+          considerVentilation: considerVentilation,
           selectedVentilationOption: SELECTED_VENTILATION_OPTIONS.AIR_EXCHANGE_RATE,
-          exchangeRate: undefined,
+          exchangeRate: exchangeRate,
           airflowRate: undefined,
+          windowArea: windowArea,
         },
       ],
     },
   });
+
+  const {
+    setValue,
+    formState: { isDirty },
+  } = methods;
+
+  useEffect(() => {
+    if (!isDirty) {
+      setValue('rooms.0.topFloor', topFloor);
+      setValue('rooms.0.considerVentilation', considerVentilation);
+      setValue('rooms.0.panoramicWindows', panoramicWindows);
+      setValue('rooms.0.hotClimate', hotClimate);
+      setValue('rooms.0.powerIncreaseType', powerIncreaseType);
+      setValue('rooms.0.exchangeRate', exchangeRate);
+      setValue('rooms.0.windowArea', windowArea);
+    }
+  }, [
+    topFloor,
+    isDirty,
+    setValue,
+    considerVentilation,
+    panoramicWindows,
+    hotClimate,
+    powerIncreaseType,
+    exchangeRate,
+    windowArea,
+  ]);
 
   return (
     <FormProvider {...methods}>

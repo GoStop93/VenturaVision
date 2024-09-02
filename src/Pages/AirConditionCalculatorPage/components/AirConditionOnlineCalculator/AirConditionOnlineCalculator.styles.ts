@@ -9,7 +9,7 @@ export const AirConditionOnlineCalculator = styled.div`
   width: 100%;
   box-sizing: border-box;
   padding: 2vh 0;
-  gap: 30px;
+  gap: 40px;
 `;
 
 export const Title = styled(Typography)`
