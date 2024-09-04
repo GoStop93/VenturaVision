@@ -51,23 +51,32 @@
         "type": "Room number must be a number",
         "required": "Room number is a required field"
       },
+      "system_number": {
+        "type": "System number must be a number",
+        "required": "System number is a required field",
+        "positive": "System number must be a positive number",
+        "max": "Maximum system number is 30"
+      },
       "ceiling_height": {
         "type": "Ceiling height must be a number",
         "required": "Ceiling height is a required field",
         "positive": "Ceiling height must be a positive number",
-        "max": "Maximum ceiling height is 20000 mm"
+        "max": "Maximum ceiling height is 20000 mm",
+        "min": "The ceiling height cannot be less than 1000 mm."
       },
       "length": {
         "type": "Room length must be a number",
         "required": "Room length is a required field",
         "positive": "Room length must be a positive number",
-        "max": "Room length must not exceed 100000 mm"
+        "max": "Room length must not exceed 100000 mm",
+        "min": "The room length cannot be less than 100 mm."
       },
       "width": {
         "type": "Room width must be a number",
         "required": "Room width is a required field",
         "positive": "Room width must be a positive number",
-        "max": "Room width must not exceed 100000 mm"
+        "max": "Room width must not exceed 100000 mm",
+        "min": "The room width cannot be less than 100 mm."
       },
       "area": {
         "type": "Room area must be a number",
@@ -76,6 +85,7 @@
         "max": "Room area must not exceed 1000 m²"
       },
       "insolationType": "Insolation is a required field",
+      "physicalActivityType": "Physical activity level is a required field",
       "people": {
         "type": "Number of people must be a number",
         "required": "Number of people is required for a residential room",
@@ -113,7 +123,8 @@
         "type": "Window area must be a number",
         "required": "Window area is a required field",
         "positive": "Window area must be a positive number",
-        "max": "Window area must not exceed 30 m²"
+        "max": "Window area must not exceed 30 m²",
+        "min": "The glazing area must be greater than 2 m² to be considered in the calculation."
       },
       "power_increase": "Power increase is a required field",
       "panoramic_windows": "This field is required",

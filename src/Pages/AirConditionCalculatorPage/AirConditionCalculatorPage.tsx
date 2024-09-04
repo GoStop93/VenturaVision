@@ -16,6 +16,7 @@ import AirConditionCalculationMethodology from './components/AirConditionCalcula
 import AirConditionOnlineCalculator from './components/AirConditionOnlineCalculator';
 import {
   INSOLATION_TYPES_OPTIONS,
+  PHYSICAL_ACTIVITY_TYPES_OPTIONS,
   SELECTED_VENTILATION_OPTIONS,
 } from './components/AirConditionOnlineCalculator/components/AirConditionCalculatorForm/types';
 import { useAirConditionSchema } from './components/AirConditionOnlineCalculator/components/AirConditionCalculatorForm/utils/validations';
@@ -67,6 +68,7 @@ const AirConditionCalculatorPage: React.FC = () => {
         {
           id: uuidv4(),
           roomNumber: 1,
+          systemNumber: 1,
           selectedOption: SELECTED_OPTIONS.SQUARE,
           name: '',
           ceilingHeight: undefined,
@@ -75,6 +77,7 @@ const AirConditionCalculatorPage: React.FC = () => {
           area: undefined,
           people: undefined,
           insolationType: INSOLATION_TYPES_OPTIONS.LOW,
+          physicalActivityType: PHYSICAL_ACTIVITY_TYPES_OPTIONS.LOW,
           computers: undefined,
           TVs: undefined,
           appliances: undefined,

@@ -134,19 +134,22 @@
         "type": "Ceiling height must be a number",
         "required": "Ceiling height is a required field",
         "positive": "Ceiling height must be a positive number",
-        "max": "Maximum ceiling height is 20000 mm"
+        "max": "Maximum ceiling height is 20000 mm",
+        "min": "The ceiling height cannot be less than 1000 mm."
       },
       "length": {
         "type": "Room length must be a number",
         "required": "Room length is a required field",
         "positive": "Room length must be a positive number",
-        "max": "Maximum room length is 100000 mm"
+        "max": "Maximum room length is 100000 mm",
+        "min": "The room length cannot be less than 100 mm."
       },
       "width": {
         "type": "Room width must be a number",
         "required": "Room width is a required field",
         "positive": "Room width must be a positive number",
-        "max": "Maximum room width is 100000 mm"
+        "max": "Maximum room width is 100000 mm",
+        "min": "The room width cannot be less than 100 mm."
       },
       "area": {
         "type": "Room area must be a number",

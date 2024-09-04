@@ -34,6 +34,7 @@ export const useDefaultSettingsSchema = () => {
           .typeError(t('airConditionCalculator:online_calculator:validations.window_area.type'))
           .positive(t('airConditionCalculator:online_calculator:validations.window_area.positive'))
           .max(30, t('airConditionCalculator:online_calculator:validations.window_area.max'))
+          .min(2.1, t('airConditionCalculator:online_calculator:validations.window_area.min'))
           .required(t('airConditionCalculator:online_calculator:validations.window_area.required')),
       otherwise: (schema) => schema.notRequired(),
     }),

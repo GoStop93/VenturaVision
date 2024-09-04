@@ -3,6 +3,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { v4 as uuidv4 } from 'uuid';
 
+import LoadingDecorator from '@/components/LoadingDecorator';
 import { useAirConditionCalculatorStore } from '@/pages/AirConditionCalculatorPage/store';
 import {
   getConsiderVentilation,
@@ -18,10 +19,12 @@ import { SELECTED_OPTIONS } from '@/pages/VentilationCalculatorPage/components/V
 import {
   IAirConditionCalculatorFormProps,
   INSOLATION_TYPES_OPTIONS,
+  PHYSICAL_ACTIVITY_TYPES_OPTIONS,
   SELECTED_VENTILATION_OPTIONS,
 } from './types';
 import { IAirConditionData } from './types';
 import AirConditionForm from '../AirConditionForm';
+import AirConditionResults from '../AirConditionResults';
 
 import * as S from './AirConditionCalculatorForm.styles';
 
@@ -56,6 +59,7 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
     append({
       id: uuidv4(),
       roomNumber: fields.length + 1,
+      systemNumber: 1,
       selectedOption: SELECTED_OPTIONS.SQUARE,
       name: '',
       ceilingHeight: undefined,
@@ -64,6 +68,7 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
       area: undefined,
       people: undefined,
       insolationType: INSOLATION_TYPES_OPTIONS.LOW,
+      physicalActivityType: PHYSICAL_ACTIVITY_TYPES_OPTIONS.LOW,
       computers: undefined,
       TVs: undefined,
       appliances: undefined,
@@ -89,6 +94,7 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
         {
           id: uuidv4(),
           roomNumber: 1,
+          systemNumber: 1,
           selectedOption: SELECTED_OPTIONS.SQUARE,
           name: '',
           ceilingHeight: undefined,
@@ -97,6 +103,7 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
           area: undefined,
           people: undefined,
           insolationType: INSOLATION_TYPES_OPTIONS.LOW,
+          physicalActivityType: PHYSICAL_ACTIVITY_TYPES_OPTIONS.LOW,
           computers: undefined,
           TVs: undefined,
           appliances: undefined,
@@ -119,7 +126,6 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
     setIsLoading(true);
     if (data.rooms) {
       setRooms(data.rooms);
-      console.log(rooms);
     }
   };
 
@@ -127,7 +133,7 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
     if (Object.keys(errors).length > 0) {
       setRooms([]);
     }
-  }, [errors]);
+  }, [JSON.stringify(errors)]);
 
   useEffect(() => {
     if (rooms.length > 0) {
@@ -160,6 +166,11 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
           + Add room
         </S.AddButton>
       </S.FormsWrapper>
+      {rooms.length > 0 && (!errors || Object.keys(errors).length < 1) && (
+        <LoadingDecorator data={rooms} loading={isLoading} size={60} padding="200px 0">
+          {() => <AirConditionResults rooms={rooms} />}
+        </LoadingDecorator>
+      )}
       <S.ButtonsWrapper>
         <S.MenuButton size="large" onClick={handleSubmit(onSubmit)}>
           Submit

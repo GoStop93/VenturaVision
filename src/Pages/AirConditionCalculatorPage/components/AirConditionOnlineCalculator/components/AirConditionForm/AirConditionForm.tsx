@@ -19,6 +19,7 @@ import { IAirConditionFormProps } from './types';
 import airConditionImage from '../../../../../../assets/images/systemIcons/air-condition-icon.png';
 import {
   INSOLATION_TYPES_OPTIONS,
+  PHYSICAL_ACTIVITY_TYPES_OPTIONS,
   SELECTED_VENTILATION_OPTIONS,
 } from '../AirConditionCalculatorForm/types';
 
@@ -41,8 +42,18 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
     [INSOLATION_TYPES_OPTIONS.HIGH]: 'Сильная',
   }; //TODO: add translations
 
+  const translatedPhysicalActivityTypes = {
+    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.LOW]: 'Отдых',
+    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.MEDIUM]: 'Работа',
+    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.HIGH]: 'Тренировка',
+  }; //TODO: add translations
+
   const selectedOption = watch(`rooms.${index}.selectedOption`, SELECTED_OPTIONS.SQUARE);
   const insolationType = watch(`rooms.${index}.insolationType`, INSOLATION_TYPES_OPTIONS.LOW);
+  const physicalActivityType = watch(
+    `rooms.${index}.physicalActivityType`,
+    PHYSICAL_ACTIVITY_TYPES_OPTIONS.LOW,
+  );
   const selectedVentilationOption = watch(
     `rooms.${index}.selectedVentilationOption`,
     SELECTED_VENTILATION_OPTIONS.AIR_EXCHANGE_RATE,
@@ -59,6 +70,10 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
 
   const onInsolationTypeChange = (_: string, value: string) => {
     setValue(`rooms.${index}.insolationType`, value);
+  };
+
+  const onPhysicalActivityTypeChange = (_: string, value: string) => {
+    setValue(`rooms.${index}.physicalActivityType`, value);
   };
 
   const onPowerIncreaseTypeChange = (_: string, value: string) => {
@@ -149,6 +164,31 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
       </S.VerticalWrapper>
       <S.FormWrapper>
         <S.FormColumns>
+          <S.InputWrapper style={{ marginTop: '10px' }}>
+            <S.HorizontalWrapper>
+              <Typography>Номер системы:</Typography>
+              <S.FlexWrapper>
+                <Controller
+                  name={`rooms.${index}.systemNumber`}
+                  control={control}
+                  render={({ field }) => (
+                    <S.SmallInput
+                      type="number"
+                      inputProps={{ min: 1, step: 1, max: 10 }}
+                      size="small"
+                      {...field}
+                    />
+                  )}
+                />
+                <InfoHelper
+                  tooltipText={
+                    'Укажите номер системы кондиционирования (по умолчанию 1). Используйте разные номера для разделения проекта на несколько отдельных систем, если это необходимо'
+                  }
+                />
+              </S.FlexWrapper>
+            </S.HorizontalWrapper>
+            {errors?.systemNumber && <ErrorMessage error={errors.systemNumber.message} />}
+          </S.InputWrapper>
           <S.SwitchWrapper withBackground={true}>
             <RadioGroup row value={selectedOption} onChange={handleOptionChange}>
               <FormControlLabel
@@ -270,6 +310,22 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
             {errors?.people && <ErrorMessage error={errors.people.message} />}
           </S.InputWrapper>
 
+          {watch(`rooms.${index}.people`, 0) > 0 && (
+            <S.HorizontalWrapper>
+              <Typography style={{ width: '130px' }}>Уровень физичекой нагрузки:</Typography>
+              <Dropdown
+                options={Object.entries(translatedPhysicalActivityTypes).map(
+                  ([key, optionValue]) => ({
+                    key,
+                    optionValue,
+                  }),
+                )}
+                name={`rooms.${index}.physicalActivityType`}
+                value={translatedPhysicalActivityTypes[physicalActivityType]}
+                onChange={onPhysicalActivityTypeChange}
+              />
+            </S.HorizontalWrapper>
+          )}
           <S.InputWrapper>
             <S.HorizontalWrapper>
               <Typography>Количество компьютеров:</Typography>

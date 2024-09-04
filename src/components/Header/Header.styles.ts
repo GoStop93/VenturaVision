@@ -23,3 +23,9 @@ export const MenuButton = styled(IconButton)`
     display: none !important;
   }
 `;
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  
+`;

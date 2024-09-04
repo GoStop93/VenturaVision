@@ -24,3 +24,13 @@ export const SELECTED_VENTILATION_OPTIONS = {
   AIRFLOW_RATE: 'Airflow rate',
   AIR_EXCHANGE_RATE: 'Air exchange rate',
 };
+
+export type SelectedVentilationOption = ObjectValues<typeof INSOLATION_TYPES_OPTIONS>;
+
+export const PHYSICAL_ACTIVITY_TYPES_OPTIONS = {
+  LOW: 'Low',
+  MEDIUM: 'Medium',
+  HIGH: 'High',
+};
+
+export type PhysicalActivityTypesOptions = ObjectValues<typeof PHYSICAL_ACTIVITY_TYPES_OPTIONS>;

@@ -14,10 +14,19 @@ export const useRoomAirConditionSchema = () => {
     insolationType: yup
       .string()
       .required(t('airConditionCalculator:online_calculator:validations.insolationType')),
+    physicalActivityType: yup
+      .string()
+      .required(t('airConditionCalculator:online_calculator:validations.physicalActivityType')),
     roomNumber: yup
       .number()
       .typeError(t('airConditionCalculator:online_calculator:validations.room_number.type'))
       .required(t('airConditionCalculator:online_calculator:validations.room_number.required')),
+    systemNumber: yup
+      .number()
+      .typeError(t('airConditionCalculator:online_calculator:validations.system_number.type'))
+      .required(t('airConditionCalculator:online_calculator:validations.system_number.required'))
+      .positive(t('airConditionCalculator:online_calculator:validations.system_number.positive'))
+      .max(10, t('airConditionCalculator:online_calculator:validations.system_number.max')),
     selectedOption: yup
       .string()
       .required(t('airConditionCalculator:online_calculator:validations.selected_option')),
@@ -31,7 +40,8 @@ export const useRoomAirConditionSchema = () => {
           schema
             .required(t('airConditionCalculator:online_calculator:validations.length.required'))
             .positive(t('airConditionCalculator:online_calculator:validations.length.positive'))
-            .max(100000, t('airConditionCalculator:online_calculator:validations.length.max')),
+            .max(100000, t('airConditionCalculator:online_calculator:validations.length.max'))
+            .min(100, t('airConditionCalculator:online_calculator:validations.length.min')),
         otherwise: (schema) => schema.notRequired(),
       }),
     width: yup
@@ -43,7 +53,8 @@ export const useRoomAirConditionSchema = () => {
           schema
             .required(t('airConditionCalculator:online_calculator:validations.width.required'))
             .positive(t('airConditionCalculator:online_calculator:validations.width.positive'))
-            .max(100000, t('airConditionCalculator:online_calculator:validations.width.max')),
+            .max(100000, t('airConditionCalculator:online_calculator:validations.width.max'))
+            .min(100, t('airConditionCalculator:online_calculator:validations.width.min')),
         otherwise: (schema) => schema.notRequired(),
       }),
     area: yup
@@ -63,6 +74,7 @@ export const useRoomAirConditionSchema = () => {
       .typeError(t('airConditionCalculator:online_calculator:validations.ceiling_height.type'))
       .positive(t('airConditionCalculator:online_calculator:validations.ceiling_height.positive'))
       .max(20000, t('airConditionCalculator:online_calculator:validations.ceiling_height.max'))
+      .min(1000, t('airConditionCalculator:online_calculator:validations.ceiling_height.min'))
       .required(t('airConditionCalculator:online_calculator:validations.ceiling_height.required')),
     people: yup
       .number()
@@ -102,6 +114,7 @@ export const useRoomAirConditionSchema = () => {
           .typeError(t('airConditionCalculator:online_calculator:validations.window_area.type'))
           .positive(t('airConditionCalculator:online_calculator:validations.window_area.positive'))
           .max(30, t('airConditionCalculator:online_calculator:validations.window_area.max'))
+          .min(2.1, t('airConditionCalculator:online_calculator:validations.window_area.min'))
           .required(t('airConditionCalculator:online_calculator:validations.window_area.required')),
       otherwise: (schema) => schema.notRequired(),
     }),

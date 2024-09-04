@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 
 import MenuIcon from '@mui/icons-material/Menu';
 
+import { VenturaVisionIcon } from '@/icons';
+
 import LanguageSwitcher from '../LanguageSwitcher';
 import NavMenu from '../NavMenu';
 
@@ -28,7 +30,10 @@ const Header: React.FC = () => {
       <S.MenuButton onClick={toggleDrawer}>
         <MenuIcon color="primary" />
       </S.MenuButton>
-      <NavMenu isOpen={isDrawerOpen} closeMenu={closeDrawer} toggleMenu={toggleDrawer} />
+      <S.FlexWrapper>
+        <VenturaVisionIcon sx={{ fontSize: '25px' }} />
+        <NavMenu isOpen={isDrawerOpen} closeMenu={closeDrawer} toggleMenu={toggleDrawer} />
+      </S.FlexWrapper>
       <LanguageSwitcher />
     </S.Header>
   );

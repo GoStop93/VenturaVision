@@ -44,6 +44,7 @@ export const useRoomSchema = () => {
       .typeError(t('ventilationCalculator:online_calculator:validations.ceiling_height.type'))
       .positive(t('ventilationCalculator:online_calculator:validations.ceiling_height.positive'))
       .max(20000, t('ventilationCalculator:online_calculator:validations.ceiling_height.max'))
+      .min(1000, t('ventilationCalculator:online_calculator:validations.ceiling_height.min'))
       .required(t('ventilationCalculator:online_calculator:validations.ceiling_height.required')),
     length: yup
       .number()
@@ -54,7 +55,8 @@ export const useRoomSchema = () => {
           schema
             .required(t('ventilationCalculator:online_calculator:validations.length.required'))
             .positive(t('ventilationCalculator:online_calculator:validations.length.positive'))
-            .max(100000, t('ventilationCalculator:online_calculator:validations.length.max')),
+            .max(100000, t('ventilationCalculator:online_calculator:validations.length.max'))
+            .min(100, t('ventilationCalculator:online_calculator:validations.length.min')),
         otherwise: (schema) => schema.notRequired(),
       }),
     width: yup
@@ -66,7 +68,8 @@ export const useRoomSchema = () => {
           schema
             .required(t('ventilationCalculator:online_calculator:validations.width.required'))
             .positive(t('ventilationCalculator:online_calculator:validations.width.positive'))
-            .max(100000, t('ventilationCalculator:online_calculator:validations.width.max')),
+            .max(100000, t('ventilationCalculator:online_calculator:validations.width.max'))
+            .min(100, t('ventilationCalculator:online_calculator:validations.width.min')),
         otherwise: (schema) => schema.notRequired(),
       }),
     area: yup
