@@ -13,11 +13,11 @@ import {
 
 import { useGetColumns } from './constants';
 import { IVentilationCalculationResultsProps } from './types';
+import { ROOM_TYPES_OPTIONS } from '../types';
+import VentilationResultsDocument from '../VentilationResultsDocument';
 import { calculateExhaustResults } from './utils/calculateExhaustResults';
 import { calculateIntakeResults } from './utils/calculateIntakeResults';
 import { groupBySystem } from './utils/groupBySystem';
-import { ROOM_TYPES_OPTIONS } from '../types';
-import VentilationResultsDocument from '../VentilationResultsDocument';
 
 import * as S from './VentilationCalculationResults.styles';
 

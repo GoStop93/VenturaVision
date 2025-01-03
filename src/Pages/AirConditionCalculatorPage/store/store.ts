@@ -5,6 +5,9 @@ import { IAirConditionCalculatorStore } from './types';
 
 export const useAirConditionCalculatorStore = create<IAirConditionCalculatorStore>()(
   devtools((set) => ({
+    isDefaultSettingsActive: false,
+    setIsDefaultSettingsActive: (value) => set(() => ({ isDefaultSettingsActive: value })),
+
     considerVentilation: false,
     setConsiderVentilation: (value) => set(() => ({ considerVentilation: value })),
 

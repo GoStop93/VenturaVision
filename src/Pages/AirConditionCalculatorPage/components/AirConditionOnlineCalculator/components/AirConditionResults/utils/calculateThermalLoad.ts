@@ -4,7 +4,7 @@ import { calculateQ1 } from './calculateQ1';
 import { calculateQ2 } from './calculateQ2';
 import { calculateQ3 } from './calculateQ3';
 
-export const calculateThermalLoad = (rooms: IAirConditionEntity[]) => {
+export const calculateThermalLoad = (rooms: IAirConditionEntity[], prefix: string) => {
   return rooms.map((room) => {
     const area = room.area
       ? room.area
@@ -33,7 +33,7 @@ export const calculateThermalLoad = (rooms: IAirConditionEntity[]) => {
     Q = Math.round(Q * 100) / 100;
 
     return {
-      systemName: `K${room.systemNumber}`,
+      systemName: `${prefix}${room.systemNumber}`,
       name: room.name,
       id: room.id,
       ceilingHeight: room.ceilingHeight && room.ceilingHeight / 1000,

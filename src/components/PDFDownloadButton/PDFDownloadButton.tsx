@@ -16,14 +16,14 @@ const PDFDownloadButton: React.FC<IPDFDownloadButtonProps> = (props) => {
   };
 
   const handleDownload = async () => {
-    const doc = pdf(children);
-    const blob = await doc.toBlob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${fileName}.pdf`;
-    a.click();
-    URL.revokeObjectURL(url);
+      const doc = pdf(children);
+      const blob = await doc.toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${fileName}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
   };
 
   return (

@@ -15,3 +15,30 @@ export const Label = styled(Typography)`
     color: ${colors.orange};
   }
 `;
+
+export const Subtitle = styled(Typography)`
+  margin-top: 20px !important;
+
+  span {
+    color: ${colors.orange};
+  }
+`;
+
+export const Text = styled(Typography)`
+  margin-top: 10px !important;
+  font-size: 18px !important;
+
+  span {
+    color: ${colors.orange};
+  }
+`;
+
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+`;

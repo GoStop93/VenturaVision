@@ -9,44 +9,44 @@ import { IRoomEntity } from '@/models/air-condition';
 export const useGetColumns = (): IColumnsConfig<IRoomEntity> => {
   const { t } = useTranslation('airConditionCalculator');
 
-  // const translations = {
-  //   system_name: t('ventilationCalculator:online_calculator.results.columns.system_name'),
-  //   room_name: t('ventilationCalculator:online_calculator.results.columns.room_name'),
-  //   people: t('ventilationCalculator:online_calculator.results.columns.people'),
-  //   height: t('ventilationCalculator:online_calculator.results.columns.height'),
-  //   area: t('ventilationCalculator:online_calculator.results.columns.area'),
-  //   airflowCapacity: t('ventilationCalculator:online_calculator.results.columns.airflowCapacity'),
-  // };
+  const translations = {
+    system_name: t('airConditionCalculator:online_calculator.results.columns.system_name'),
+    height: t('airConditionCalculator:online_calculator.results.columns.height'),
+    room_name: t('airConditionCalculator:online_calculator.results.columns.room_name'),
+    area: t('airConditionCalculator:online_calculator.results.columns.area'),
+    cooling_capacity: t('airConditionCalculator:online_calculator.results.columns.cooling_capacity'),
+    power_range: t('airConditionCalculator:online_calculator.results.columns.power_range'),
+  };
 
   return [
     {
       id: 'systemName',
-      title: '№ Системы',
+      title: translations.system_name,
       Cell: ({ item: room }) => <Typography>{room.systemName}</Typography>,
     },
     {
       id: 'roomName',
-      title: 'Наименование помещения',
+      title: translations.room_name,
       Cell: ({ item: room }) => <Typography>{room.name}</Typography>,
     },
     {
       id: 'height',
-      title: 'Высота помещения, м',
+      title: translations.height,
       Cell: ({ item: room }) => <Typography>{room.ceilingHeight}</Typography>,
     },
     {
       id: 'area',
-      title: 'Площаль помещения, м²',
+      title: translations.area,
       Cell: ({ item: room }) => <Typography>{room.area}</Typography>,
     },
     {
       id: 'coolingCapacity',
-      title: 'Расчетная мощность охлаждения Q, кВТ',
+      title: translations.cooling_capacity,
       Cell: ({ item: room }) => <Typography>{room.Q}</Typography>,
     },
     {
       id: 'coolingCapacityRange',
-      title: 'Рекомендуемый диапазон мощности кондиционера Qrange, кВТ',
+      title: translations.power_range,
       Cell: ({ item: room }) => {
         if (!room.Q) {
           return <Typography>-</Typography>;

@@ -55,7 +55,7 @@
         "type": "System number must be a number",
         "required": "System number is a required field",
         "positive": "System number must be a positive number",
-        "max": "Maximum system number is 30"
+        "max": "Maximum system number is 10"
       },
       "ceiling_height": {
         "type": "Ceiling height must be a number",
@@ -133,6 +133,86 @@
       "selected_option": "This field is required",
       "consider_ventilation": "This field is required",
       "selected_ventilation_option": "This field is required"
+    },
+    "calculator_form": {
+      "add_button": "+ add room",
+      "submit_button": "Submit",
+      "reset_button": "Reset"
+    },
+    "air_condition_form": {
+      "insolation_types": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "physical_activity_types": {
+        "low": "Rest",
+        "medium": "Work",
+        "high": "Exercise"
+      },
+      "room_number_label": "Room №",
+      "room_name_label": "Room Name:",
+      "system_number_label": "System Number:",
+      "area_label": "Room Area:",
+      "radio_square_label": "Area",
+      "radio_dimensions_label": "Dimensions",
+      "length_label": "Room Length:",
+      "width_label": "Room Width:",
+      "ceiling_height_label": "Ceiling Height:",
+      "insolation_type_label": "Insolation",
+      "physical_activity_type_label": "Physical Activity Intensity:",
+      "people_label": "Number of People:",
+      "computers_label": "Number of Computers:",
+      "TVs_label": "Number of TVs:",
+      "appliances_label": "Power of Other Appliances:",
+      "air_exchange_rate_short": "Exchange Rate",
+      "airflow_capacity": "Airflow Capacity:",
+      "airflow_capacity_short": "Airflow",
+      "tooltips": {
+        "system_number": "Specify the air conditioning system number (default is 1). Use different numbers to divide the project into multiple separate systems if necessary.",
+        "insolation_type": "Sunlight exposure",
+        "appliances": "For other appliances, assume that 30% of their maximum power consumption is released as heat. Enter the total power consumption of the remaining household appliances."
+      },
+      "units_of_measurement": {
+        "millimeter": "mm",
+        "unit": "pcs",
+        "square_meter": "m²",
+        "kilowatt": "kW",
+        "cubic_meter_per_hour": "m³/h"
+      }
+    },
+    "default_settings": {
+      "title": "Set Default Parameters",
+      "ventilation": "Include Ventilation",
+      "top_floor": "Top Floor",
+      "panoramic_windows": "Panoramic Windows",
+      "hot_climate": "Hot Climate",
+      "air_exchange_rate": "Air Exchange Rate:",
+      "glazing_area": "Glazing Area:",
+      "power_increase": "Power Increase by:",
+      "tooltips": {
+        "settings": "Specify parameters that will be automatically applied to all new rooms. You can adjust these settings for each individual room later.",
+        "ventilation": "When selected, the air conditioner capacity will be increased to compensate for the heat load from incoming air. The recommended air exchange rate for residential spaces is 2.",
+        "top_floor": "When selected, the air conditioner capacity will be increased to compensate for heat gain from a heated roof (the calculator uses an average value of 15%). Select this option if the room is on the top floor and there is no attic or technical floor above.",
+        "panoramic_windows": "When selected, the air conditioner capacity will be increased to compensate for heat gain through large windows. Select this option if the glazing area exceeds 2 m².",
+        "hot_climate": "Select this option to increase the air conditioner capacity if the calculated outdoor air temperature during the warm season exceeds 28.5°C. It is recommended to increase capacity by 10-30%, depending on the outdoor temperature."
+      },
+      "square_meter": "m²"
+    },
+    "results": {
+      "title_first": "Thermal Load",
+      "title_second": "Calculation Table:",
+      "subtitle": "Thermal Load Ranges by Systems:",
+      "prefix": "A",
+      "kilowatt": "kW",
+      "columns": {
+        "system_name": "System №",
+        "room_name": "Room Name",
+        "height": "Room Height, m",
+        "area": "Room Area, m²",
+        "cooling_capacity": "Calculated Cooling Capacity Q, kW",
+        "power_range": "Recommended Air Conditioner Power Range Qrange, kW"
+      }
     }
   }
 }

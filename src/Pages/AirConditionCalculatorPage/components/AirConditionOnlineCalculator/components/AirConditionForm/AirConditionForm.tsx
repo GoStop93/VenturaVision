@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton, Typography } from '@mui/material';
@@ -36,17 +37,66 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
 
   const { resetField, setValue, watch } = useFormContext();
 
+  const { t } = useTranslation('airConditionCalculator');
+
+  const translations = {
+    insolation_low: t('airConditionCalculator:online_calculator.air_condition_form.insolation_types.low'),
+    insolation_medium: t('airConditionCalculator:online_calculator.air_condition_form.insolation_types.medium'),
+    insolation_high: t('airConditionCalculator:online_calculator.air_condition_form.insolation_types.high'),
+    physical_activity_low: t('airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.low'),
+    physical_activity_medium: t('airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.medium'),
+    physical_activity_high: t('airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.high'),
+    room_number_label: t('airConditionCalculator:online_calculator.air_condition_form.room_number_label'),
+    room_name_label: t('airConditionCalculator:online_calculator.air_condition_form.room_name_label'),
+    system_number_label: t('airConditionCalculator:online_calculator.air_condition_form.system_number_label'),
+    area_label: t('airConditionCalculator:online_calculator.air_condition_form.area_label'),
+    radio_square_label: t('airConditionCalculator:online_calculator.air_condition_form.radio_square_label'),
+    radio_dimensions_label: t('airConditionCalculator:online_calculator.air_condition_form.radio_dimensions_label'),
+    length_label: t('airConditionCalculator:online_calculator.air_condition_form.length_label'),
+    width_label: t('airConditionCalculator:online_calculator.air_condition_form.width_label'),
+    ceiling_height_label: t('airConditionCalculator:online_calculator.air_condition_form.ceiling_height_label'),
+    insolation_type_label: t('airConditionCalculator:online_calculator.air_condition_form.insolation_type_label'),
+    physical_activity_type_label: t('airConditionCalculator:online_calculator.air_condition_form.physical_activity_type_label'),
+    people_label: t('airConditionCalculator:online_calculator.air_condition_form.people_label'),
+    computers_label: t('airConditionCalculator:online_calculator.air_condition_form.computers_label'),
+    TVs_label: t('airConditionCalculator:online_calculator.air_condition_form.TVs_label'),
+    appliances_label: t('airConditionCalculator:online_calculator.air_condition_form.appliances_label'),
+    system_number_tooltip:  t('airConditionCalculator:online_calculator.air_condition_form.tooltips.system_number'),
+    insolation_type_tooltip:  t('airConditionCalculator:online_calculator.air_condition_form.tooltips.insolation_type'),
+    appliances_tooltip:  t('airConditionCalculator:online_calculator.air_condition_form.tooltips.appliances'),
+    millimeter: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.millimeter'),
+    unit: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.unit'),
+    square_meter: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.square_meter'),
+    kilowatt: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.kilowatt'),
+    cubic_meter_per_hour: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.cubic_meter_per_hour'),
+    air_exchange_rate_short: t('airConditionCalculator:online_calculator.air_condition_form.air_exchange_rate_short'),
+    airflow_capacity: t('airConditionCalculator:online_calculator.air_condition_form.airflow_capacity'),
+    airflow_capacity_short: t('airConditionCalculator:online_calculator.air_condition_form.airflow_capacity_short'),
+    ventilation: t('airConditionCalculator:online_calculator.default_settings.ventilation'),
+    top_floor: t('airConditionCalculator:online_calculator.default_settings.top_floor'),
+    panoramic_windows: t('airConditionCalculator:online_calculator.default_settings.panoramic_windows'),
+    hot_climate: t('airConditionCalculator:online_calculator.default_settings.hot_climate'),
+    air_exchange_rate: t('airConditionCalculator:online_calculator.default_settings.air_exchange_rate'),
+    glazing_area: t('airConditionCalculator:online_calculator.default_settings.glazing_area'),
+    power_increase: t('airConditionCalculator:online_calculator.default_settings.power_increase'),
+    settings_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.settings'),
+    ventilation_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.ventilation'),
+    top_floor_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.top_floor'),
+    panoramic_windows_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.panoramic_windows'),
+    hot_climate_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.hot_climate'),
+  };
+
   const translatedInsolationTypes = {
-    [INSOLATION_TYPES_OPTIONS.LOW]: 'Слабая',
-    [INSOLATION_TYPES_OPTIONS.MEDIUM]: 'Средняя',
-    [INSOLATION_TYPES_OPTIONS.HIGH]: 'Сильная',
-  }; //TODO: add translations
+    [INSOLATION_TYPES_OPTIONS.LOW]: translations.insolation_low,
+    [INSOLATION_TYPES_OPTIONS.MEDIUM]: translations.insolation_medium,
+    [INSOLATION_TYPES_OPTIONS.HIGH]: translations.insolation_high,
+  };
 
   const translatedPhysicalActivityTypes = {
-    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.LOW]: 'Отдых',
-    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.MEDIUM]: 'Работа',
-    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.HIGH]: 'Тренировка',
-  }; //TODO: add translations
+    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.LOW]: translations.physical_activity_low,
+    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.MEDIUM]: translations.physical_activity_medium,
+    [PHYSICAL_ACTIVITY_TYPES_OPTIONS.HIGH]: translations.physical_activity_high,
+  };
 
   const selectedOption = watch(`rooms.${index}.selectedOption`, SELECTED_OPTIONS.SQUARE);
   const insolationType = watch(`rooms.${index}.insolationType`, INSOLATION_TYPES_OPTIONS.LOW);
@@ -141,7 +191,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
   return (
     <S.Form>
       <S.Header>
-        <Typography variant="h6">Комната {roomNumber}</Typography>
+        <Typography variant="h6">{translations.room_number_label} {roomNumber}</Typography>
         {isVisibleDeleteButton && (
           <IconButton onClick={onRemove}>
             <DeleteIcon sx={{ fontSize: '18px', color: colors.orange }} />
@@ -150,7 +200,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
         <S.Image src={airConditionImage} />
       </S.Header>
       <S.VerticalWrapper>
-        <Typography>Наименование помещения:</Typography>
+        <Typography>{translations.room_name_label}</Typography>
         <Controller
           name={`rooms.${index}.name`}
           control={control}
@@ -166,7 +216,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
         <S.FormColumns>
           <S.InputWrapper style={{ marginTop: '10px' }}>
             <S.HorizontalWrapper>
-              <Typography>Номер системы:</Typography>
+              <Typography>{translations.system_number_label}</Typography>
               <S.FlexWrapper>
                 <Controller
                   name={`rooms.${index}.systemNumber`}
@@ -181,9 +231,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                   )}
                 />
                 <InfoHelper
-                  tooltipText={
-                    'Укажите номер системы кондиционирования (по умолчанию 1). Используйте разные номера для разделения проекта на несколько отдельных систем, если это необходимо'
-                  }
+                  tooltipText={translations.system_number_tooltip}
                 />
               </S.FlexWrapper>
             </S.HorizontalWrapper>
@@ -194,19 +242,19 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
               <FormControlLabel
                 value={SELECTED_OPTIONS.SQUARE}
                 control={<Radio />}
-                label={'Площадь'} //TODO: add translation</S.SwitchWrapper>
+                label={translations.radio_square_label}
               />
               <FormControlLabel
                 value={SELECTED_OPTIONS.DIMENSIONS}
                 control={<Radio />}
-                label={'Размеры'} //TODO: add translation
+                label={translations.radio_dimensions_label}
               />
             </RadioGroup>
             {selectedOption === SELECTED_OPTIONS.DIMENSIONS && (
               <>
                 <S.InputWrapper>
                   <S.HorizontalWrapper>
-                    <Typography>Длина помещения:</Typography>
+                    <Typography>{translations.length_label}</Typography>
                     <S.FlexWrapper>
                       <Controller
                         name={`rooms.${index}.length`}
@@ -215,14 +263,14 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                           <S.Input size="small" {...field} placeholder="2000" />
                         )}
                       />
-                      мм
+                      {translations.millimeter}
                     </S.FlexWrapper>
                   </S.HorizontalWrapper>
                   {errors?.length && <ErrorMessage error={errors.length.message} />}
                 </S.InputWrapper>
                 <S.InputWrapper>
                   <S.HorizontalWrapper>
-                    <Typography>Ширина помещения:</Typography>
+                    <Typography>{translations.width_label}</Typography>
                     <S.FlexWrapper>
                       <Controller
                         name={`rooms.${index}.width`}
@@ -231,7 +279,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                           <S.Input size="small" {...field} placeholder="3000" />
                         )}
                       />
-                      мм
+                      {translations.millimeter}
                     </S.FlexWrapper>
                   </S.HorizontalWrapper>
                   {errors?.width && <ErrorMessage error={errors.width.message} />}
@@ -242,14 +290,14 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
             {selectedOption === SELECTED_OPTIONS.SQUARE && (
               <S.InputWrapper>
                 <S.HorizontalWrapper>
-                  <Typography>Площадь помещения:</Typography>
+                  <Typography>{translations.area_label}</Typography>
                   <S.FlexWrapper>
                     <Controller
                       name={`rooms.${index}.area`}
                       control={control}
                       render={({ field }) => <S.Input size="small" {...field} placeholder="24" />}
                     />
-                    м²&nbsp;
+                    {translations.square_meter}&nbsp;
                   </S.FlexWrapper>
                 </S.HorizontalWrapper>
                 {errors?.area && <ErrorMessage error={errors.area.message} />}
@@ -258,21 +306,21 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
           </S.SwitchWrapper>
           <S.InputWrapper>
             <S.HorizontalWrapper>
-              <Typography>Высота потолка:</Typography>
+              <Typography>{translations.ceiling_height_label}</Typography>
               <S.FlexWrapper>
                 <Controller
                   name={`rooms.${index}.ceilingHeight`}
                   control={control}
                   render={({ field }) => <S.Input size="small" {...field} placeholder="3200" />}
                 />
-                мм
+                {translations.millimeter}
               </S.FlexWrapper>
             </S.HorizontalWrapper>
             {errors?.ceilingHeight && <ErrorMessage error={errors.ceilingHeight.message} />}
           </S.InputWrapper>
 
           <S.HorizontalWrapper>
-            <Typography>Инсоляция:</Typography>
+            <Typography>{translations.insolation_type_label}</Typography>
             <S.FlexWrapper>
               <Dropdown
                 options={Object.entries(translatedInsolationTypes).map(([key, optionValue]) => ({
@@ -283,13 +331,13 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                 value={translatedInsolationTypes[insolationType]}
                 onChange={onInsolationTypeChange}
               />
-              <InfoHelper tooltipText={'Освещенность солнцем'} />
+              <InfoHelper tooltipText={translations.insolation_type_tooltip} />
             </S.FlexWrapper>
           </S.HorizontalWrapper>
 
           <S.InputWrapper>
             <S.HorizontalWrapper>
-              <Typography>Количество людей:</Typography>
+              <Typography>{translations.people_label}</Typography>
               <S.FlexWrapper>
                 <Controller
                   name={`rooms.${index}.people`}
@@ -304,7 +352,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                     />
                   )}
                 />
-                шт
+                {translations.unit}
               </S.FlexWrapper>
             </S.HorizontalWrapper>
             {errors?.people && <ErrorMessage error={errors.people.message} />}
@@ -312,7 +360,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
 
           {watch(`rooms.${index}.people`, 0) > 0 && (
             <S.HorizontalWrapper>
-              <Typography style={{ width: '130px' }}>Уровень физичекой нагрузки:</Typography>
+              <Typography style={{ width: '130px' }}>{translations.physical_activity_type_label}</Typography>
               <Dropdown
                 options={Object.entries(translatedPhysicalActivityTypes).map(
                   ([key, optionValue]) => ({
@@ -328,7 +376,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
           )}
           <S.InputWrapper>
             <S.HorizontalWrapper>
-              <Typography>Количество компьютеров:</Typography>
+              <Typography>{translations.computers_label}</Typography>
               <S.FlexWrapper>
                 <Controller
                   name={`rooms.${index}.computers`}
@@ -343,7 +391,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                     />
                   )}
                 />
-                шт
+                {translations.unit}
               </S.FlexWrapper>
             </S.HorizontalWrapper>
             {errors?.computers && <ErrorMessage error={errors.computers.message} />}
@@ -351,7 +399,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
 
           <S.InputWrapper>
             <S.HorizontalWrapper>
-              <Typography>Количество телевизоров:</Typography>
+              <Typography>{translations.TVs_label}</Typography>
               <S.FlexWrapper>
                 <Controller
                   name={`rooms.${index}.TVs`}
@@ -366,7 +414,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                     />
                   )}
                 />
-                шт
+                {translations.unit}
               </S.FlexWrapper>
             </S.HorizontalWrapper>
             {errors?.TVs && <ErrorMessage error={errors.TVs.message} />}
@@ -374,18 +422,16 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
 
           <S.InputWrapper>
             <S.HorizontalWrapper>
-              <Typography>Мощность остальной техники:</Typography>
+              <Typography>{translations.appliances_label}</Typography>
               <S.FlexWrapper>
                 <Controller
                   name={`rooms.${index}.appliances`}
                   control={control}
                   render={({ field }) => <S.Input size="small" {...field} placeholder="5" />}
                 />
-                кВт
+                {translations.kilowatt}
                 <InfoHelper
-                  tooltipText={
-                    'Для других приборов можно считать, что они выделяют в виде тепла 30% от максимальной потребляемой мощности. Укажите суммарную потребляемую мощность остальной бытовой техники'
-                  }
+                  tooltipText={translations.appliances_tooltip}
                 />
               </S.FlexWrapper>
             </S.HorizontalWrapper>
@@ -397,10 +443,10 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
           <S.SwitchWrapper withBackground={considerVentilation} isFirst>
             <S.InputWrapper>
               <S.HorizontalWrapper>
-                <Typography>Учитывать вентиляцию</Typography>
+                <Typography>{translations.ventilation}</Typography>
                 <S.FlexWrapper>
                   <Switch checked={considerVentilation} onChange={toggleConsiderVentilation} />
-                  <InfoHelper tooltipText="При выборе опции мощность кондиционера будет увеличина для компенсации тепловой нагрузки от приточного воздуха. Рекомендуемое значение кратности воздухообмена для жилых помещений - 2" />
+                  <InfoHelper tooltipText={translations.ventilation_tooltip} />
                 </S.FlexWrapper>
               </S.HorizontalWrapper>
               {considerVentilation && (
@@ -412,12 +458,12 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                   <FormControlLabel
                     value={SELECTED_VENTILATION_OPTIONS.AIR_EXCHANGE_RATE}
                     control={<Radio />}
-                    label={'Кратность'} //TODO: add translation
+                    label={translations.air_exchange_rate_short}
                   />
                   <FormControlLabel
                     value={SELECTED_VENTILATION_OPTIONS.AIRFLOW_RATE}
                     control={<Radio />}
-                    label={'Расход'} //TODO: add translation
+                    label={translations.airflow_capacity_short}
                   />
                 </RadioGroup>
               )}
@@ -425,7 +471,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                 selectedVentilationOption === SELECTED_VENTILATION_OPTIONS.AIRFLOW_RATE && (
                   <S.InputWrapper>
                     <S.HorizontalWrapper>
-                      <Typography>Расход воздуха:</Typography>
+                      <Typography>{translations.airflow_capacity}</Typography>
                       <S.FlexWrapper>
                         <Controller
                           name={`rooms.${index}.airflowRate`}
@@ -434,7 +480,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                             <S.Input size="small" {...field} placeholder="120" />
                           )}
                         />
-                        м³/ч
+                        {translations.cubic_meter_per_hour}
                       </S.FlexWrapper>
                     </S.HorizontalWrapper>
                     {errors?.airflowRate && <ErrorMessage error={errors.airflowRate.message} />}
@@ -444,7 +490,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                 selectedVentilationOption === SELECTED_VENTILATION_OPTIONS.AIR_EXCHANGE_RATE && (
                   <S.InputWrapper>
                     <S.HorizontalWrapper>
-                      <Typography>Кратность воздухообмена:</Typography>
+                      <Typography>{translations.air_exchange_rate}</Typography>
                       <Controller
                         name={`rooms.${index}.exchangeRate`}
                         control={control}
@@ -466,34 +512,34 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
           </S.SwitchWrapper>
           <S.SwitchWrapper>
             <S.HorizontalWrapper>
-              <Typography>Верхний этаж</Typography>
+              <Typography>{translations.top_floor}</Typography>
               <S.FlexWrapper>
                 <Switch checked={topFloor} onChange={toggleTopFloor} />
-                <InfoHelper tooltipText="При выборе опции мощность кондиционера будет увеличина для компенсации теплопритоков от нагретой крыши (в калькуляторе используется среднее значение - 15%). Выберите данную опцию, если помещение расположено на последнем этаже и сверху нет чердака или технического этажа" />
+                <InfoHelper tooltipText={translations.top_floor_tooltip} />
               </S.FlexWrapper>
             </S.HorizontalWrapper>
           </S.SwitchWrapper>
 
           <S.SwitchWrapper withBackground={panoramicWindows}>
             <S.HorizontalWrapper>
-              <Typography>Панорамные окна</Typography>
+              <Typography>{translations.panoramic_windows}</Typography>
               <S.FlexWrapper>
                 <Switch checked={panoramicWindows} onChange={togglePanoramicWindows} />
-                <InfoHelper tooltipText="При выборе опции мощность кондиционера будет увеличина для компенсации теплопритоков через большие окна. Выберите данную опцию, если площадь остекления превышает значение 2м²" />
+                <InfoHelper tooltipText={translations.panoramic_windows_tooltip} />
               </S.FlexWrapper>
             </S.HorizontalWrapper>
 
             {panoramicWindows && (
               <S.InputWrapper>
                 <S.HorizontalWrapper>
-                  <Typography>Площадь остекления:</Typography>
+                  <Typography>{translations.glazing_area}</Typography>
                   <S.FlexWrapper>
                     <Controller
                       name={`rooms.${index}.windowArea`}
                       control={control}
                       render={({ field }) => <S.Input size="small" {...field} placeholder="5" />}
                     />
-                    м²
+                    {translations.square_meter}
                   </S.FlexWrapper>
                 </S.HorizontalWrapper>
                 {errors?.windowArea && <ErrorMessage error={errors.windowArea.message} />}
@@ -503,16 +549,16 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
 
           <S.SwitchWrapper withBackground={hotClimate}>
             <S.HorizontalWrapper>
-              <Typography>Жаркий климат</Typography>
+              <Typography>{translations.hot_climate}</Typography>
               <S.FlexWrapper>
                 <Switch checked={hotClimate} onChange={toggleHotClimate} />
-                <InfoHelper tooltipText="Выберите опцию, чтобы увеличить мощность кондиционера в случае, если  расчетная температура воздуха в теплый период года может превышать 28,5°С. Рекомендуется увеличить мощность на 10 - 30%, в зависимости от температуры наружного воздуха" />
+                <InfoHelper tooltipText={translations.hot_climate_tooltip} />
               </S.FlexWrapper>
             </S.HorizontalWrapper>
 
             {hotClimate && (
               <S.HorizontalWrapper>
-                <Typography>Увеличение мощности на:</Typography>
+                <Typography>{translations.power_increase}</Typography>
                 <Dropdown
                   options={Object.entries(powerIncreasePercentageTypes).map(
                     ([key, optionValue]) => ({

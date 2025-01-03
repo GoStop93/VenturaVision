@@ -1,12 +1,17 @@
 import { IAirConditionCalculatorStore } from './types';
 
+export const getIsDefaultSettingsActive = (store: IAirConditionCalculatorStore) => 
+  store.isDefaultSettingsActive;
+export const getSetIsDefaultSettingsActive = (store: IAirConditionCalculatorStore) =>
+  store.setIsDefaultSettingsActive;
+
 export const getConsiderVentilation = (store: IAirConditionCalculatorStore) =>
   store.considerVentilation;
 export const getSetConsiderVentilation = (store: IAirConditionCalculatorStore) =>
   store.setConsiderVentilation;
 
 export const getTopFloor = (store: IAirConditionCalculatorStore) => store.topFloor;
-export const getSetTopFloor = (store: IAirConditionCalculatorStore) => store.setTopFloor;
+export const getSetTopFloor = (store: IAirConditionCalculatorStore) => store.setTopFloor; 
 
 export const getPanoramicWindows = (store: IAirConditionCalculatorStore) => store.panoramicWindows;
 export const getSetPanoramicWindows = (store: IAirConditionCalculatorStore) =>

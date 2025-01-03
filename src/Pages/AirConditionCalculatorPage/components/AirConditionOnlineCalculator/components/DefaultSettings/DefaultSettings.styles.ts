@@ -10,13 +10,22 @@ export const MainWrapper = styled.div`
   justify-content: space-between;
   min-width: 420px;
   font-size: 14px;
+
+  @media screen and (max-width: ${screenSizes.sm}) {
+    min-width: 20px;
+    width: auto;
+  }
 `;
 
-export const FlexWrapper = styled.div`
+export const FlexWrapper = styled.div<{ withPadding?: boolean }>`
   display: flex;
   align-items: center;
   font-size: 14px;
   gap: 5px;
+
+  @media screen and (max-width: ${screenSizes.sm}) {
+    padding:  ${({ withPadding }) => (withPadding ? '20px' : '0')};
+  }
 `;
 
 export const DefaultSettings = styled.div<{
@@ -24,7 +33,7 @@ export const DefaultSettings = styled.div<{
 }>`
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: ${({ withBackground }) => (withBackground ? '620px' : '420px')};
   border-radius: ${({ withBackground }) => (withBackground ? '5px' : '0px')};
   background-color: ${({ withBackground }) => (withBackground ? '#f5f5f5' : 'transparent')};
   padding: 5px 10px;
@@ -35,6 +44,10 @@ export const DefaultSettings = styled.div<{
   border-left: ${({ withBackground }) => (withBackground ? `1px dashed #9E9E9E` : 'none')};
   border-right: ${({ withBackground }) => (withBackground ? `1px dashed #9E9E9E` : 'none')};
   transition: all 0.2s;
+
+  @media screen and (max-width: ${screenSizes.sm}) {
+    width: auto;
+  }
 `;
 
 export const Title = styled(Typography)`
@@ -80,6 +93,14 @@ export const FormColumns = styled.div`
       width: 0px;
       height: calc(100% + 5px);
       border-left: 1px dashed #9e9e9e;
+    }
+  }
+  
+  @media screen and (max-width: ${screenSizes.sm}) {
+    &:not(:last-child) {
+      &::after {
+        content: none;
+      }
     }
   }
 `;

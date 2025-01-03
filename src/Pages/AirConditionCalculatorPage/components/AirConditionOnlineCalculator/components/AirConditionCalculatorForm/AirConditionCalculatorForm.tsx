@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,6 +12,7 @@ import {
   getHotClimate,
   getPanoramicWindows,
   getPowerIncreaseType,
+  getSetIsDefaultSettingsActive,
   getTopFloor,
   getWindowArea,
 } from '@/pages/AirConditionCalculatorPage/store/selectors';
@@ -35,6 +37,7 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const setIsDefaultSettingsActive = useAirConditionCalculatorStore(getSetIsDefaultSettingsActive);
   const considerVentilation = useAirConditionCalculatorStore(getConsiderVentilation);
   const topFloor = useAirConditionCalculatorStore(getTopFloor);
   const panoramicWindows = useAirConditionCalculatorStore(getPanoramicWindows);
@@ -54,6 +57,14 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
     control,
     name: 'rooms',
   });
+
+  const { t } = useTranslation('airConditionCalculator');
+
+  const translations = {
+    add_button: t('airConditionCalculator:online_calculator.calculator_form.add_button'),
+    submit_button: t('airConditionCalculator:online_calculator.calculator_form.submit_button'),
+    reset_button: t('airConditionCalculator:online_calculator.calculator_form.reset_button'),
+  };
 
   const addForm = () => {
     append({
@@ -120,6 +131,7 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
       ],
     });
     setRooms([]);
+    setIsDefaultSettingsActive(false);
   };
 
   const onSubmit = (data: IAirConditionData) => {
@@ -163,7 +175,7 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
           onClick={addForm}
           disabled={fields.length >= MAX_ROOMS}
         >
-          + Add room
+          {translations.add_button}
         </S.AddButton>
       </S.FormsWrapper>
       {rooms.length > 0 && (!errors || Object.keys(errors).length < 1) && (
@@ -173,10 +185,10 @@ const AirConditionCalculatorForm: React.FC<IAirConditionCalculatorFormProps> = (
       )}
       <S.ButtonsWrapper>
         <S.MenuButton size="large" onClick={handleSubmit(onSubmit)}>
-          Submit
+        {translations.submit_button}
         </S.MenuButton>
         <S.MenuButton variant="outlined" size="large" onClick={resetForms}>
-          Reset
+        {translations.reset_button}
         </S.MenuButton>
       </S.ButtonsWrapper>
     </S.AirConditionCalculator>

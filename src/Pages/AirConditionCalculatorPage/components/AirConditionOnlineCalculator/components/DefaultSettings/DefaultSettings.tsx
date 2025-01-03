@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Typography } from '@mui/material';
@@ -13,11 +14,13 @@ import {
   getConsiderVentilation,
   getExchangeRate,
   getHotClimate,
+  getIsDefaultSettingsActive,
   getPanoramicWindows,
   getPowerIncreaseType,
   getSetConsiderVentilation,
   getSetExchangeRate,
   getSetHotClimate,
+  getSetIsDefaultSettingsActive,
   getSetPanoramicWindows,
   getSetPowerIncreaseType,
   getSetTopFloor,
@@ -33,7 +36,9 @@ import { powerIncreasePercentageTypes } from '../AirConditionForm/AirConditionFo
 import * as S from './DefaultSettings.styles';
 
 const DefaultSettings: React.FC = () => {
-  const [isDefaultSettingsActive, setIsDefaultSettingsActive] = useState(false);
+
+  const isDefaultSettingsActive = useAirConditionCalculatorStore(getIsDefaultSettingsActive);
+  const setIsDefaultSettingsActive = useAirConditionCalculatorStore(getSetIsDefaultSettingsActive);
 
   const considerVentilation = useAirConditionCalculatorStore(getConsiderVentilation);
   const setConsiderVentilation = useAirConditionCalculatorStore(getSetConsiderVentilation);
@@ -57,6 +62,25 @@ const DefaultSettings: React.FC = () => {
   const setWindowArea = useAirConditionCalculatorStore(getSetWindowArea);
 
   const defaultSettingsSchema = useDefaultSettingsSchema();
+
+  const { t } = useTranslation('airConditionCalculator');
+
+  const translations = {
+    title: t('airConditionCalculator:online_calculator.default_settings.title'),
+    ventilation: t('airConditionCalculator:online_calculator.default_settings.ventilation'),
+    top_floor: t('airConditionCalculator:online_calculator.default_settings.top_floor'),
+    panoramic_windows: t('airConditionCalculator:online_calculator.default_settings.panoramic_windows'),
+    hot_climate: t('airConditionCalculator:online_calculator.default_settings.hot_climate'),
+    air_exchange_rate: t('airConditionCalculator:online_calculator.default_settings.air_exchange_rate'),
+    glazing_area: t('airConditionCalculator:online_calculator.default_settings.glazing_area'),
+    power_increase: t('airConditionCalculator:online_calculator.default_settings.power_increase'),
+    settings_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.settings'),
+    ventilation_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.ventilation'),
+    top_floor_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.top_floor'),
+    panoramic_windows_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.panoramic_windows'),
+    hot_climate_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.hot_climate'),
+    square_meter: t('airConditionCalculator:online_calculator.default_settings.square_meter'),
+  };
 
   const {
     control,
@@ -85,37 +109,37 @@ const DefaultSettings: React.FC = () => {
   };
 
   const toggleDefaultSettingsActive = () => {
-    setIsDefaultSettingsActive((prevState) => {
-      const newState = !prevState;
-      if (newState) {
-        setFormValue('considerVentilation', considerVentilation);
-        setFormValue('topFloor', topFloor);
-        setFormValue('panoramicWindows', panoramicWindows);
-        setFormValue('hotClimate', hotClimate);
-        setFormValue('powerIncreaseType', powerIncreaseType);
-        setFormValue('windowArea', windowArea);
-        setFormValue('exchangeRate', exchangeRate);
-      } else {
-        reset({
-          considerVentilation: false,
-          topFloor: false,
-          panoramicWindows: false,
-          hotClimate: false,
-          powerIncreaseType: '10',
-          windowArea: undefined,
-          exchangeRate: undefined,
-        });
-        setConsiderVentilation(false);
-        setTopFloor(false);
-        setPanoramicWindows(false);
-        setHotClimate(false);
-        setPowerIncreaseType('10');
-        setWindowArea(5);
-        setExchangeRate(2);
-      }
-      handleSubmit(onSubmit)();
-      return newState;
-    });
+    const newState = !isDefaultSettingsActive;
+    setIsDefaultSettingsActive(newState);
+  
+    if (newState) {
+      setFormValue('considerVentilation', considerVentilation);
+      setFormValue('topFloor', topFloor);
+      setFormValue('panoramicWindows', panoramicWindows);
+      setFormValue('hotClimate', hotClimate);
+      setFormValue('powerIncreaseType', powerIncreaseType);
+      setFormValue('windowArea', windowArea);
+      setFormValue('exchangeRate', exchangeRate);
+    } else {
+      reset({
+        considerVentilation: false,
+        topFloor: false,
+        panoramicWindows: false,
+        hotClimate: false,
+        powerIncreaseType: '10',
+        windowArea: undefined,
+        exchangeRate: undefined,
+      });
+      setConsiderVentilation(false);
+      setTopFloor(false);
+      setPanoramicWindows(false);
+      setHotClimate(false);
+      setPowerIncreaseType('10');
+      setWindowArea(5);
+      setExchangeRate(2);
+    }
+  
+    handleSubmit(onSubmit)();
   };
 
   const toggleConsiderVentilation = () => {
@@ -170,13 +194,11 @@ const DefaultSettings: React.FC = () => {
   return (
     <S.DefaultSettings withBackground={isDefaultSettingsActive}>
       <S.MainWrapper>
-        <S.Title>Настроить параметры по умолчанию</S.Title>
-        <S.FlexWrapper>
+        <S.Title>{translations.title}</S.Title>
+        <S.FlexWrapper withPadding >
           <Switch checked={isDefaultSettingsActive} onChange={toggleDefaultSettingsActive} />
           <InfoHelper
-            tooltipText={
-              'Укажите параметры, которые будут автоматически устанавливаться для всех новых помещений. В дальнейшем вы сможете изменить их для каждого отдельного помещения'
-            }
+            tooltipText={translations.settings_tooltip}
           />
         </S.FlexWrapper>
       </S.MainWrapper>
@@ -186,17 +208,17 @@ const DefaultSettings: React.FC = () => {
             <S.SwitchWrapper withBackground={considerVentilation} isFirst>
               <S.InputWrapper>
                 <S.HorizontalWrapper>
-                  <Typography>Учитывать вентиляцию</Typography>
+                  <Typography>{translations.ventilation}</Typography>
                   <S.FlexWrapper>
                     <Switch checked={considerVentilation} onChange={toggleConsiderVentilation} />
-                    <InfoHelper tooltipText="При выборе опции мощность кондиционера будет увеличина для компенсации тепловой нагрузки от приточного воздуха. Рекомендуемое значение кратности воздухообмена для жилых помещений - 2" />
+                    <InfoHelper tooltipText={translations.ventilation_tooltip} />
                   </S.FlexWrapper>
                 </S.HorizontalWrapper>
 
                 {considerVentilation && (
                   <S.InputWrapper>
                     <S.HorizontalWrapper>
-                      <Typography>Кратность воздухообмена:</Typography>
+                      <Typography>{translations.air_exchange_rate}</Typography>
                       <Controller
                         name="exchangeRate"
                         control={control}
@@ -229,10 +251,10 @@ const DefaultSettings: React.FC = () => {
             </S.SwitchWrapper>
             <S.SwitchWrapper>
               <S.HorizontalWrapper>
-                <Typography>Верхний этаж</Typography>
+                <Typography>{translations.top_floor}</Typography>
                 <S.FlexWrapper>
                   <Switch checked={topFloor} onChange={toggleTopFloor} />
-                  <InfoHelper tooltipText="При выборе опции мощность кондиционера будет увеличина для компенсации теплопритоков от нагретой крыши (в калькуляторе используется среднее значение - 15%). Выберите данную опцию, если помещение расположено на последнем этаже и сверху нет чердака или технического этажа" />
+                  <InfoHelper tooltipText={translations.top_floor_tooltip} />
                 </S.FlexWrapper>
               </S.HorizontalWrapper>
             </S.SwitchWrapper>
@@ -240,17 +262,17 @@ const DefaultSettings: React.FC = () => {
           <S.FormColumns>
             <S.SwitchWrapper withBackground={panoramicWindows}>
               <S.HorizontalWrapper>
-                <Typography>Панорамные окна</Typography>
+                <Typography>{translations.panoramic_windows}</Typography>
                 <S.FlexWrapper>
                   <Switch checked={panoramicWindows} onChange={togglePanoramicWindows} />
-                  <InfoHelper tooltipText="При выборе опции мощность кондиционера будет увеличина для компенсации теплопритоков через большие окна. Выберите данную опцию, если площадь остекления превышает значение 2м²" />
+                  <InfoHelper tooltipText={translations.panoramic_windows_tooltip} />
                 </S.FlexWrapper>
               </S.HorizontalWrapper>
 
               {panoramicWindows && (
                 <S.InputWrapper>
                   <S.HorizontalWrapper>
-                    <Typography>Площадь остекления:</Typography>
+                    <Typography>{translations.glazing_area}</Typography>
                     <S.FlexWrapper>
                       <Controller
                         name="windowArea"
@@ -274,7 +296,7 @@ const DefaultSettings: React.FC = () => {
                           />
                         )}
                       />
-                      м²
+                      {translations.square_meter}
                     </S.FlexWrapper>
                   </S.HorizontalWrapper>
                   {errors?.windowArea && <ErrorMessage error={errors.windowArea.message} />}
@@ -284,16 +306,16 @@ const DefaultSettings: React.FC = () => {
 
             <S.SwitchWrapper withBackground={hotClimate}>
               <S.HorizontalWrapper>
-                <Typography>Жаркий климат</Typography>
+                <Typography>{translations.hot_climate}</Typography>
                 <S.FlexWrapper>
                   <Switch checked={hotClimate} onChange={toggleHotClimate} />
-                  <InfoHelper tooltipText="Выберите опцию, чтобы увеличить мощность кондиционера в случае, если  расчетная температура воздуха в теплый период года может превышать 28,5°С. Рекомендуется увеличить мощность на 10 - 30%, в зависимости от температуры наружного воздуха" />
+                  <InfoHelper tooltipText={translations.hot_climate_tooltip} />
                 </S.FlexWrapper>
               </S.HorizontalWrapper>
 
               {hotClimate && (
                 <S.HorizontalWrapper>
-                  <Typography>Увеличение мощности на:</Typography>
+                  <Typography>{translations.power_increase}</Typography>
                   <Dropdown
                     options={Object.entries(powerIncreasePercentageTypes).map(
                       ([key, optionValue]) => ({

@@ -27,6 +27,7 @@ import {
   getHotClimate,
   getPanoramicWindows,
   getPowerIncreaseType,
+  getSetIsDefaultSettingsActive,
   getTopFloor,
   getWindowArea,
 } from './store/selectors';
@@ -38,6 +39,7 @@ const AirConditionCalculatorPage: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [rooms, setRooms] = useState<IAirConditionEntity[]>([]);
 
+  const setIsDefaultSettingsActive = useAirConditionCalculatorStore(getSetIsDefaultSettingsActive);
   const considerVentilation = useAirConditionCalculatorStore(getConsiderVentilation);
   const topFloor = useAirConditionCalculatorStore(getTopFloor);
   const panoramicWindows = useAirConditionCalculatorStore(getPanoramicWindows);
@@ -121,6 +123,12 @@ const AirConditionCalculatorPage: React.FC = () => {
     exchangeRate,
     windowArea,
   ]);
+
+  useEffect(() => {
+    return () => {
+      setIsDefaultSettingsActive(false)
+    };
+  }, []);
 
   return (
     <FormProvider {...methods}>

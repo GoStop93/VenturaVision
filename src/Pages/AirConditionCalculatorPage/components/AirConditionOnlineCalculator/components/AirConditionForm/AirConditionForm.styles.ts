@@ -64,6 +64,14 @@ export const FormColumns = styled.div<{ small?: boolean }>`
       border-left: 1px dashed ${colors.orange};
     }
   }
+
+  @media screen and (max-width: ${screenSizes.sm}) {
+    &:not(:last-child) {
+      &::after {
+        content: none;
+      }
+    }
+  }
 `;
 
 export const FlexWrapper = styled.div`
