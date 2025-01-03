@@ -15,11 +15,15 @@ export const NavBar = styled.div<{ isVertical: boolean; isVisible?: boolean }>`
   }
 `;
 
-export const NavLink = styled(ReactNavLink)`
+export const NavLink = styled(ReactNavLink)<{ isVertical?: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: ${colors.white};
+  margin-left: -10px;
 
   @media screen and (max-width: ${screenSizes.sm}) {
     color: ${colors.black};
@@ -28,9 +32,32 @@ export const NavLink = styled(ReactNavLink)`
   &:hover {
     color: ${colors.orange};
     cursor: pointer;
+
+    .inactive-icon {
+      display: none;
+    }
+
+    .active-icon {
+      display: ${({ isVertical }) => (isVertical ? 'flex' : 'none')};
+    }
   }
 
   &.active {
     color: ${colors.orange};
+
+    .inactive-icon {
+      display: none;
+    }
+
+    .active-icon {
+      display: ${({ isVertical }) => (isVertical ? 'flex' : 'none')};
+    }
+  }
+  .inactive-icon {
+    display: ${({ isVertical }) => (isVertical ? 'flex' : 'none')};
+  }
+
+  .active-icon {
+    display: none;
   }
 `;

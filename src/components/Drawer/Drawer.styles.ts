@@ -7,4 +7,5 @@ export const Content = styled(DialogContent)`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2);
   padding: 20px !important;
+  width: 120px;
 `;
