@@ -33,57 +33,125 @@ export const powerIncreasePercentageTypes = {
 };
 
 const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
-  const { roomNumber, onRemove, amountOfRooms, control, index, errors } = props;
+  const { roomNumber, onRemove, amountOfRooms, control, index, errors, isExiting } = props;
 
   const { resetField, setValue, watch } = useFormContext();
 
   const { t } = useTranslation('airConditionCalculator');
 
   const translations = {
-    insolation_low: t('airConditionCalculator:online_calculator.air_condition_form.insolation_types.low'),
-    insolation_medium: t('airConditionCalculator:online_calculator.air_condition_form.insolation_types.medium'),
-    insolation_high: t('airConditionCalculator:online_calculator.air_condition_form.insolation_types.high'),
-    physical_activity_low: t('airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.low'),
-    physical_activity_medium: t('airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.medium'),
-    physical_activity_high: t('airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.high'),
-    room_number_label: t('airConditionCalculator:online_calculator.air_condition_form.room_number_label'),
-    room_name_label: t('airConditionCalculator:online_calculator.air_condition_form.room_name_label'),
-    system_number_label: t('airConditionCalculator:online_calculator.air_condition_form.system_number_label'),
+    insolation_low: t(
+      'airConditionCalculator:online_calculator.air_condition_form.insolation_types.low',
+    ),
+    insolation_medium: t(
+      'airConditionCalculator:online_calculator.air_condition_form.insolation_types.medium',
+    ),
+    insolation_high: t(
+      'airConditionCalculator:online_calculator.air_condition_form.insolation_types.high',
+    ),
+    physical_activity_low: t(
+      'airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.low',
+    ),
+    physical_activity_medium: t(
+      'airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.medium',
+    ),
+    physical_activity_high: t(
+      'airConditionCalculator:online_calculator.air_condition_form.physical_activity_types.high',
+    ),
+    room_number_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.room_number_label',
+    ),
+    room_name_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.room_name_label',
+    ),
+    system_number_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.system_number_label',
+    ),
     area_label: t('airConditionCalculator:online_calculator.air_condition_form.area_label'),
-    radio_square_label: t('airConditionCalculator:online_calculator.air_condition_form.radio_square_label'),
-    radio_dimensions_label: t('airConditionCalculator:online_calculator.air_condition_form.radio_dimensions_label'),
+    radio_square_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.radio_square_label',
+    ),
+    radio_dimensions_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.radio_dimensions_label',
+    ),
     length_label: t('airConditionCalculator:online_calculator.air_condition_form.length_label'),
     width_label: t('airConditionCalculator:online_calculator.air_condition_form.width_label'),
-    ceiling_height_label: t('airConditionCalculator:online_calculator.air_condition_form.ceiling_height_label'),
-    insolation_type_label: t('airConditionCalculator:online_calculator.air_condition_form.insolation_type_label'),
-    physical_activity_type_label: t('airConditionCalculator:online_calculator.air_condition_form.physical_activity_type_label'),
+    ceiling_height_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.ceiling_height_label',
+    ),
+    insolation_type_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.insolation_type_label',
+    ),
+    physical_activity_type_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.physical_activity_type_label',
+    ),
     people_label: t('airConditionCalculator:online_calculator.air_condition_form.people_label'),
-    computers_label: t('airConditionCalculator:online_calculator.air_condition_form.computers_label'),
+    computers_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.computers_label',
+    ),
     TVs_label: t('airConditionCalculator:online_calculator.air_condition_form.TVs_label'),
-    appliances_label: t('airConditionCalculator:online_calculator.air_condition_form.appliances_label'),
-    system_number_tooltip:  t('airConditionCalculator:online_calculator.air_condition_form.tooltips.system_number'),
-    insolation_type_tooltip:  t('airConditionCalculator:online_calculator.air_condition_form.tooltips.insolation_type'),
-    appliances_tooltip:  t('airConditionCalculator:online_calculator.air_condition_form.tooltips.appliances'),
-    millimeter: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.millimeter'),
-    unit: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.unit'),
-    square_meter: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.square_meter'),
-    kilowatt: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.kilowatt'),
-    cubic_meter_per_hour: t('airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.cubic_meter_per_hour'),
-    air_exchange_rate_short: t('airConditionCalculator:online_calculator.air_condition_form.air_exchange_rate_short'),
-    airflow_capacity: t('airConditionCalculator:online_calculator.air_condition_form.airflow_capacity'),
-    airflow_capacity_short: t('airConditionCalculator:online_calculator.air_condition_form.airflow_capacity_short'),
+    appliances_label: t(
+      'airConditionCalculator:online_calculator.air_condition_form.appliances_label',
+    ),
+    system_number_tooltip: t(
+      'airConditionCalculator:online_calculator.air_condition_form.tooltips.system_number',
+    ),
+    insolation_type_tooltip: t(
+      'airConditionCalculator:online_calculator.air_condition_form.tooltips.insolation_type',
+    ),
+    appliances_tooltip: t(
+      'airConditionCalculator:online_calculator.air_condition_form.tooltips.appliances',
+    ),
+    millimeter: t(
+      'airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.millimeter',
+    ),
+    unit: t(
+      'airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.unit',
+    ),
+    square_meter: t(
+      'airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.square_meter',
+    ),
+    kilowatt: t(
+      'airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.kilowatt',
+    ),
+    cubic_meter_per_hour: t(
+      'airConditionCalculator:online_calculator.air_condition_form.units_of_measurement.cubic_meter_per_hour',
+    ),
+    air_exchange_rate_short: t(
+      'airConditionCalculator:online_calculator.air_condition_form.air_exchange_rate_short',
+    ),
+    airflow_capacity: t(
+      'airConditionCalculator:online_calculator.air_condition_form.airflow_capacity',
+    ),
+    airflow_capacity_short: t(
+      'airConditionCalculator:online_calculator.air_condition_form.airflow_capacity_short',
+    ),
     ventilation: t('airConditionCalculator:online_calculator.default_settings.ventilation'),
     top_floor: t('airConditionCalculator:online_calculator.default_settings.top_floor'),
-    panoramic_windows: t('airConditionCalculator:online_calculator.default_settings.panoramic_windows'),
+    panoramic_windows: t(
+      'airConditionCalculator:online_calculator.default_settings.panoramic_windows',
+    ),
     hot_climate: t('airConditionCalculator:online_calculator.default_settings.hot_climate'),
-    air_exchange_rate: t('airConditionCalculator:online_calculator.default_settings.air_exchange_rate'),
+    air_exchange_rate: t(
+      'airConditionCalculator:online_calculator.default_settings.air_exchange_rate',
+    ),
     glazing_area: t('airConditionCalculator:online_calculator.default_settings.glazing_area'),
     power_increase: t('airConditionCalculator:online_calculator.default_settings.power_increase'),
-    settings_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.settings'),
-    ventilation_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.ventilation'),
-    top_floor_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.top_floor'),
-    panoramic_windows_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.panoramic_windows'),
-    hot_climate_tooltip: t('airConditionCalculator:online_calculator.default_settings.tooltips.hot_climate'),
+    settings_tooltip: t(
+      'airConditionCalculator:online_calculator.default_settings.tooltips.settings',
+    ),
+    ventilation_tooltip: t(
+      'airConditionCalculator:online_calculator.default_settings.tooltips.ventilation',
+    ),
+    top_floor_tooltip: t(
+      'airConditionCalculator:online_calculator.default_settings.tooltips.top_floor',
+    ),
+    panoramic_windows_tooltip: t(
+      'airConditionCalculator:online_calculator.default_settings.tooltips.panoramic_windows',
+    ),
+    hot_climate_tooltip: t(
+      'airConditionCalculator:online_calculator.default_settings.tooltips.hot_climate',
+    ),
   };
 
   const translatedInsolationTypes = {
@@ -189,9 +257,11 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
   const isVisibleDeleteButton = amountOfRooms > 1;
 
   return (
-    <S.Form>
+    <S.Form isExiting={isExiting}>
       <S.Header>
-        <Typography variant="h6">{translations.room_number_label} {roomNumber}</Typography>
+        <Typography variant="h6">
+          {translations.room_number_label} {roomNumber}
+        </Typography>
         {isVisibleDeleteButton && (
           <IconButton onClick={onRemove}>
             <DeleteIcon sx={{ fontSize: '18px', color: colors.orange }} />
@@ -230,9 +300,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                     />
                   )}
                 />
-                <InfoHelper
-                  tooltipText={translations.system_number_tooltip}
-                />
+                <InfoHelper tooltipText={translations.system_number_tooltip} />
               </S.FlexWrapper>
             </S.HorizontalWrapper>
             {errors?.systemNumber && <ErrorMessage error={errors.systemNumber.message} />}
@@ -360,7 +428,9 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
 
           {watch(`rooms.${index}.people`, 0) > 0 && (
             <S.HorizontalWrapper>
-              <Typography style={{ width: '130px' }}>{translations.physical_activity_type_label}</Typography>
+              <Typography style={{ width: '130px' }}>
+                {translations.physical_activity_type_label}
+              </Typography>
               <Dropdown
                 options={Object.entries(translatedPhysicalActivityTypes).map(
                   ([key, optionValue]) => ({
@@ -430,9 +500,7 @@ const AirConditionForm: React.FC<IAirConditionFormProps> = (props) => {
                   render={({ field }) => <S.Input size="small" {...field} placeholder="5" />}
                 />
                 {translations.kilowatt}
-                <InfoHelper
-                  tooltipText={translations.appliances_tooltip}
-                />
+                <InfoHelper tooltipText={translations.appliances_tooltip} />
               </S.FlexWrapper>
             </S.HorizontalWrapper>
             {errors?.appliances && <ErrorMessage error={errors.appliances.message} />}

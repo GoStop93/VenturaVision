@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import styled from 'styled-components';
 
-export const Form = styled(FormControl)`
+export const Form = styled(FormControl)<{ isExiting?: boolean }>`
   width: 380px;
   height: fit-content;
   box-sizing: border-box;
@@ -10,6 +10,62 @@ export const Form = styled(FormControl)`
   border-radius: 10px;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
   gap: 20px;
+  background: #fff;
+  transform-origin: left;
+  animation: ${({ isExiting }) =>
+    isExiting ? 'hideLeftToRight 180ms ease-in forwards' : 'revealLeftToRight 220ms ease-out both'};
+
+  @keyframes revealLeftToRight {
+    from {
+      transform: scaleX(0);
+      opacity: 0.3;
+    }
+    to {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes hideLeftToRight {
+    from {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    to {
+      transform: scaleX(0);
+      opacity: 0.3;
+    }
+  }
+
+  @media (max-width: 768px) {
+    transform-origin: top;
+    animation: ${({ isExiting }) =>
+      isExiting
+        ? 'hideTopToBottom 180ms ease-in forwards'
+        : 'revealTopToBottom 220ms ease-out both'};
+
+    @keyframes revealTopToBottom {
+      from {
+        transform: scaleY(0);
+        opacity: 0.3;
+      }
+      to {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes hideTopToBottom {
+      from {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+      to {
+        transform: scaleY(0);
+        opacity: 0.3;
+      }
+    }
+  }
 `;
 
 export const Header = styled.div`

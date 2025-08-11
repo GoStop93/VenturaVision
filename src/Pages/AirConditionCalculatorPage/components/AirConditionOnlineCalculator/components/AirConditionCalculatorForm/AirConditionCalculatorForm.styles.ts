@@ -29,3 +29,8 @@ export const ButtonsWrapper = styled.div`
 export const MenuButton = styled(Button)`
   width: 300px;
 `;
+
+export const AddButtonWrapper = styled.div`
+  display: inline-flex;
+  will-change: transform;
+`;

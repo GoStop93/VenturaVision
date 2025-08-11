@@ -8,4 +8,5 @@ export interface IAirConditionFormProps {
   control: Control<any>;
   index: number;
   errors?: DeepMap<FieldValues, FieldError>;
+  isExiting?: boolean;
 }

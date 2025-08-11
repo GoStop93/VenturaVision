@@ -20,7 +20,7 @@ import { ROOM_TYPES_OPTIONS, SELECTED_OPTIONS, SYSTEM_TYPES_OPTIONS } from '../t
 import * as S from './VentilationForm.styles';
 
 const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
-  const { roomNumber, onRemove, amountOfRooms, control, index, errors } = props;
+  const { roomNumber, onRemove, amountOfRooms, control, index, errors, isExiting } = props;
 
   const { resetField, setValue, watch } = useFormContext();
 
@@ -130,7 +130,7 @@ const VentilationForm: React.FC<IVentilationFormProps> = (props) => {
   const isVisibleDeleteButton = amountOfRooms > 1;
 
   return (
-    <S.Form>
+    <S.Form isExiting={isExiting}>
       <S.Header>
         <Typography variant="h6">
           {translations.room_number_label} {roomNumber}

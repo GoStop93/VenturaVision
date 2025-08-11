@@ -8,4 +8,5 @@ export interface IVentilationFormProps {
   control: Control<any>;
   index: number;
   errors?: DeepMap<FieldValues, FieldError>;
+  isExiting?: boolean;
 }
